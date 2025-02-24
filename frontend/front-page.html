@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para gráficos -->
+    <script src="front-page-style.css"></script> <!-- Style da front page em css -->
+    <script src="plot.js"></script> <!-- Importando o script em javascript para gerar o gráfico -->
+    <script src="table.js"></script> <!-- Importando o script em javascript para gerar uma tabela -->
     <title>Muda Clima</title>
 </head>
 <body>
     <h2>Muda Clima</h2>
+
+    <div class="plot">
+        <div class="filter">
+            <form id="filter-form">
+                <label for="start-date">Data:</label>
+                <input type="date" id="start-date">
+
+                <button type="button" onclick="filtrar()">Filtrar</button>
+            </form>
+        </div>
+        <table border="1" id="tabela">
+            <tr>
+                <th>nome_munic</th>
+                <th>uf</th>
+                <th>pop_2000</th>
+                <th>cod_grupo</th>
+                <th>data</th>
+                <th>valor</th>
+            </tr>
+        </table>
+    </div>
+
 </body>
 </html>
