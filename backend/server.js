@@ -14,9 +14,15 @@ const pool = new Pool({
     port: 5432,
 })
 
-app.get('/datasus', async (req, res) => {
+app.post('/datasus', async (req, res) => {
+    const { startDate } = req.body;
+    
     try {
-        const resultado = await pool.query('SELECT * FROM datasus LIMiT 10');
+        const resultado = await pool.query(`SELECT m.nome_munic, m.uf, m.pop_2000, d.cod_grupo, d.data, d.valor FROM municipios m 
+                                            JOIN datasus d ON m.cod_ibge = d.cod_ibge WHERE (m.nome_munic ILIKE 'Rio grande%' 
+                                            AND m.uf = 'RS' AND cod_grupo = 4 
+                                            AND (data >= $1 AND data < ($1::DATE + INTERVAL '1 month'))) 
+                                            ORDER BY data ASC LIMIT 400;`, [startDate]);
         res.json(resultado.rows);
     } catch (err) {
         console.error(err);
