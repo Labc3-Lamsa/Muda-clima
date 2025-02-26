@@ -1,5 +1,6 @@
 async function filtrar() {
     const startDate = document.getElementById("start-date").value;
+    const interval = document.getElementById("interval").value;
 
     // Enviar as datas como JSON para o servidor
     const resposta = await fetch('http://localhost:3000/datasus', {
@@ -7,7 +8,7 @@ async function filtrar() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ startDate })
+        body: JSON.stringify({ startDate, interval })
     });
 
     const dadosFiltrados = await resposta.json();

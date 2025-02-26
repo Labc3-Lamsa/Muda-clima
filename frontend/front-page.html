@@ -7,6 +7,7 @@
     <script src="front-page-style.css"></script> <!-- Style da front page em css -->
     <script src="plot.js"></script> <!-- Importando o script em javascript para gerar o gráfico -->
     <script src="table.js"></script> <!-- Importando o script em javascript para gerar uma tabela -->
+    <script src="filter.js"></script> <!-- Importando o script em javascript que fornecem informações sobre o filtro -->
     <title>Muda Clima</title>
 </head>
 <body>
@@ -15,8 +16,21 @@
     <div class="plot">
         <div class="filter">
             <form id="filter-form">
+                <label for="uf">Estado:</label>
+                <select id="uf" onchange="load_cities()">
+                    <option value="">Selecione uma UF</option>
+                </select>
+
                 <label for="start-date">Data:</label>
-                <input type="date" id="start-date">
+                <input type="date" id="start-date" required>
+
+                <label for="interval">Intervalo:</label>
+                    <select id="interval">
+                        <option value="1">1 mês</option>
+                        <option value="3">3 meses</option>
+                        <option value="6">6 meses</option>
+                        <option value="12">12 meses</option>
+                    </select>
 
                 <button type="button" onclick="filtrar()">Filtrar</button>
             </form>
