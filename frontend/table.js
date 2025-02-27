@@ -1,4 +1,7 @@
 async function filtrar() {
+    const uf = document.getElementById("uf").value;
+    const city = document.getElementById("city").value;
+    //const group = document.getElementById("group").value;
     const startDate = document.getElementById("start-date").value;
     const interval = document.getElementById("interval").value;
 
@@ -8,7 +11,7 @@ async function filtrar() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ startDate, interval })
+        body: JSON.stringify({ uf, city, startDate, interval })
     });
 
     const dadosFiltrados = await resposta.json();
