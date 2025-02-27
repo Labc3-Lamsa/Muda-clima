@@ -16,9 +16,36 @@
     <div class="plot">
         <div class="filter">
             <form id="filter-form">
-                <label for="uf">Estado:</label>
-                <select id="uf" onchange="load_cities()">
-                    <option value="">Selecione uma UF</option>
+                <label for="uf">UF:</label>
+                <input list="ufs-list" id="uf" placeholder="Digite a UF">
+                <datalist id="ufs-list"></datalist>
+
+                <label for="city">Cidade:</label>
+                <input list="cities-list" id="city" placeholder="Digite a cidade" disabled>
+                <datalist id="cities-list"></datalist>
+
+                <label for="station">Selecione a estação climática:</label>
+                <select list="station-list" id="station" disabled>
+                    <option value="">Escolha uma estação</option>
+                </select>
+                <datalist id="station"></datalist>
+
+                <label for="group">Selecione a doença:</label>
+                <select id="group">
+                    <option value="1">Faringite aguda e amigdalite aguda - J02-J03</option>
+                    <option value="2">Laringite e traqueíte agudas - J04</option>
+                    <option value="3">Outras infecções agudas das vias aéreas superiores - J00-J01, J05-J06</option>
+                    <option value="4">Influenza - J09-J11</option>
+                    <option value="5">Pneumonia - J12-J18</option>
+                    <option value="6">Bronquite aguda e bronquiolite aguda - J20-J21</option>
+                    <option value="7">Sinusite crônica - J32</option>
+                    <option value="8">Outras doenças do nariz e dos seios paranasais - J30-J31, J33-J34</option>
+                    <option value="9">Doenças crônicas das amígdalas e das adenóides - J35</option>
+                    <option value="10">Outras doenças do trato respiratório superior - J22, J66-J99</option>
+                    <option value="11">Bronquite, enfisema e outras doenças pulmonares obstrutivas crônicas - J40-J44</option>
+                    <option value="12">Asma - J45-J46</option>
+                    <option value="13">Pneumoconiose - J60-J65</option>
+                    <option value="14">Outras doenças do aparelho respiratório - J36-J39</option>
                 </select>
 
                 <label for="start-date">Data:</label>
