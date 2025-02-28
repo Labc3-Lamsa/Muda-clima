@@ -55,10 +55,10 @@ app.get('/estacoes/:cidade', async (req, res) => {
 // Endpoint para pegar os dados do postgresql filtrados
 app.post('/datasus', async (req, res) => {
     console.log(req.body); // DEBUG
-    const { uf, city, station, group, startDate, interval, inmet } = req.body;
+    const { uf, city, station, group, startDate, interval, inmet, pop } = req.body;
     
     try {
-        const resultado = await pool.query(`SELECT m.nome_munic, m.uf, m.pop_2000, d.data, e.cod_estacao, d.valor, g.cid10, i.${inmet}  FROM municipios m 
+        const resultado = await pool.query(`SELECT m.nome_munic, m.uf, m.${pop}, d.data, e.cod_estacao, d.valor, g.cid10, i.${inmet}  FROM municipios m 
                                             JOIN datasus d ON m.cod_ibge = d.cod_ibge 
                                             JOIN estacoes e ON d.cod_ibge = e.cod_ibge
                                             JOIN inmet i ON e.cod_estacao = i.cod_estacao

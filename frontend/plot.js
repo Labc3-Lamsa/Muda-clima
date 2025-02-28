@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.internacoesChart = new Chart(ctx, {
         type: "line",
         data: {
-            labels: [], // Inicialmente vazio
+            labels: [],
             datasets: [
                 {
                     label: "Internações por Doenças Respiratórias",
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ]
         },
         options: {
-            responsive: true,
+            responsive: false,
             scales: {
                 y1: {
                     type: "linear",
@@ -56,10 +56,24 @@ async function filtrar() {
         const interval = document.getElementById("interval").value;
         const inmet = document.getElementById("inmet").value;
 
+        // Determinando qual coluna usar com base na data
+        let pop;
+        const year = new Date(startDate).getFullYear();
+
+        if (year >= 2000 && year < 2010) {
+            pop = 'pop_2000';
+        } else if (year >= 2010 && year < 2020) {
+            pop = 'pop_2010';
+        } else if (year >= 2021) {
+            pop = 'pop_2021';
+        } else {
+            throw new Error("Data fora do intervalo esperado.");
+        }
+
         const resposta = await fetch('http://localhost:3000/datasus', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ uf, city, station, group, startDate, interval, inmet })
+            body: JSON.stringify({ uf, city, station, group, startDate, interval, inmet, pop })
         });
 
         if (!resposta.ok) throw new Error(`Erro: ${resposta.status} - ${resposta.statusText}`);
@@ -75,14 +89,16 @@ async function filtrar() {
 }
 
 function atualizarGrafico(dados) {
+    const selectElement = document.getElementById("inmet");
+    const variavelSelecionada = selectElement.value; // Obtém o valor do select
+    const descricaoVariavel = selectElement.selectedOptions[0].text; // Obtém a descrição visível
     const labels = dados.map(item => {
         const dataFormatada = new Date(item.data);
         return dataFormatada.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" });
     });
-    console.log(labels);
 
     const internacoes = dados.map(item => parseInt(item.valor));
-    const temperaturas = dados.map(item => parseFloat(item.temp_max));
+    const valoresMeteorologicos = dados.map(item => parseFloat(item[variavelSelecionada]) || 0);
 
     if (window.internacoesChart) {
         window.internacoesChart.destroy();
@@ -104,8 +120,8 @@ function atualizarGrafico(dados) {
                     yAxisID: "y1"
                 },
                 {
-                    label: "Temperatura Média (°C)",
-                    data: temperaturas,
+                    label: `Valores de ${descricaoVariavel}`,
+                    data: valoresMeteorologicos,
                     borderColor: "blue",
                     backgroundColor: "rgba(0, 0, 255, 0.2)",
                     borderWidth: 2,
@@ -115,7 +131,7 @@ function atualizarGrafico(dados) {
             ]
         },
         options: {
-            responsive: true,
+            responsive: false,
             scales: {
                 y1: {
                     type: "linear",
@@ -125,7 +141,7 @@ function atualizarGrafico(dados) {
                 y2: {
                     type: "linear",
                     position: "right",
-                    title: { display: true, text: "Temperatura (°C)" },
+                    title: { display: true, text: descricaoVariavel },
                     grid: { drawOnChartArea: false }
                 }
             }
