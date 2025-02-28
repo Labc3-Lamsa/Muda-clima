@@ -4,34 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para gráficos -->
-    <script src="front-page-style.css"></script> <!-- Style da front page em css -->
+    <link rel="stylesheet" href="front-page-style.css"> <!-- Style da front page em css -->
     <script src="plot.js"></script> <!-- Importando o script em javascript para gerar o gráfico -->
-    <script src="table.js"></script> <!-- Importando o script em javascript para gerar uma tabela -->
+    <script src="filter.js"></script> <!-- Importando o script em javascript que fornecem informações sobre o filtro -->
     <title>Muda Clima</title>
 </head>
 <body>
-    <h2>Muda Clima</h2>
+    <header>
+        <h2>Muda Clima</h2>
+    </header>
 
     <div class="plot">
         <div class="filter">
             <form id="filter-form">
+                <label for="uf">UF:</label>
+                <input list="ufs-list" id="uf" placeholder="Digite a UF">
+                <datalist id="ufs-list"></datalist>
+
+                <label for="city">Cidade:</label>
+                <input list="cities-list" id="city" placeholder="Digite a cidade" disabled>
+                <datalist id="cities-list"></datalist>
+
+                <label for="station">Selecione a estação climática:</label>
+                <select id="station" disabled>
+                    <option value="">Escolha uma estação</option>
+                </select>
+
+                <label for="group">Selecione a doença:</label>
+                <select id="group">
+                    <option value="1">Faringite aguda e amigdalite aguda - J02-J03</option>
+                    <option value="2">Laringite e traqueíte agudas - J04</option>
+                    <option value="3">Outras infecções agudas das vias aéreas superiores - J00-J01, J05-J06</option>
+                    <option value="4">Influenza - J09-J11</option>
+                    <option value="5">Pneumonia - J12-J18</option>
+                    <option value="6">Bronquite aguda e bronquiolite aguda - J20-J21</option>
+                    <option value="7">Sinusite crônica - J32</option>
+                    <option value="8">Outras doenças do nariz e dos seios paranasais - J30-J31, J33-J34</option>
+                    <option value="9">Doenças crônicas das amígdalas e das adenóides - J35</option>
+                    <option value="10">Outras doenças do trato respiratório superior - J22, J66-J99</option>
+                    <option value="11">Bronquite, enfisema e outras doenças pulmonares obstrutivas crônicas - J40-J44</option>
+                    <option value="12">Asma - J45-J46</option>
+                    <option value="13">Pneumoconiose - J60-J65</option>
+                    <option value="14">Outras doenças do aparelho respiratório - J36-J39</option>
+                </select>
+
                 <label for="start-date">Data:</label>
-                <input type="date" id="start-date">
+                <input type="date" id="start-date" required>
+
+                <label for="interval">Intervalo:</label>
+                    <select id="interval">
+                        <option value="1">1 mês</option>
+                        <option value="3">3 meses</option>
+                        <option value="6">6 meses</option>
+                        <option value="12">12 meses</option>
+                    </select>
+
+                <label for="inmet">Selecione uma coluna:</label>
+                    <select id="inmet">
+                        <option value="dir_vento">Direção do vento</option>
+                        <option value="insolacao">Insolação</option>
+                        <option value="dias_chuva">Dias de chuva</option>
+                        <option value="pressao">Pressao</option>
+                        <option value="radiacao">Radiacao</option>
+                        <option value="temp_ar">Temperatura do ar</option>
+                        <option value="temp_orvalho">Temperatura orvalho</option>
+                        <option value="temp_max">Temperatura máximo</option>
+                        <option value="temp_min">Temperatura mínima</option>
+                        <option value="umidade">Umidade</option>
+                        <option value="vel_vento">Velocidade do vento</option>
+                        <option value="vento_rajada">Vento rajada</option>
+                    </select>
 
                 <button type="button" onclick="filtrar()">Filtrar</button>
             </form>
         </div>
-        <table border="1" id="tabela">
-            <tr>
-                <th>nome_munic</th>
-                <th>uf</th>
-                <th>pop_2000</th>
-                <th>cod_grupo</th>
-                <th>data</th>
-                <th>valor</th>
-            </tr>
-        </table>
+
+        <div>
+            <canvas id="internacoesChart" width="1000" height="500"></canvas>
+        </div>
     </div>
+
+    <footer>
+        <p>© 2025 FURG - PROJETO INICIAÇÃO CIENTÍFICA</p>
+    </footer>
 
 </body>
 </html>
