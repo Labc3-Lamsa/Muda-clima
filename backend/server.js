@@ -38,17 +38,34 @@ app.get('/cidades/:uf', async (req, res) => {
     }
 });
 
+// Rota para obter as estações climáticas por cidade digitada
+app.get('/estacoes/:cidade', async (req, res) => {
+    const { cidade } = req.params;
+
+    try {
+        const resultado = await pool.query(`SELECT * FROM municipios m join estacoes e on m.cod_ibge = e.cod_ibge 
+                                            WHERE m.nome_munic ILIKE $1;`, [cidade]);
+        res.json(resultado.rows.map(row => row.cod_estacao));
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Erro no servidor');
+    }
+});
+
 // Endpoint para pegar os dados do postgresql filtrados
 app.post('/datasus', async (req, res) => {
     console.log(req.body); // DEBUG
-    const { uf, city, startDate, interval } = req.body;
+    const { uf, city, station, group, startDate, interval, inmet } = req.body;
     
     try {
-        const resultado = await pool.query(`SELECT m.nome_munic, m.uf, m.pop_2000, d.cod_grupo, d.data, d.valor FROM municipios m 
-                                            JOIN datasus d ON m.cod_ibge = d.cod_ibge WHERE (m.nome_munic ILIKE $2 
-                                            AND m.uf = $1 AND cod_grupo = 4 
-                                            AND (data >= $3 AND data < ($3::DATE + ($4 || ' month')::INTERVAL)))
-                                            ORDER BY data ASC LIMIT 400;`, [uf, city, startDate, interval]);
+        const resultado = await pool.query(`SELECT m.nome_munic, m.uf, m.pop_2000, d.data, e.cod_estacao, d.valor, g.cid10, i.${inmet}  FROM municipios m 
+                                            JOIN datasus d ON m.cod_ibge = d.cod_ibge 
+                                            JOIN estacoes e ON d.cod_ibge = e.cod_ibge
+                                            JOIN inmet i ON e.cod_estacao = i.cod_estacao
+                                            JOIN grupos g ON d.cod_grupo = g.codigo
+                                            WHERE (m.nome_munic ILIKE $2 AND m.uf = $1 AND d.cod_grupo = $4 AND e.cod_estacao ILIKE $3
+                                            AND d.data = i.data AND (d.data >= $5 AND d.data < ($5::DATE + ($6 || ' month')::INTERVAL))) 
+                                            ORDER BY d.data ASC;`, [uf, city, station, group, startDate, interval]);
         res.json(resultado.rows);
     } catch (err) {
         console.error(err);

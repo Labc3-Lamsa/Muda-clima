@@ -35,19 +35,38 @@ async function carregarCidades() {
     cidadeInput.disabled = false;
 }
 
+async function carregarEstacoes() {
+    const cidade = document.getElementById('city').value.trim();
 
-// Ativar carregamento de cidades ao digitar a UF
+    if (!cidade) {
+        document.getElementById('station').innerHTML = '<option value="">Escolha uma estação</option>';
+        document.getElementById('station').disabled = true;
+        return;
+    }
+
+    const resposta = await fetch(`http://localhost:3000/estacoes/${cidade}`);
+    const estacoes = await resposta.json();
+
+    const selectEstacao = document.getElementById('station');
+    selectEstacao.innerHTML = '<option value="">Escolha uma estação</option>'; // Reset
+
+    estacoes.forEach(estacao => {
+        const option = document.createElement('option');
+        option.value = estacao;
+        option.textContent = estacao;
+        selectEstacao.appendChild(option);
+    });
+
+    selectEstacao.disabled = false;
+}
+
+// Ativar carregamento dinâmico
 document.addEventListener("DOMContentLoaded", () => {
     const ufInput = document.getElementById('uf');
+    const cidadeInput = document.getElementById('city');
 
-    if (ufInput) {
-        ufInput.addEventListener('input', carregarCidades);
-    } else {
-        console.error('Elemento com id "uf" não encontrado.');
-    }
+    if (ufInput) ufInput.addEventListener('input', carregarCidades);
+    if (cidadeInput) cidadeInput.addEventListener('input', carregarEstacoes);
 
     carregarUFs();
 });
-
-// Carregar UFs quando a página carregar
-document.addEventListener("DOMContentLoaded", carregarUFs);
