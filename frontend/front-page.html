@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para gráficos -->
-    <script src="front-page-style.css"></script> <!-- Style da front page em css -->
+    <link rel="stylesheet" href="front-page-style.css"> <!-- Style da front page em css -->
     <script src="plot.js"></script> <!-- Importando o script em javascript para gerar o gráfico -->
     <script src="filter.js"></script> <!-- Importando o script em javascript que fornecem informações sobre o filtro -->
     <title>Muda Clima</title>
 </head>
 <body>
-    <h2>Muda Clima</h2>
+    <header>
+        <h2>Muda Clima</h2>
+    </header>
 
     <div class="plot">
         <div class="filter">
@@ -76,8 +78,15 @@
                 <button type="button" onclick="filtrar()">Filtrar</button>
             </form>
         </div>
+
+        <div>
+            <canvas id="internacoesChart" width="1000" height="500"></canvas>
+        </div>
     </div>
-    <canvas id="internacoesChart"></canvas>
+
+    <footer>
+        <p>© 2025 FURG - PROJETO INICIAÇÃO CIENTÍFICA</p>
+    </footer>
 
 </body>
 </html>
