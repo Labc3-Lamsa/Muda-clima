@@ -53,7 +53,7 @@ async function filtrar() {
         const station = document.getElementById("station").value;
         const group = document.getElementById("group").value;
         const startDate = document.getElementById("start-date").value;
-        const interval = document.getElementById("interval").value;
+        const endDate = document.getElementById("end-date").value;
         const inmet = document.getElementById("inmet").value;
 
         // Determinando qual coluna usar com base na data
@@ -73,7 +73,7 @@ async function filtrar() {
         const resposta = await fetch('http://localhost:3000/datasus', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ uf, city, station, group, startDate, interval, inmet, pop })
+            body: JSON.stringify({ uf, city, station, group, startDate, endDate, inmet, pop })
         });
 
         if (!resposta.ok) throw new Error(`Erro: ${resposta.status} - ${resposta.statusText}`);
@@ -148,3 +148,4 @@ function atualizarGrafico(dados) {
         }
     });
 }
+
