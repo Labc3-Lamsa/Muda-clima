@@ -1,4 +1,5 @@
 let internacoesChart;
+let dadosExportacao = [];
 
 document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById("internacoesChart").getContext("2d");
@@ -79,7 +80,7 @@ async function filtrar() {
         if (!resposta.ok) throw new Error(`Erro: ${resposta.status} - ${resposta.statusText}`);
 
         const dadosFiltrados = await resposta.json();
-        console.log(dadosFiltrados);
+        dadosExportacao = dadosFiltrados; // atualiza os dados que serão exportados
         atualizarGrafico(dadosFiltrados);
 
     } catch (erro) {
@@ -149,3 +150,30 @@ function atualizarGrafico(dados) {
     });
 }
 
+function exportarParaCSV(dados, nomeArquivo = 'dados.csv') {
+    if (!dados.length) {
+        alert('Nenhum dado para exportar.');
+        return;
+    }
+
+    const colunas = Object.keys(dados[0]);
+    const linhas = dados.map(obj => colunas.map(col => `"${(obj[col] ?? '').toString().replace(/"/g, '""')}"`).join(','));
+    const csv = [colunas.join(','), ...linhas].join('\n');
+
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.setAttribute("href", url);
+    link.setAttribute("download", nomeArquivo);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+window.onload = function () {
+    document.getElementById('exportarCSV').addEventListener('click', () => {
+        exportarParaCSV(dadosExportacao, 'dados_filtrados.csv');
+    });
+};
