@@ -55,7 +55,7 @@ app.get('/estacoes/:cidade', async (req, res) => {
 // Endpoint para pegar os dados do postgresql filtrados
 app.post('/datasus', async (req, res) => {
     console.log(req.body); // DEBUG
-    const { uf, city, station, group, startDate, interval, inmet, pop } = req.body;
+    const { uf, city, station, group, startDate, endDate, inmet, pop } = req.body;
     
     try {
         const resultado = await pool.query(`SELECT m.nome_munic, m.uf, m.${pop}, d.data, e.cod_estacao, d.valor, g.cid10, i.${inmet}  FROM municipios m 
@@ -64,8 +64,8 @@ app.post('/datasus', async (req, res) => {
                                             JOIN inmet i ON e.cod_estacao = i.cod_estacao
                                             JOIN grupos g ON d.cod_grupo = g.codigo
                                             WHERE (m.nome_munic ILIKE $2 AND m.uf = $1 AND d.cod_grupo = $4 AND e.cod_estacao ILIKE $3
-                                            AND d.data = i.data AND (d.data >= $5 AND d.data < ($5::DATE + ($6 || ' month')::INTERVAL))) 
-                                            ORDER BY d.data ASC;`, [uf, city, station, group, startDate, interval]);
+                                            AND d.data = i.data AND (d.data BETWEEN $5 AND $6))                                           
+                                            ORDER BY d.data ASC;`, [uf, city, station, group, startDate, endDate]);
         res.json(resultado.rows);
     } catch (err) {
         console.error(err);
@@ -73,4 +73,9 @@ app.post('/datasus', async (req, res) => {
     }
 });
 
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../frontend')));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/front-page.html'));
+});
 app.listen(3000, () => console.log('API rodando na porta 3000'));
