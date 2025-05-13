@@ -156,13 +156,22 @@ function exportarParaXLSX(dados, nomeArquivo = 'dados.xlsx') {
         return;
     }
 
-    // Cria uma planilha a partir do array de objetos
-    const worksheet = XLSX.utils.json_to_sheet(dados);
+    // Faz uma cópia dos dados e formata o campo "data"
+    const dadosFormatados = dados.map(item => {
+        const novoItem = { ...item };
+        if (novoItem.data) {
+            // Transforma em apenas a parte da data YYYY-MM-DD
+            novoItem.data = new Date(novoItem.data).toISOString().split('T')[0];
+        }
+        return novoItem;
+    });
 
-    // Cria uma nova pasta de trabalho e adiciona a planilha
+
+    // Gera a planilha com os dados formatados
+    const worksheet = XLSX.utils.json_to_sheet(dadosFormatados);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Dados");
-
+    
     // Gera e baixa o arquivo .xlsx
     XLSX.writeFile(workbook, nomeArquivo);
 }
