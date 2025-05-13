@@ -150,30 +150,25 @@ function atualizarGrafico(dados) {
     });
 }
 
-function exportarParaCSV(dados, nomeArquivo = 'dados.csv') {
-    if (!dados.length) {
-        alert('Nenhum dado para exportar.');
+function exportarParaXLSX(dados, nomeArquivo = 'dados.xlsx') {
+    if (!dados || !dados.length) {
+        alert("Nenhum dado para exportar.");
         return;
     }
 
-    const colunas = Object.keys(dados[0]);
-    const linhas = dados.map(obj => colunas.map(col => `"${(obj[col] ?? '').toString().replace(/"/g, '""')}"`).join(','));
-    const csv = [colunas.join(','), ...linhas].join('\n');
+    // Cria uma planilha a partir do array de objetos
+    const worksheet = XLSX.utils.json_to_sheet(dados);
 
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
+    // Cria uma nova pasta de trabalho e adiciona a planilha
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Dados");
 
-    link.setAttribute("href", url);
-    link.setAttribute("download", nomeArquivo);
-    link.style.visibility = 'hidden';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Gera e baixa o arquivo .xlsx
+    XLSX.writeFile(workbook, nomeArquivo);
 }
 
-window.onload = function () {
-    document.getElementById('exportarCSV').addEventListener('click', () => {
-        exportarParaCSV(dadosExportacao, 'dados_filtrados.csv');
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('exportarXLSX').addEventListener('click', () => {
+        exportarParaXLSX(dadosExportacao, 'dados_filtrados.xlsx');
     });
-};
+});
