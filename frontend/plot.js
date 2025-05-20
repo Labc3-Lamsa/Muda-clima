@@ -163,6 +163,13 @@ function exportarParaXLSX(dados, nomeArquivo = 'dados.xlsx') {
             // Transforma em apenas a parte da data YYYY-MM-DD
             novoItem.data = new Date(novoItem.data).toISOString().split('T')[0];
         }
+        
+        // Renomeia o campo "valor" para "internações"
+        if ('valor' in novoItem) {
+            novoItem.internações = novoItem.valor;
+            delete novoItem.valor;
+        }
+
         return novoItem;
     });
 
