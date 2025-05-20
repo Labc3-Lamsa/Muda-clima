@@ -1,4 +1,5 @@
 let internacoesChart;
+let dadosExportacao = [];
 
 document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById("internacoesChart").getContext("2d");
@@ -79,7 +80,7 @@ async function filtrar() {
         if (!resposta.ok) throw new Error(`Erro: ${resposta.status} - ${resposta.statusText}`);
 
         const dadosFiltrados = await resposta.json();
-        console.log(dadosFiltrados);
+        dadosExportacao = dadosFiltrados; // atualiza os dados que serão exportados
         atualizarGrafico(dadosFiltrados);
 
     } catch (erro) {
@@ -149,3 +150,41 @@ function atualizarGrafico(dados) {
     });
 }
 
+function exportarParaXLSX(dados, nomeArquivo = 'dados.xlsx') {
+    if (!dados || !dados.length) {
+        alert("Nenhum dado para exportar.");
+        return;
+    }
+
+    // Faz uma cópia dos dados e formata o campo "data"
+    const dadosFormatados = dados.map(item => {
+        const novoItem = { ...item };
+        if (novoItem.data) {
+            // Transforma em apenas a parte da data YYYY-MM-DD
+            novoItem.data = new Date(novoItem.data).toISOString().split('T')[0];
+        }
+        
+        // Renomeia o campo "valor" para "internações"
+        if ('valor' in novoItem) {
+            novoItem.internações = novoItem.valor;
+            delete novoItem.valor;
+        }
+
+        return novoItem;
+    });
+
+
+    // Gera a planilha com os dados formatados
+    const worksheet = XLSX.utils.json_to_sheet(dadosFormatados);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Dados");
+    
+    // Gera e baixa o arquivo .xlsx
+    XLSX.writeFile(workbook, nomeArquivo);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('exportarXLSX').addEventListener('click', () => {
+        exportarParaXLSX(dadosExportacao, 'dados_filtrados.xlsx');
+    });
+});

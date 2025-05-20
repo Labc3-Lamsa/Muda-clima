@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="front-page-style.css"> <!-- Style da front page em css -->
     <script src="plot.js"></script> <!-- Importando o script em javascript para gerar o gráfico -->
     <script src="filter.js"></script> <!-- Importando o script em javascript que fornecem informações sobre o filtro -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script> <!-- Permite a exportação de dados no formato xlsx -->
     <title>Muda Clima</title>
 </head>
 <body>
@@ -72,8 +73,9 @@
 
                 <button type="button" onclick="filtrar()">Filtrar</button>
             </form>
+            <button id="exportarXLSX">Exportar dados</button>
         </div>
-
+        
         <div>
             <canvas id="internacoesChart" width="1000" height="500"></canvas>
         </div>
