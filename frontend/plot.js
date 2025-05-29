@@ -91,8 +91,9 @@ async function filtrar() {
 
 function atualizarGrafico(dados) {
     const selectElement = document.getElementById("inmet");
-    const variavelSelecionada = selectElement.value; // Obtém o valor do select
-    const descricaoVariavel = selectElement.selectedOptions[0].text; // Obtém a descrição visível
+    const variavelSelecionada = selectElement.value;
+    const descricaoVariavel = selectElement.selectedOptions[0].text;
+
     const labels = dados.map(item => {
         const dataFormatada = new Date(item.data);
         return dataFormatada.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" });
@@ -117,8 +118,11 @@ function atualizarGrafico(dados) {
                     borderColor: "red",
                     backgroundColor: "rgba(255, 0, 0, 0.2)",
                     borderWidth: 2,
-                    fill: true,
-                    yAxisID: "y1"
+                    fill: false,
+                    tension: 0.4,
+                    yAxisID: "y1",
+                    pointRadius: 0,
+                    pointHoverRadius: 6
                 },
                 {
                     label: `Valores de ${descricaoVariavel}`,
@@ -127,12 +131,24 @@ function atualizarGrafico(dados) {
                     backgroundColor: "rgba(0, 0, 255, 0.2)",
                     borderWidth: 2,
                     fill: false,
-                    yAxisID: "y2"
+                    tension: 0.4,
+                    yAxisID: "y2",
+                    pointRadius: 0,
+                    pointHoverRadius: 6
                 }
             ]
         },
         options: {
             responsive: false,
+            interaction: {
+                mode: 'nearest',
+                intersect: false
+            },
+            plugins: {
+                tooltip: {
+                    enabled: true
+                }
+            },
             scales: {
                 y1: {
                     type: "linear",
@@ -149,6 +165,7 @@ function atualizarGrafico(dados) {
         }
     });
 }
+
 
 function exportarParaXLSX(dados, nomeArquivo = 'dados.xlsx') {
     if (!dados || !dados.length) {
