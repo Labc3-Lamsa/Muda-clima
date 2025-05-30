@@ -119,7 +119,6 @@ function atualizarGrafico(dados) {
                     backgroundColor: "rgba(255, 0, 0, 0.2)",
                     borderWidth: 2,
                     fill: false,
-                    tension: 0.4,
                     yAxisID: "y1",
                     pointRadius: 0,
                     pointHoverRadius: 6
@@ -166,42 +165,65 @@ function atualizarGrafico(dados) {
     });
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('export-button').addEventListener('click', () => {
+        console.log(dadosExportacao)
+        if (!dadosExportacao || !dadosExportacao.length) {
+            alert("Nenhum dado para exportar.");
+            return;
+        }
+
+        const formato = document.getElementById("export-format").value;
+
+        if (formato === "csv") {
+            exportarParaCSV(dadosExportacao);
+        } else {
+            exportarParaXLSX(dadosExportacao, 'dados_filtrados.xlsx');
+        }
+    });
+});
 
 function exportarParaXLSX(dados, nomeArquivo = 'dados.xlsx') {
-    if (!dados || !dados.length) {
-        alert("Nenhum dado para exportar.");
-        return;
-    }
-
-    // Faz uma cópia dos dados e formata o campo "data"
     const dadosFormatados = dados.map(item => {
         const novoItem = { ...item };
         if (novoItem.data) {
-            // Transforma em apenas a parte da data YYYY-MM-DD
             novoItem.data = new Date(novoItem.data).toISOString().split('T')[0];
         }
-        
-        // Renomeia o campo "valor" para "internações"
         if ('valor' in novoItem) {
-            novoItem.internações = novoItem.valor;
+            novoItem.Internações = novoItem.valor;
             delete novoItem.valor;
         }
-
         return novoItem;
     });
 
-
-    // Gera a planilha com os dados formatados
     const worksheet = XLSX.utils.json_to_sheet(dadosFormatados);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Dados");
-    
-    // Gera e baixa o arquivo .xlsx
     XLSX.writeFile(workbook, nomeArquivo);
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('exportarXLSX').addEventListener('click', () => {
-        exportarParaXLSX(dadosExportacao, 'dados_filtrados.xlsx');
+function exportarParaCSV(dados, nomeArquivo = 'dados.csv') {
+    const dadosFormatados = dados.map(item => {
+        const novoItem = { ...item };
+        if (novoItem.data) {
+            novoItem.data = new Date(novoItem.data).toISOString().split('T')[0];
+        }
+        if ('valor' in novoItem) {
+            novoItem.Internacoes = novoItem.valor;
+            delete novoItem.valor;
+        }
+        return novoItem;
     });
-});
+
+    const headers = Object.keys(dadosFormatados[0]).join(',');
+    const linhas = dadosFormatados.map(obj => Object.values(obj).join(',')).join('\n');
+    const csv = headers + '\n' + linhas;
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = nomeArquivo;
+    a.click();
+    URL.revokeObjectURL(url);
+}
