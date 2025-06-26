@@ -48,16 +48,23 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function filtrar() {
+    const loadingOverlay = document.getElementById('loading-overlay');
     try {
+        loadingOverlay.classList.remove('hidden');
+
         const uf = document.getElementById("uf").value;
         const city = document.getElementById("city").value;
         const station = document.getElementById("station").value;
-        const group = document.getElementById("group").value;
+        const group = window.getSelectedDiseases(); 
         const startDate = document.getElementById("start-date").value;
         const endDate = document.getElementById("end-date").value;
         const inmet = document.getElementById("inmet").value;
 
-        // Determinando qual coluna usar com base na data
+        if (group.length === 0) {
+            alert("Por favor, selecione pelo menos uma doença.");
+            return;
+        }
+
         let pop;
         const year = new Date(startDate).getFullYear();
 
@@ -80,12 +87,15 @@ async function filtrar() {
         if (!resposta.ok) throw new Error(`Erro: ${resposta.status} - ${resposta.statusText}`);
 
         const dadosFiltrados = await resposta.json();
+        console.log(dadosFiltrados);
         dadosExportacao = dadosFiltrados; // atualiza os dados que serão exportados
         atualizarGrafico(dadosFiltrados);
 
     } catch (erro) {
         console.error("Erro ao buscar dados:", erro);
         alert("Falha ao buscar dados. Verifique a conexão com o servidor.");
+    } finally {
+        loadingOverlay.classList.add('hidden');
     }
 }
 
@@ -100,7 +110,9 @@ function atualizarGrafico(dados) {
     });
 
     const internacoes = dados.map(item => parseInt(item.valor));
-    const valoresMeteorologicos = dados.map(item => parseFloat(item[variavelSelecionada]) || 0);
+    const valoresMeteorologicos = dados.map(item => {
+        const valor = parseFloat(item[variavelSelecionada]);
+        return isNaN(valor) ? null : valor;});
 
     if (window.internacoesChart) {
         window.internacoesChart.destroy();
@@ -121,7 +133,8 @@ function atualizarGrafico(dados) {
                     fill: false,
                     yAxisID: "y1",
                     pointRadius: 0,
-                    pointHoverRadius: 6
+                    pointHoverRadius: 6,
+                    spanGaps: true
                 },
                 {
                     label: `Valores de ${descricaoVariavel}`,
@@ -133,7 +146,8 @@ function atualizarGrafico(dados) {
                     tension: 0.4,
                     yAxisID: "y2",
                     pointRadius: 0,
-                    pointHoverRadius: 6
+                    pointHoverRadius: 6,
+                    spanGaps: true
                 }
             ]
         },
