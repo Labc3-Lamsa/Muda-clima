@@ -88,7 +88,7 @@ async function filtrar() {
 
         const dadosFiltrados = await resposta.json();
         console.log(dadosFiltrados);
-        dadosExportacao = dadosFiltrados; // atualiza os dados que serão exportados
+        dadosExportacao = dadosFiltrados;
         atualizarGrafico(dadosFiltrados);
 
     } catch (erro) {
