@@ -37,9 +37,8 @@ async function carregarCidades() {
 
 async function carregarEstacoes() {
     const cidade = document.getElementById('city').value.trim();
-    const selectEstacao = document.getElementById('station'); // Pegamos a referência aqui no início
+    const selectEstacao = document.getElementById('station');
 
-    // Caso 1: Se não houver cidade digitada, reseta para o estado inicial
     if (!cidade) {
         selectEstacao.innerHTML = '<option value="">Escolha uma estação</option>';
         selectEstacao.disabled = true;
@@ -53,26 +52,21 @@ async function carregarEstacoes() {
         }
         const estacoes = await resposta.json();
 
-        // Limpa as opções anteriores
         selectEstacao.innerHTML = '';
 
-        // Caso 2: Se a API retornar um array vazio de estações
         if (estacoes.length === 0) {
             const option = document.createElement('option');
             option.value = "";
             option.textContent = "Não há estação disponível";
             selectEstacao.appendChild(option);
-            selectEstacao.disabled = true; // Desabilita o select pois não há o que escolher
+            selectEstacao.disabled = true;
         } 
-        // Caso 3: Se houver estações disponíveis
         else {
-            // Adiciona a primeira opção padrão "Escolha uma estação"
             const defaultOption = document.createElement('option');
             defaultOption.value = "";
             defaultOption.textContent = "Escolha uma estação";
             selectEstacao.appendChild(defaultOption);
 
-            // Adiciona as estações retornadas pela API
             estacoes.forEach(estacao => {
                 const option = document.createElement('option');
                 option.value = estacao;
@@ -80,12 +74,10 @@ async function carregarEstacoes() {
                 selectEstacao.appendChild(option);
             });
 
-            // Habilita o select para permitir a escolha
             selectEstacao.disabled = false;
         }
     } catch (error) {
         console.error("Falha ao carregar estações:", error);
-        // Em caso de erro, também exibe uma mensagem informativa
         selectEstacao.innerHTML = '<option value="">Erro ao carregar</option>';
         selectEstacao.disabled = true;
     }
