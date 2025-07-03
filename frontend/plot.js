@@ -48,16 +48,23 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function filtrar() {
+    const loadingOverlay = document.getElementById('loading-overlay');
     try {
+        loadingOverlay.classList.remove('hidden');
+
         const uf = document.getElementById("uf").value;
         const city = document.getElementById("city").value;
         const station = document.getElementById("station").value;
-        const group = document.getElementById("group").value;
+        const group = window.getSelectedDiseases(); 
         const startDate = document.getElementById("start-date").value;
         const endDate = document.getElementById("end-date").value;
         const inmet = document.getElementById("inmet").value;
 
-        // Determinando qual coluna usar com base na data
+        if (group.length === 0) {
+            alert("Por favor, selecione pelo menos uma doença.");
+            return;
+        }
+
         let pop;
         const year = new Date(startDate).getFullYear();
 
@@ -80,26 +87,32 @@ async function filtrar() {
         if (!resposta.ok) throw new Error(`Erro: ${resposta.status} - ${resposta.statusText}`);
 
         const dadosFiltrados = await resposta.json();
-        dadosExportacao = dadosFiltrados; // atualiza os dados que serão exportados
+        console.log(dadosFiltrados);
+        dadosExportacao = dadosFiltrados;
         atualizarGrafico(dadosFiltrados);
 
     } catch (erro) {
         console.error("Erro ao buscar dados:", erro);
         alert("Falha ao buscar dados. Verifique a conexão com o servidor.");
+    } finally {
+        loadingOverlay.classList.add('hidden');
     }
 }
 
 function atualizarGrafico(dados) {
     const selectElement = document.getElementById("inmet");
-    const variavelSelecionada = selectElement.value; // Obtém o valor do select
-    const descricaoVariavel = selectElement.selectedOptions[0].text; // Obtém a descrição visível
+    const variavelSelecionada = selectElement.value;
+    const descricaoVariavel = selectElement.selectedOptions[0].text;
+
     const labels = dados.map(item => {
         const dataFormatada = new Date(item.data);
         return dataFormatada.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" });
     });
 
     const internacoes = dados.map(item => parseInt(item.valor));
-    const valoresMeteorologicos = dados.map(item => parseFloat(item[variavelSelecionada]) || 0);
+    const valoresMeteorologicos = dados.map(item => {
+        const valor = parseFloat(item[variavelSelecionada]);
+        return isNaN(valor) ? null : valor;});
 
     if (window.internacoesChart) {
         window.internacoesChart.destroy();
@@ -117,8 +130,11 @@ function atualizarGrafico(dados) {
                     borderColor: "red",
                     backgroundColor: "rgba(255, 0, 0, 0.2)",
                     borderWidth: 2,
-                    fill: true,
-                    yAxisID: "y1"
+                    fill: false,
+                    yAxisID: "y1",
+                    pointRadius: 0,
+                    pointHoverRadius: 6,
+                    spanGaps: true
                 },
                 {
                     label: `Valores de ${descricaoVariavel}`,
@@ -127,12 +143,25 @@ function atualizarGrafico(dados) {
                     backgroundColor: "rgba(0, 0, 255, 0.2)",
                     borderWidth: 2,
                     fill: false,
-                    yAxisID: "y2"
+                    tension: 0.4,
+                    yAxisID: "y2",
+                    pointRadius: 0,
+                    pointHoverRadius: 6,
+                    spanGaps: true
                 }
             ]
         },
         options: {
             responsive: false,
+            interaction: {
+                mode: 'nearest',
+                intersect: false
+            },
+            plugins: {
+                tooltip: {
+                    enabled: true
+                }
+            },
             scales: {
                 y1: {
                     type: "linear",
@@ -150,41 +179,65 @@ function atualizarGrafico(dados) {
     });
 }
 
-function exportarParaXLSX(dados, nomeArquivo = 'dados.xlsx') {
-    if (!dados || !dados.length) {
-        alert("Nenhum dado para exportar.");
-        return;
-    }
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('export-button').addEventListener('click', () => {
+        console.log(dadosExportacao)
+        if (!dadosExportacao || !dadosExportacao.length) {
+            alert("Nenhum dado para exportar.");
+            return;
+        }
 
-    // Faz uma cópia dos dados e formata o campo "data"
+        const formato = document.getElementById("export-format").value;
+
+        if (formato === "csv") {
+            exportarParaCSV(dadosExportacao);
+        } else {
+            exportarParaXLSX(dadosExportacao, 'dados_filtrados.xlsx');
+        }
+    });
+});
+
+function exportarParaXLSX(dados, nomeArquivo = 'dados.xlsx') {
     const dadosFormatados = dados.map(item => {
         const novoItem = { ...item };
         if (novoItem.data) {
-            // Transforma em apenas a parte da data YYYY-MM-DD
             novoItem.data = new Date(novoItem.data).toISOString().split('T')[0];
         }
-        
-        // Renomeia o campo "valor" para "internações"
         if ('valor' in novoItem) {
-            novoItem.internações = novoItem.valor;
+            novoItem.Internações = novoItem.valor;
             delete novoItem.valor;
         }
-
         return novoItem;
     });
 
-
-    // Gera a planilha com os dados formatados
     const worksheet = XLSX.utils.json_to_sheet(dadosFormatados);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Dados");
-    
-    // Gera e baixa o arquivo .xlsx
     XLSX.writeFile(workbook, nomeArquivo);
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('exportarXLSX').addEventListener('click', () => {
-        exportarParaXLSX(dadosExportacao, 'dados_filtrados.xlsx');
+function exportarParaCSV(dados, nomeArquivo = 'dados.csv') {
+    const dadosFormatados = dados.map(item => {
+        const novoItem = { ...item };
+        if (novoItem.data) {
+            novoItem.data = new Date(novoItem.data).toISOString().split('T')[0];
+        }
+        if ('valor' in novoItem) {
+            novoItem.Internacoes = novoItem.valor;
+            delete novoItem.valor;
+        }
+        return novoItem;
     });
-});
+
+    const headers = Object.keys(dadosFormatados[0]).join(',');
+    const linhas = dadosFormatados.map(obj => Object.values(obj).join(',')).join('\n');
+    const csv = headers + '\n' + linhas;
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = nomeArquivo;
+    a.click();
+    URL.revokeObjectURL(url);
+}
