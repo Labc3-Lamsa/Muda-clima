@@ -58,14 +58,48 @@ app.post('/datasus', async (req, res) => {
     const { uf, city, station, group, startDate, endDate, inmet, pop } = req.body;
     
     try {
-        const resultado = await pool.query(`SELECT m.nome_munic, m.uf, m.${pop}, d.data, e.cod_estacao, d.valor, g.cid10, i.${inmet}  FROM municipios m 
-                                            JOIN datasus d ON m.cod_ibge = d.cod_ibge 
-                                            JOIN estacoes e ON d.cod_ibge = e.cod_ibge
-                                            JOIN inmet i ON e.cod_estacao = i.cod_estacao
-                                            JOIN grupos g ON d.cod_grupo = g.codigo
-                                            WHERE (m.nome_munic ILIKE $2 AND m.uf = $1 AND d.cod_grupo = $4 AND e.cod_estacao ILIKE $3
-                                            AND d.data = i.data AND (d.data BETWEEN $5 AND $6))                                           
-                                            ORDER BY d.data ASC;`, [uf, city, station, group, startDate, endDate]);
+        const queryText = `
+            SELECT 
+                m.nome_munic, 
+                m.uf, 
+                m.${pop}, 
+                d.data, 
+                SUM(d.valor) AS valor,
+                -- As colunas de estação e inmet podem ser NULL se não houver correspondência
+                e.cod_estacao, 
+                i.${inmet}
+            FROM municipios m 
+            -- A tabela datasus é a nossa base, então o join com municipios é mantido
+            JOIN datasus d ON m.cod_ibge = d.cod_ibge 
+
+            LEFT JOIN estacoes e ON d.cod_ibge = e.cod_ibge 
+                                  -- MUDANÇA 2: A condição do filtro da estação vem para o ON
+                                  AND e.cod_estacao ILIKE $3
+            
+            LEFT JOIN inmet i ON e.cod_estacao = i.cod_estacao
+                              -- MUDANÇA 2: A condição de data também vem para o ON
+                              AND d.data = i.data
+            
+            WHERE 
+                m.nome_munic ILIKE $2 
+                AND m.uf = $1 
+                -- As condições dos LEFT JOINs foram movidas para os seus respectivos ON
+                AND d.data BETWEEN $5 AND $6
+                AND d.cod_grupo = ANY($4)
+            GROUP BY 
+                m.nome_munic, 
+                m.uf, 
+                m.${pop}, 
+                d.data, 
+                e.cod_estacao, -- Agrupamos por elas mesmo que possam ser NULL
+                i.${inmet}
+            ORDER BY 
+                d.data ASC;
+        `;
+
+        const queryParams = [uf, city, station, group, startDate, endDate];
+        const resultado = await pool.query(queryText, queryParams);
+
         res.json(resultado.rows);
     } catch (err) {
         console.error(err);

@@ -31,23 +31,16 @@
                     <option value="">Escolha uma estação</option>
                 </select>
 
-                <label for="group">Selecione a doença:</label>
-                <select id="group">
-                    <option value="1">Faringite aguda e amigdalite aguda - J02-J03</option>
-                    <option value="2">Laringite e traqueíte agudas - J04</option>
-                    <option value="3">Outras infecções agudas das vias aéreas superiores - J00-J01, J05-J06</option>
-                    <option value="4">Influenza - J09-J11</option>
-                    <option value="5">Pneumonia - J12-J18</option>
-                    <option value="6">Bronquite aguda e bronquiolite aguda - J20-J21</option>
-                    <option value="7">Sinusite crônica - J32</option>
-                    <option value="8">Outras doenças do nariz e dos seios paranasais - J30-J31, J33-J34</option>
-                    <option value="9">Doenças crônicas das amígdalas e das adenóides - J35</option>
-                    <option value="10">Outras doenças do trato respiratório superior - J22, J66-J99</option>
-                    <option value="11">Bronquite, enfisema e outras doenças pulmonares obstrutivas crônicas - J40-J44</option>
-                    <option value="12">Asma - J45-J46</option>
-                    <option value="13">Pneumoconiose - J60-J65</option>
-                    <option value="14">Outras doenças do aparelho respiratório - J36-J39</option>
-                </select>
+                <div class="disease-selector">
+                    <label for="disease-options">Selecione a(s) doença(s):</label>
+                    <div class="selected-diseases-container" id="selected-diseases">
+                    </div>
+                    <div class="disease-add-controls">
+                        <select id="disease-options">
+                        </select>
+                        <button type="button" id="add-disease-btn">+</button>
+                    </div>
+                </div>
 
                 <label for="start-date">Data Inicial:</label>
                 <input type="date" id="start-date">
@@ -64,7 +57,7 @@
                         <option value="radiacao">Radiacao</option>
                         <option value="temp_ar">Temperatura do ar</option>
                         <option value="temp_orvalho">Temperatura orvalho</option>
-                        <option value="temp_max">Temperatura máximo</option>
+                        <option value="temp_max">Temperatura máxima</option>
                         <option value="temp_min">Temperatura mínima</option>
                         <option value="umidade">Umidade</option>
                         <option value="vel_vento">Velocidade do vento</option>
@@ -73,11 +66,19 @@
 
                 <button type="button" onclick="filtrar()">Filtrar</button>
             </form>
-            <button id="exportarXLSX">Exportar dados</button>
+            <select id="export-format">
+                <option value="csv">CSV</option>
+                <option value="xlsx">XLSX</option>
+              </select>
+            <button id="export-button">Exportar Dados</button>
         </div>
         
-        <div>
+        <div class="chart-container"> 
             <canvas id="internacoesChart" width="1000" height="500"></canvas>
+            <div id="loading-overlay" class="hidden">
+                <div class="loading-spinner"></div>
+                <p>Carregando dados...</p>
+            </div>
         </div>
     </div>
 
