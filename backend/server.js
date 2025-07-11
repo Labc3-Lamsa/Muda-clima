@@ -112,4 +112,4 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/front-page.html'));
 });
-app.listen(3000, () => console.log('API rodando na porta 3000'));
+app.listen(3000, '0.0.0.0', () => console.log('API rodando na porta 3000'));
