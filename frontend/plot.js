@@ -78,7 +78,7 @@ async function filtrar() {
             throw new Error("Data fora do intervalo esperado.");
         }
 
-        const resposta = await fetch('http://localhost:3000/datasus', {
+        const resposta = await fetch('http://10.228.249.231:3000/datasus', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ uf, city, station, group, startDate, endDate, inmet, pop })
