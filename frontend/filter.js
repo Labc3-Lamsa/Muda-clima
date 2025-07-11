@@ -1,6 +1,6 @@
 // Carregar UFs ao iniciar a página
 async function carregarUFs() {
-    const resposta = await fetch('http://localhost:3000/ufs');
+    const resposta = await fetch('http://10.228.249.231:3000/ufs');
     const ufs = await resposta.json();
 
     const listaUFs = document.getElementById('ufs-list');
