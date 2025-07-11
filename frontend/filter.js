@@ -23,7 +23,7 @@ async function carregarCidades() {
         return;
     }
 
-    const resposta = await fetch(`http://localhost:3000/cidades/${uf}`);
+    const resposta = await fetch(`http://10.228.249.231:3000/cidades/${uf}`);
     const cidades = await resposta.json();
 
     // Preencher o <datalist> com as cidades da UF digitada
@@ -46,7 +46,7 @@ async function carregarEstacoes() {
     }
 
     try {
-        const resposta = await fetch(`http://localhost:3000/estacoes/${cidade}`);
+        const resposta = await fetch(`http://10.228.249.231:3000/estacoes/${cidade}`);
         if (!resposta.ok) {
             throw new Error(`Erro na API: ${resposta.status}`);
         }
