@@ -1,10 +1,30 @@
 {
   "dependencies": {
+    "chart.js": "^4.5.0",
     "cors": "^2.8.5",
     "express": "^4.21.2",
-    "pg": "^8.13.3"
+    "onnxruntime-node": "^1.23.0",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
-  }
+  },
+  "name": "muda-clima",
+  "version": "1.0.0",
+  "description": "Projeto da FURG",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zAllaNz/Muda-Clima.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zAllaNz/Muda-Clima/issues"
+  },
+  "homepage": "https://github.com/zAllaNz/Muda-Clima#readme"
 }

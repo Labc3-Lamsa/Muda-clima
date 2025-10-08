@@ -163,5 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
     carregarUFs();
 
     window.getSelectedDiseases = () => selectedDiseaseIds;
+    
 });
 

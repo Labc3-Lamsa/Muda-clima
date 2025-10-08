@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const { Pool } = require('pg');
+const path = require('path');
 
 app.use(cors());
 app.use(express.json());
@@ -107,9 +108,25 @@ app.post('/datasus', async (req, res) => {
     }
 });
 
-const path = require('path');
 app.use(express.static(path.join(__dirname, '../frontend')));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/front-page.html'));
 });
+
+/* Inicio Marla */
+
+// Rota para a página do dashboard
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/dashboard.html'));
+});
+
+app.get('/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'dashboard.html'));
+});
+
+// Rota para a pasta "modelos-XGboost" como arquivos estáticos
+app.use('/modelos_XGboost_onnx_todas_cidades_pneumonia', express.static(path.join(__dirname, '../modelos_XGboost_onnx_todas_cidades_pneumonia')));
+
+/* Fim Marla */
+
 app.listen(3000, '0.0.0.0', () => console.log('API rodando na porta 3000'));
