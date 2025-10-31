@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para gráficos -->
     <link rel="stylesheet" href="front-page-style.css"> <!-- Style da front page em css -->
-    <script src="plot.js"></script> <!-- Importando o script em javascript para gerar o gráfico -->
-    <script src="filter.js"></script> <!-- Importando o script em javascript que fornecem informações sobre o filtro -->
+    <script src="plot.js" type="module"></script> <!-- Importando o script em javascript para gerar o gráfico -->
+    <script src="filter.js" type="module"></script> <!-- Importando o script em javascript que fornecem informações sobre o filtro -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script> <!-- Permite a exportação de dados no formato xlsx -->
     <title>Muda Clima</title>
 </head>
@@ -64,7 +64,7 @@
                         <option value="vento_rajada">Vento rajada</option>
                     </select>
 
-                <button type="button" onclick="filtrar()">Filtrar</button>
+                <button id="btn-filtrar" type="button">Filtrar</button>
             </form>
             <select id="export-format">
                 <option value="csv">CSV</option>
