@@ -1,9 +1,12 @@
+import { API_BASE_URL } from "./utils/config.js";
+
 let internacoesChart;
 let dadosExportacao = [];
 
 document.addEventListener("DOMContentLoaded", function () {
+    
     const ctx = document.getElementById("internacoesChart").getContext("2d");
-    window.internacoesChart = new Chart(ctx, {
+    internacoesChart = new Chart(ctx, {
         type: "line",
         data: {
             labels: [],
@@ -45,7 +48,36 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
+
+    // --- Conector do Botão de Filtrar ---
+    const botaoFiltrar = document.getElementById('btn-filtrar');
+    if (botaoFiltrar) {
+        botaoFiltrar.addEventListener('click', filtrar);
+    } else {
+        console.error('Botão "btn-filtrar" não foi encontrado.');
+    }
+
+    // --- Conector do Botão de Exportar ---
+    const botaoExportar = document.getElementById('export-button');
+    if (botaoExportar) {
+        botaoExportar.addEventListener('click', () => {
+            console.log(dadosExportacao)
+            if (!dadosExportacao || !dadosExportacao.length) {
+                alert("Nenhum dado para exportar.");
+                return;
+            }
+            const formato = document.getElementById("export-format").value;
+            if (formato === "csv") {
+                exportarParaCSV(dadosExportacao);
+            } else {
+                exportarParaXLSX(dadosExportacao, 'dados_filtrados.xlsx');
+            }
+        });
+    } else {
+        console.error('Botão "export-button" não foi encontrado.');
+    }
 });
+
 
 async function filtrar() {
     const loadingOverlay = document.getElementById('loading-overlay');
@@ -78,7 +110,7 @@ async function filtrar() {
             throw new Error("Data fora do intervalo esperado.");
         }
 
-        const resposta = await fetch('http://200.132.77.31:3000/datasus', {
+        const resposta = await fetch(`${API_BASE_URL}/datasus`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ uf, city, station, group, startDate, endDate, inmet, pop })
@@ -114,12 +146,12 @@ function atualizarGrafico(dados) {
         const valor = parseFloat(item[variavelSelecionada]);
         return isNaN(valor) ? null : valor;});
 
-    if (window.internacoesChart) {
-        window.internacoesChart.destroy();
+    if (internacoesChart) {
+        internacoesChart.destroy();
     }
 
     const ctx = document.getElementById("internacoesChart").getContext("2d");
-    window.internacoesChart = new Chart(ctx, {
+    internacoesChart = new Chart(ctx, {
         type: "line",
         data: {
             labels: labels,
@@ -179,24 +211,6 @@ function atualizarGrafico(dados) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('export-button').addEventListener('click', () => {
-        console.log(dadosExportacao)
-        if (!dadosExportacao || !dadosExportacao.length) {
-            alert("Nenhum dado para exportar.");
-            return;
-        }
-
-        const formato = document.getElementById("export-format").value;
-
-        if (formato === "csv") {
-            exportarParaCSV(dadosExportacao);
-        } else {
-            exportarParaXLSX(dadosExportacao, 'dados_filtrados.xlsx');
-        }
-    });
-});
-
 function exportarParaXLSX(dados, nomeArquivo = 'dados.xlsx') {
     const dadosFormatados = dados.map(item => {
         const novoItem = { ...item };
@@ -223,7 +237,7 @@ function exportarParaCSV(dados, nomeArquivo = 'dados.csv') {
             novoItem.data = new Date(novoItem.data).toISOString().split('T')[0];
         }
         if ('valor' in novoItem) {
-            novoItem.Internacoes = novoItem.valor;
+            novoItem.Internações = novoItem.valor;
             delete novoItem.valor;
         }
         return novoItem;
