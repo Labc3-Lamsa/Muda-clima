@@ -1,6 +1,8 @@
+import { API_BASE_URL } from "./utils/config.js";
+
 // Carregar UFs ao iniciar a página
 async function carregarUFs() {
-    const resposta = await fetch('http://200.132.77.31:3000/ufs');
+    const resposta = await fetch(`${API_BASE_URL}/ufs`);
     const ufs = await resposta.json();
 
     const listaUFs = document.getElementById('ufs-list');
@@ -23,7 +25,7 @@ async function carregarCidades() {
         return;
     }
 
-    const resposta = await fetch(`http://200.132.77.31:3000/cidades/${uf}`);
+    const resposta = await fetch(`${API_BASE_URL}/cidades/${uf}`);
     const cidades = await resposta.json();
 
     // Preencher o <datalist> com as cidades da UF digitada
@@ -39,6 +41,10 @@ async function carregarEstacoes() {
     const cidade = document.getElementById('city').value.trim();
     const selectEstacao = document.getElementById('station');
 
+    if (!selectEstacao) {
+        return;
+    }
+
     if (!cidade) {
         selectEstacao.innerHTML = '<option value="">Escolha uma estação</option>';
         selectEstacao.disabled = true;
@@ -46,7 +52,7 @@ async function carregarEstacoes() {
     }
 
     try {
-        const resposta = await fetch(`http://200.132.77.31:3000/estacoes/${cidade}`);
+        const resposta = await fetch(`${API_BASE_URL}/estacoes/${cidade}`);
         if (!resposta.ok) {
             throw new Error(`Erro na API: ${resposta.status}`);
         }
@@ -163,5 +169,5 @@ document.addEventListener("DOMContentLoaded", () => {
     carregarUFs();
 
     window.getSelectedDiseases = () => selectedDiseaseIds;
+    
 });
-

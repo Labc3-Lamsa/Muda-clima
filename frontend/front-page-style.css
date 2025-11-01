@@ -215,3 +215,53 @@ footer {
 footer p {
     font-size: 14px;
 }
+
+/* inicio Marla */
+
+.botao-dashboard {
+    display: inline-block;
+    padding: 12px 24px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color:#f00cac;  
+    border: none;
+    border-radius: 5px; 
+    text-decoration: none; 
+    text-align: center;
+    cursor: pointer;  
+}
+
+/* --- Estilos para os Blocos --- */
+.blocos-container {
+    display: flex;  /* Exibe os blocos lado a lado */
+    flex-wrap: wrap; /* Permite que os blocos quebrem para a linha seguinte em telas menores */
+    gap: 20px;      /* Espaçamento entre os blocos */
+    justify-content: center; /* Centraliza os blocos */
+}
+
+.bloco {
+        background-color: #4CAF50;  /* Cor de fundo dos blocos */
+        color: white;
+        width: 200px;   /* Largura dos blocos */
+        height: 200px;  /* Altura dos blocos */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border-radius: 8px;  /* Bordas arredondadas */
+        box-sizing: border-box; /* Garante que o padding e a borda não afetem o tamanho do bloco */
+        position: relative; /* Para permitir o posicionamento do título */
+    }
+
+    .bloco h2 {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+    }
+/* fim marla */

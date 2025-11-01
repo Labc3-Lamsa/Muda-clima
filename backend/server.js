@@ -2,9 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const { Pool } = require('pg');
+const path = require('path');
 
-app.use(cors());
-app.use(express.json());
+const createMunicipiosRouter = require('./routes/predicao.js');
 
 const pool = new Pool({
     user: 'postgres',
@@ -13,6 +13,14 @@ const pool = new Pool({
     password: 'admin',
     port: 5432,
 })
+
+app.use(cors());
+app.use(express.json());
+
+const municipiosRouter = createMunicipiosRouter(pool);
+
+app.use(municipiosRouter);
+
 
 // Rota para obter todas as UFs
 app.get('/ufs', async (req, res) => {
@@ -107,9 +115,20 @@ app.post('/datasus', async (req, res) => {
     }
 });
 
-const path = require('path');
 app.use(express.static(path.join(__dirname, '../frontend')));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/front-page.html'));
 });
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/dashboard.html'));
+});
+
+app.get('/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'dashboard.html'));
+});
+
+// Rota para a pasta "modelos-XGboost" como arquivos estáticos
+app.use('/modelos_XGboost_onnx_todas_cidades_pneumonia', express.static(path.join(__dirname, '../modelos_XGboost_onnx_todas_cidades_pneumonia')));
+
 app.listen(3000, '0.0.0.0', () => console.log('API rodando na porta 3000'));
