@@ -20,7 +20,7 @@ async function runModel() {
         /* const session = await ort.InferenceSession.create('./model.onnx'); */
         /* const session = await ort.InferenceSession.create('/modelos_XGboost_onnx_todas_cidades_pneumonia/São Paulo.onnx'); */
         // Pega o valor da cidade do input
-        let cidade = document.getElementById('cidade').value;
+        let cidade = document.getElementById('city').value;
 
         // Sanitiza o nome da cidade (substitui espaços por %20 ou _ conforme seu nome de arquivo)
         cidade = cidade.trim().replace(/\s+/g, '%20'); // ou use "_" se os nomes dos arquivos forem assim
@@ -48,7 +48,7 @@ async function runModel() {
 
         /* ordem das variáveis */
         const featureNames = [
-            'dia', 'mes', 'ano', 'cod_ibge', 'altitude', 'lati', 'long',
+            'dia', 'mes', 'ano', 'cod_ibge', 'alti', 'lati', 'long',
             'pop_2000', 'pop_2010', 'pop_2021', 'Direcao_vento', 'Insolação',
             'num_dias_chuva', 'Precipitacao', 'Pressao_atmosferica', 'Radiacao_solar',
             'Temperatura_ar', 'Temperatura_ponto_orvalho', 'Temperatura_maxima',

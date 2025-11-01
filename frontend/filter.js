@@ -41,6 +41,10 @@ async function carregarEstacoes() {
     const cidade = document.getElementById('city').value.trim();
     const selectEstacao = document.getElementById('station');
 
+    if (!selectEstacao) {
+        return;
+    }
+
     if (!cidade) {
         selectEstacao.innerHTML = '<option value="">Escolha uma estação</option>';
         selectEstacao.disabled = true;
@@ -167,4 +171,3 @@ document.addEventListener("DOMContentLoaded", () => {
     window.getSelectedDiseases = () => selectedDiseaseIds;
     
 });
-

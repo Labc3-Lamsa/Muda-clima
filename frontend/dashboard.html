@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para gráficos -->
     <link rel="stylesheet" href="front-page-style.css"> <!-- Style da front page em css -->
-    <script src="plot.js"></script> <!-- Importando o script em javascript para gerar o gráfico -->
-    <script src="filter.js"></script> <!-- Importando o script em javascript que fornecem informações sobre o filtro -->
+    <script src="filter.js" type="module"></script> <!-- Importando o script em javascript que fornecem informações sobre o filtro -->
+    <script src="export.js" type="module"></script>
+    <script src="js/info.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script> <!-- Permite a exportação de dados no formato xlsx -->
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script> <!-- biblioteca onnxruntime-web para adicionar o modelo -->
     <script src="modelo-xgboost.js" defer></script> <!-- Importando o script JavaScript separado -->
@@ -38,47 +39,41 @@
                         <button type="button" id="add-disease-btn">+</button>
                     </div>
                 </div>
-                
-                <button type="button" onclick="filtrar()">Filtrar</button>
             </form>
         
         <p>Insira os dados para rodar o modelo de machine learning.</p>
         <form id="prediction-form">
-            <div class="form-group">
-                <label for="cidade">Cidade</label>
-                <input type="text" id="cidade" name="cidade" step="any" required>
-            </div>
             <div class="form-group">
                 <label for="data">Selecione uma data:</label>
                 <input type="date" id="data" name="data" step="any" required>
             </div>
             <div class="form-group">
                 <label for="cod_ibge">Código do IBGE</label>
-                <input type="number" id="cod_ibge" name="cod_ibge" step="any" required>
+                <input type="number" id="cod_ibge" name="cod_ibge" readonly>
             </div>
             <div class="form-group">
-                <label for="altitude">Altitude</label>
-                <input type="number" id="altitude" name="altitude" step="any" required>
+                <label for="alti">Altitude</label>
+                <input type="number" id="alti" name="altitude" step="any" readonly value="0">
             </div>
             <div class="form-group">
                 <label for="lati">Latitude</label>
-                <input type="number" id="lati" name="lati" step="any" required>
+                <input type="number" id="lati" name="lati" step="any" readonly>
             </div>
             <div class="form-group">
-                <label for="longitude">Longitude</label>
-                <input type="number" id="long" name="long" step="any" required>
+                <label for="long">Longitude</label>
+                <input type="number" id="long" name="long" step="any" readonly>
             </div>
             <div class="form-group">
                 <label for="pop_2000">População em 2000</label>
-                <input type="number" id="pop_2000" name="pop_2000" step="any" required>
+                <input type="number" id="pop_2000" name="pop_2000" step="any" readonly>
             </div>
             <div class="form-group">
                 <label for="pop_2010">População em 2010</label>
-                <input type="number" id="pop_2010" name="pop_2010" step="any" required>
+                <input type="number" id="pop_2010" name="pop_2010" step="any" readonly>
             </div>
             <div class="form-group">
                 <label for="pop_2021">População em 2021</label>
-                <input type="number" id="pop_2021" name="pop_2021" step="any" required>
+                <input type="number" id="pop_2021" name="pop_2021" step="any" readonly>
             </div>
             <!-- Usuário preenche os campos -->
             <div class="form-group">
