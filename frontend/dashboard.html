@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para gráficos -->
     <link rel="stylesheet" href="front-page-style.css"> <!-- Style da front page em css -->
+    <link rel="stylesheet" href="./css/header.css">
     <script src="filter.js" type="module"></script> <!-- Importando o script em javascript que fornecem informações sobre o filtro -->
     <script src="export.js" type="module"></script>
     <script src="js/info.js" type="module"></script>
@@ -15,7 +16,14 @@
 </head>
 <body>
     <header>
-        <h2>Previsão de número de internações</h2>
+        <h2>Muda Clima</h2>
+        <nav>
+            <ul>
+                <li><a href="/frontend/html/home.html">Home</a></li>
+                <li><a href="front-page.html">Gráfico</a></li>
+                <li><a href="/dashboard.html">Predição</a></li>
+            </ul>
+        </nav>
     </header>
 
     <div class="plot">
@@ -148,7 +156,7 @@
                 <input type="number" id="y_lag_4" name="y_lag_4" step="any" required>
             </div>
             <div class="form-group">
-                <label for="y_lag_5">Número de internações de 4 dias anteriores</label>
+                <label for="y_lag_5">Número de internações de 5 dias anteriores</label>
                 <input type="number" id="y_lag_5" name="y_lag_5" step="any" required>
             </div>
             <div class="form-group">
@@ -156,7 +164,7 @@
                 <input type="number" id="y_lag_6" name="y_lag_6" step="any" required>
             </div>
             <div class="form-group">
-                <label for="y_lag_7">Número de internações de 4 dias anteriores</label>
+                <label for="y_lag_7">Número de internações de 7 dias anteriores</label>
                 <input type="number" id="y_lag_7" name="y_lag_7" step="any" required>
             </div>
             <div class="form-group">

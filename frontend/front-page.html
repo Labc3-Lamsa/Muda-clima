@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para gráficos -->
     <link rel="stylesheet" href="front-page-style.css"> <!-- Style da front page em css -->
+    <link rel="stylesheet" href="./css/header.css">
     <script src="plot.js" type="module"></script> <!-- Importando o script em javascript para gerar o gráfico -->
     <script src="filter.js" type="module"></script> <!-- Importando o script em javascript que fornecem informações sobre o filtro -->
     <script src="export.js" type="module"></script>
@@ -14,6 +15,13 @@
 <body>
     <header>
         <h2>Muda Clima</h2>
+        <nav>
+            <ul>
+                <li><a href="/frontend/html/home">Home</a></li>
+                <li><a href="front-page.html">Gráfico</a></li>
+                <li><a href="dashboard.html">Predição</a></li>
+            </ul>
+        </nav>
     </header>
 
     <div class="plot">
@@ -72,8 +80,6 @@
                 <option value="xlsx">XLSX</option>
               </select>
             <button id="export-button">Exportar Dados</button>
-
-             <a href="/dashboard" class="botao-dashboard">Toque aqui para acessar modelo de machine learning e dashboard</a>
         </div>
         
         <div class="chart-container"> 
