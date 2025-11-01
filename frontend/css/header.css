@@ -1,34 +1,34 @@
 header {
-    display: flex; /* Alinha o título e a navegação lado a lado */
-    justify-content: space-between; /* Coloca o <h2> na esquerda e <nav> na direita */
-    align-items: center; /* Centraliza verticalmente */
-    padding: 1rem 2rem; /* Adiciona um respiro (espaçamento interno) */
-    border-bottom: 2px solid #eee; /* Uma linha sutil de separação */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 2px solid #eee;
 }
 
 header h2 {
-    margin: 0; /* Remove margens padrão do título */
+    margin: 0;
 }
 
 header nav ul {
-    list-style: none; /* Remove os marcadores de bolinha */
-    display: flex; /* Deixa os links na horizontal */
+    list-style: none;
+    display: flex;
     margin: 0;
     padding: 0;
-    gap: 1.5rem; /* Adiciona espaço ENTRE os links */
+    gap: 1.5rem;
 }
 
 header nav a {
-    text-decoration: none; /* Remove o sublinhado */
-    color: #333; /* Cor do texto */
+    text-decoration: none;
+    color: #333;
     font-size: 1.1rem;
     font-weight: bold;
     padding-bottom: 5px;
-    border-bottom: 2px solid transparent; /* Efeito de sublinhado elegante (invisível) */
+    border-bottom: 2px solid transparent;
     transition: border-color 0.3s;
 }
 
 header nav a:hover {
-    color: #007bff; /* Cor ao passar o mouse */
-    border-bottom-color: #007bff; /* Mostra o sublinhado ao passar o mouse */
+    color: #007bff;
+    border-bottom-color: #007bff;
 }
