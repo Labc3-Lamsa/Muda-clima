@@ -123,6 +123,10 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/html/home.html'));
 });
 
+app.get('/frontpage', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/front-page.html'));
+});
+
 app.get('/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'frontend', 'dashboard.html'));
 });

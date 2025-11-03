@@ -1,0 +1,88 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.hero {
+    text-align: center;
+    background-color: #004a91; /* Um azul mais escuro, pode ajustar */
+    color: white;
+    padding: 2.5rem 1.5rem;
+    border-radius: 8px;
+}
+.hero h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-top: 0.5rem;
+}
+
+section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #004a91;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+.data-sources, .cta-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+.data-card, .cta-card {
+    background-color: #fdfdfd;
+    border: 1px solid #eee;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.data-card:hover, .cta-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+.data-card h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.cta-card {
+    text-align: center;
+}
+.cta-card a {
+    display: block;
+    padding: 0.75rem 1rem;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.cta-card a:hover {
+    background-color: #0056b3;
+}
