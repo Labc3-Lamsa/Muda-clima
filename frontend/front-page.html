@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="./css/header.css">
     <script src="plot.js" type="module"></script> <!-- Importando o script em javascript para gerar o gráfico -->
     <script src="filter.js" type="module"></script> <!-- Importando o script em javascript que fornecem informações sobre o filtro -->
-    <script src="export.js" type="module"></script>
+    <script src="utils/export.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script> <!-- Permite a exportação de dados no formato xlsx -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> <!-- Permite a exportação de dados no formato pdf -->
     <title>Muda Clima</title>
 </head>
 <body>
@@ -28,11 +29,11 @@
         <div class="filter">
             <form id="filter-form">
                 <label for="uf">UF:</label>
-                <input list="ufs-list" id="uf" placeholder="Digite a UF">
+                <input list="ufs-list" id="uf" placeholder="Digite a UF" value="RS">
                 <datalist id="ufs-list"></datalist>
 
                 <label for="city">Cidade:</label>
-                <input list="cities-list" id="city" placeholder="Digite a cidade" disabled>
+                <input list="cities-list" id="city" placeholder="Digite a cidade" value="Rio Grande">
                 <datalist id="cities-list"></datalist>
 
                 <label for="station">Selecione a estação climática:</label>
@@ -78,6 +79,8 @@
             <select id="export-format">
                 <option value="csv">CSV</option>
                 <option value="xlsx">XLSX</option>
+                <option value="pdf">PDF</option>
+                <option value="png">PNG</option>
               </select>
             <button id="export-button">Exportar Dados</button>
         </div>
