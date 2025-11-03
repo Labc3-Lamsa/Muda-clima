@@ -1,0 +1,234 @@
+/* ========================================= */
+/* css/graph-page.css (Estilos do Gráfico)   */
+/* ========================================= */
+
+/* --- Título da Página --- */
+.page-title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.page-title h1 {
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+.page-title p {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0;
+}
+
+
+/* --- Layout Principal (Flex) --- */
+.plot {
+    display: flex;
+    gap: 2rem; /* Espaço entre a sidebar de filtro e o gráfico */
+    align-items: flex-start; /* Alinha os itens no topo */
+}
+
+/* --- Coluna 1: Sidebar de Filtros --- */
+.filter-sidebar {
+    /* Define a largura da sidebar */
+    flex-basis: 320px; 
+    flex-shrink: 0; /* Impede que a sidebar encolha */
+    
+    /* Visual de "Cartão" */
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    padding: 1.5rem 2rem;
+}
+
+.filter-sidebar h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+}
+
+/* --- Estilização do Formulário --- */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* Estilo unificado para inputs e selects */
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Garante que o padding não quebre o layout */
+    background-color: #fdfdfd;
+}
+
+.form-group input[type="date"] {
+    color: #555; /* Melhora a legibilidade da data */
+}
+
+.form-group select:disabled {
+    background-color: #eee;
+}
+
+/* Botão de Filtrar Principal */
+#btn-filtrar {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    background-color: #007bff; /* Azul primário */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+#btn-filtrar:hover {
+    background-color: #0056b3; /* Azul mais escuro */
+}
+
+/* Seletor de Doenças */
+.disease-add-controls {
+    display: flex;
+}
+.disease-add-controls select {
+    flex: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.disease-add-controls button {
+    padding: 0 1rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-left: none;
+    background: #f0f0f0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+}
+.selected-diseases-container {
+    /* (Adicione estilos para as tags de doença aqui, se desejar) */
+    margin-bottom: 0.5rem;
+}
+
+
+/* --- Controles de Exportação --- */
+.export-controls {
+    margin-top: 2rem;
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+}
+.export-controls h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+    text-align: center;
+}
+.button-group {
+    display: flex;
+}
+.button-group select {
+    flex: 1; /* Faz o select ocupar o espaço */
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.button-group button {
+    padding: 0 1.2rem;
+    border: 1px solid #ccc;
+    border-left: none;
+    background: #28a745; /* Verde para exportar */
+    color: white;
+    font-weight: 600;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.button-group button:hover {
+    background: #218838;
+}
+
+
+/* --- Coluna 2: Contêiner do Gráfico --- */
+.chart-container {
+    flex: 1; /* Ocupa todo o espaço restante */
+    min-width: 0; /* Impede que o flexbox encolha o gráfico */
+    
+    /* Visual de "Cartão" */
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    padding: 2rem;
+    position: relative; /* Necessário para o overlay */
+}
+
+/* O canvas deve ser responsivo ao contêiner */
+#internacoesChart {
+    width: 100% !important;
+    height: 500px !important; /* Mantenha uma altura fixa ou use aspect-ratio */
+}
+
+
+/* --- Overlay de Loading --- */
+#loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+#loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+#loading-overlay p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 1rem;
+    color: #333;
+}
+.loading-spinner {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #007bff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* --- Responsividade (Celulares) --- */
+@media (max-width: 1000px) {
+    .plot {
+        flex-direction: column; /* Coloca o filtro em CIMA do gráfico */
+    }
+    .filter-sidebar {
+        flex-basis: auto; /* Reseta a largura da sidebar */
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

@@ -1,34 +1,46 @@
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    border-bottom: 2px solid #eee;
+    background-color: #ffffff; /* Fundo branco */
+    display: flex; /* ATIVA O FLEXBOX */
+    justify-content: space-between; /* Título para um lado, nav para o outro */
+    align-items: center; /* Alinha verticalmente */
+    
+    /* Padding (espaçamento interno) e borda inferior */
+    padding: 1.2rem 5%; /* 1.2rem em cima/baixo, 5% dos lados */
+    border-bottom: 1px solid #e0e0e0;
+    
+    /* Sombra sutil */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
 }
 
 header h2 {
     margin: 0;
+    font-size: 1.8rem;
+    color: #0d47a1; /* Azul escuro para o título */
 }
 
 header nav ul {
-    list-style: none;
-    display: flex;
+    display: flex; /* Deixa os links na horizontal */
+    gap: 2rem; /* Espaço entre os links */
+    list-style: none; /* Remove as bolinhas */
     margin: 0;
     padding: 0;
-    gap: 1.5rem;
 }
 
 header nav a {
     text-decoration: none;
-    color: #333;
+    color: #007bff; /* Cor azul dos links */
     font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 500; /* Peso da fonte (semi-bold) */
     padding-bottom: 5px;
-    border-bottom: 2px solid transparent;
-    transition: border-color 0.3s;
+    transition: color 0.3s ease;
 }
 
 header nav a:hover {
-    color: #007bff;
-    border-bottom-color: #007bff;
+    color: #0056b3; /* Cor mais escura ao passar o mouse */
+}
+
+/* Estilo do link da página atual (ex: "Home" na imagem) */
+header nav a.current-page {
+    font-weight: 700; /* Mais grosso */
+    border-bottom: 2px solid #007bff; /* Sublinhado */
 }
