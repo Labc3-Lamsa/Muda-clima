@@ -1,46 +1,41 @@
 header {
-    background-color: #ffffff; /* Fundo branco */
-    display: flex; /* ATIVA O FLEXBOX */
-    justify-content: space-between; /* Título para um lado, nav para o outro */
-    align-items: center; /* Alinha verticalmente */
-    
-    /* Padding (espaçamento interno) e borda inferior */
-    padding: 1.2rem 5%; /* 1.2rem em cima/baixo, 5% dos lados */
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
     border-bottom: 1px solid #e0e0e0;
-    
-    /* Sombra sutil */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
 }
 
 header h2 {
     margin: 0;
     font-size: 1.8rem;
-    color: #0d47a1; /* Azul escuro para o título */
+    color: #0d47a1; 
 }
 
 header nav ul {
-    display: flex; /* Deixa os links na horizontal */
-    gap: 2rem; /* Espaço entre os links */
-    list-style: none; /* Remove as bolinhas */
+    display: flex; 
+    gap: 2rem; 
+    list-style: none;
     margin: 0;
     padding: 0;
 }
 
 header nav a {
     text-decoration: none;
-    color: #007bff; /* Cor azul dos links */
+    color: #007bff;
     font-size: 1.1rem;
-    font-weight: 500; /* Peso da fonte (semi-bold) */
+    font-weight: 500;
     padding-bottom: 5px;
     transition: color 0.3s ease;
 }
 
 header nav a:hover {
-    color: #0056b3; /* Cor mais escura ao passar o mouse */
+    color: #0056b3; 
 }
 
-/* Estilo do link da página atual (ex: "Home" na imagem) */
 header nav a.current-page {
-    font-weight: 700; /* Mais grosso */
-    border-bottom: 2px solid #007bff; /* Sublinhado */
+    font-weight: 700;
+    border-bottom: 2px solid #007bff;
 }

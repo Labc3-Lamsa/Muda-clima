@@ -1,0 +1,229 @@
+/* === Conteúdo principal === */
+  main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* === Área de filtros e formulários === */
+  .plot {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+  }
+  
+  .plot p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .filter {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* === Formulários === */
+  form {
+    display: grid;
+    gap: 1rem;
+  }
+  
+  #filter-form {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    align-items: end;
+    gap: 1rem;
+  }
+  
+  #prediction-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* === Grupos de entrada === */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .form-group input,
+  .form-group select {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #3a86ff;
+    box-shadow: 0 0 0 2px rgba(58, 134, 255, 0.2);
+    outline: none;
+  }
+  
+  /* === Fieldsets === */
+  fieldset {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1rem;
+    background: #fafafa;
+  }
+  
+  legend {
+    font-weight: 600;
+    color: #3a86ff;
+    padding: 0 0.5rem;
+  }
+  
+  /* === Botões === */
+  button {
+    background: #3a86ff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+  
+  button:hover {
+    background: #2f6be0;
+  }
+  
+  button:active {
+    transform: scale(0.98);
+  }
+  
+  /* Botão de adicionar doença */
+  #add-disease-btn {
+    padding: 0.5rem 0.8rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-left: 0.5rem;
+  }
+  
+  /* === Seletor de doenças === */
+  .disease-selector {
+    margin-bottom: 10px; 
+}
+
+.disease-add-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.disease-add-controls select {
+    flex-grow: 1;
+    min-width: 0; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#add-disease-btn {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 24px;
+    line-height: 40px;
+}
+
+.selected-diseases-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    margin-top: 5px;
+    min-height: 40px;
+}
+
+.disease-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #007bff; 
+    color: white;
+    padding: 5px 10px;
+    border-radius: 16px;
+    font-size: 14px;
+}
+
+.remove-disease-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 2px;
+    transition: color 0.2s ease;
+}
+
+.remove-disease-btn:hover {
+    color: #c8e6c9;
+}
+  
+  /* === Blocos de resultado === */
+  .blocos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .bloco {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+  
+  .bloco h2 {
+    margin-top: 0;
+    color: #3a86ff;
+    font-size: 1.2rem;
+  }
+  
+  #resultado {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+  
+  
+  /* === Responsividade === */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .plot {
+      padding: 1.5rem;
+    }
+  
+    form {
+      grid-template-columns: 1fr;
+    }
+  
+    button {
+      width: 100%;
+    }
+  }
+  
