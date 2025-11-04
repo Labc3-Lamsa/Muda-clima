@@ -1,34 +1,13 @@
-/* Resetando algumas configurações básicas do navegador */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Estilo geral da página */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     line-height: 1.6;
 }
 
-/* Cabeçalho */
-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-header h2 {
-    margin-bottom: 10px;
-}
-
 /* Seção de filtro */
 .plot {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
 }
 
 /* Estilo da parte do filtro */
@@ -59,7 +38,7 @@ header h2 {
 
 .filter button {
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 10px;
@@ -68,21 +47,18 @@ header h2 {
 }
 
 .filter button:hover {
-    background-color: #45a049;
+    background-color: #007bff;
 }
 
-/* --- Estilos para o Seletor de Múltiplas Doenças (Versão Otimizada) --- */
 .disease-selector {
     margin-bottom: 10px; 
 }
 
-/* Container para os controles (select + botão) */
 .disease-add-controls {
     display: flex;
     gap: 8px;
 }
 
-/* Estilo do SELECT para ter largura fixa e tratar texto longo */
 .disease-add-controls select {
     flex-grow: 1;
     min-width: 0; 
@@ -91,7 +67,6 @@ header h2 {
     overflow: hidden;
 }
 
-/* Botão "+" */
 #add-disease-btn {
     flex-shrink: 0;
     width: 40px;
@@ -101,7 +76,6 @@ header h2 {
     line-height: 40px;
 }
 
-/* Caixa que contém as "tags" das doenças selecionadas */
 .selected-diseases-container {
     display: flex;
     flex-wrap: wrap;
@@ -114,19 +88,17 @@ header h2 {
     min-height: 40px;
 }
 
-/* Estilo da "tag" individual de cada doença selecionada */
 .disease-tag {
     display: flex;
     align-items: center;
     gap: 8px;
-    background-color: #4CAF50; 
+    background-color: #007bff; 
     color: white;
     padding: 5px 10px;
     border-radius: 16px;
     font-size: 14px;
 }
 
-/* Botão de remover (o "x") dentro da tag */
 .remove-disease-btn {
     background: none;
     border: none;
@@ -143,7 +115,6 @@ header h2 {
     color: #c8e6c9;
 }
 
-/* --- Estilos para a Tela de Carregamento --- */
 .chart-container {
     position: relative;
     width: 70%;
@@ -154,7 +125,6 @@ canvas#internacoesChart {
     border-radius: 8px;
     width: 100%; 
 }
-
 
 #loading-overlay {
     position: absolute;
@@ -182,7 +152,7 @@ canvas#internacoesChart {
 
 .loading-spinner {
     border: 8px solid #f3f3f3;
-    border-top: 8px solid #4CAF50;
+    border-top: 8px solid #007bff;
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -200,68 +170,3 @@ canvas {
     border-radius: 8px;
     width: 70%;
 }
-
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    z-index: 10000;
-}
-
-footer p {
-    font-size: 14px;
-}
-
-/* inicio Marla */
-
-.botao-dashboard {
-    display: inline-block;
-    padding: 12px 24px;
-    margin-top: 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color:#f00cac;  
-    border: none;
-    border-radius: 5px; 
-    text-decoration: none; 
-    text-align: center;
-    cursor: pointer;  
-}
-
-/* --- Estilos para os Blocos --- */
-.blocos-container {
-    display: flex;  /* Exibe os blocos lado a lado */
-    flex-wrap: wrap; /* Permite que os blocos quebrem para a linha seguinte em telas menores */
-    gap: 20px;      /* Espaçamento entre os blocos */
-    justify-content: center; /* Centraliza os blocos */
-}
-
-.bloco {
-        background-color: #4CAF50;  /* Cor de fundo dos blocos */
-        color: white;
-        width: 200px;   /* Largura dos blocos */
-        height: 200px;  /* Altura dos blocos */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        border-radius: 8px;  /* Bordas arredondadas */
-        box-sizing: border-box; /* Garante que o padding e a borda não afetem o tamanho do bloco */
-        position: relative; /* Para permitir o posicionamento do título */
-    }
-
-    .bloco h2 {
-        position: absolute;
-        top: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 14px;
-        margin: 0;
-        padding: 0;
-        font-weight: bold;
-    }
-/* fim marla */

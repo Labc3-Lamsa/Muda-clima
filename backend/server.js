@@ -5,6 +5,7 @@ const { Pool } = require('pg');
 const path = require('path');
 
 const createMunicipiosRouter = require('./routes/predicao.js');
+const redirect_home = require('./routes/home.js');
 
 const pool = new Pool({
     user: 'postgres',
@@ -18,8 +19,10 @@ app.use(cors());
 app.use(express.json());
 
 const municipiosRouter = createMunicipiosRouter(pool);
+const homeRouter = redirect_home();
 
 app.use(municipiosRouter);
+app.use(homeRouter);
 
 
 // Rota para obter todas as UFs
@@ -117,11 +120,11 @@ app.post('/datasus', async (req, res) => {
 
 app.use(express.static(path.join(__dirname, '../frontend')));
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/front-page.html'));
+    res.sendFile(path.join(__dirname, '../frontend/html/home.html'));
 });
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/dashboard.html'));
+app.get('/frontpage', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/front-page.html'));
 });
 
 app.get('/dashboard', (req, res) => {
