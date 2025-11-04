@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para gráficos -->
-    <link rel="stylesheet" href="front-page-style.css"> <!-- Style da front page em css -->
-    <script src="plot.js" type="module"></script> <!-- Importando o script em javascript para gerar o gráfico -->
-    <script src="filter.js" type="module"></script> <!-- Importando o script em javascript que fornecem informações sobre o filtro -->
-    <script src="export.js" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script> <!-- Permite a exportação de dados no formato xlsx -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/home.css">
     <title>Muda Clima</title>
 </head>
 <body>
@@ -16,11 +15,73 @@
         <h2>Muda Clima</h2>
         <nav>
             <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="/front-page">Gráfico</a></li>
-                <li><a href="/dashboard">Predição</a></li>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/front-page.html">Gráfico</a></li>
+                <li><a href="/dashboard.html">Predição</a></li>
             </ul>
         </nav>
     </header>
+
+    <main>
+        <section class="hero">
+            <h1>Muda Clima</h1>
+            <p>Analisando a Relação entre Clima, Poluição e Saúde Respiratória no Brasil</p>
+        </section>
+
+        <section class="project-goal">
+            <h2>Nosso Objetivo</h2>
+            <p>
+                O objetivo principal deste projeto é associar as variáveis meteorológicas e a poluição do ar com as internações hospitalares por doenças respiratórias (CID-10).
+            </p>
+            <p>
+                Buscamos entender como esses fatores ambientais impactam a saúde da população e quais são os custos econômicos relacionados ao Sistema Único de Saúde (SUS).
+            </p>
+            <p>
+                A plataforma proposta representa um avanço no sentido de facilitar o acesso às informações, permitindo que gestores, profissionais da saúde e pesquisadores utilizem os dados de forma prática e eficiente.
+            </p>
+        </section>
+
+        <section class="data-section">
+            <h2>Nossas Fontes de Dados</h2>
+            <p>Para realizar esta análise, unificamos três grandes bases de dados de diferentes fontes:</p>
+            <div class="data-sources">
+                <div class="data-card">
+                    <h3>Dados de Saúde</h3>
+                    <p>Registros de internações por doenças respiratórias extraídos do Sistema de Informações Hospitalares (SIH) do <strong>DATASUS</strong>.</p>
+                </div>
+                <div class="data-card">
+                    <h3>Dados Meteorológicos</h3>
+                    <p>Variáveis como temperatura, vento e pressão, coletadas de 273 estações do <strong>Instituto Nacional de Meteorologia (INMet)</strong>.</p>
+                </div>
+                <div class="data-card">
+                    <h3>Dados de Poluição</h3>
+                    <p>Informações sobre poluição do ar, disponibilizadas pelo <strong>Instituto de Energia e Meio Ambiente (IEMA)</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Explore Nossas Ferramentas</h2>
+            <p>
+                Este website foi desenvolvido para disponibilizar os resultados e modelos de forma interativa para gestores, profissionais de saúde e o público em geral.
+            </p>
+            <div class="cta-links">
+                <div class="cta-card">
+                    <h3>Visualizar Gráficos</h3>
+                    <p>Explore as associações entre dados climáticos e internações de forma customizável.</p>
+                    <a href="/frontpage">Acessar Ferramenta de Gráficos</a>
+                </div>
+                <div class="cta-card">
+                    <h3>Testar Predições</h3>
+                    <p>Acesse nosso dashboard para rodar modelos de machine learning e prever cenários de internação.</p>
+                    <a href="/dashboard">Acessar Dashboard de Predição</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 CNPQ - Projeto "Associação entre as variáveis climáticas e as internações por doenças respiratórias"</p>
+    </footer>
 </body>
 </html>

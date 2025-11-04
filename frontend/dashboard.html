@@ -1,237 +1,170 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para gráficos -->
-    <link rel="stylesheet" href="front-page-style.css"> <!-- Style da front page em css -->
-    <link rel="stylesheet" href="./css/header.css">
-    <script src="filter.js" type="module"></script> <!-- Importando o script em javascript que fornecem informações sobre o filtro -->
-    <script src="export.js" type="module"></script>
-    <script src="js/info.js" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script> <!-- Permite a exportação de dados no formato xlsx -->
-    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script> <!-- biblioteca onnxruntime-web para adicionar o modelo -->
-    <script src="modelo-xgboost.js" defer></script> <!-- Importando o script JavaScript separado -->
-    <title>Previsão de número de internações</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Previsão de número de internações</title>
+
+  <!-- Bibliotecas externas -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="./css/dashboard.css">
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/footer.css">
+
+  <!-- Scripts locais -->
+  <script src="filter.js" type="module"></script>
+  <script src="js/info.js" type="module"></script>
+  <script src="modelo-xgboost.js" defer></script>
 </head>
+
 <body>
-    <header>
-        <h2>Muda Clima</h2>
-        <nav>
-            <ul>
-                <li><a href="/frontend/html/home.html">Home</a></li>
-                <li><a href="front-page.html">Gráfico</a></li>
-                <li><a href="/dashboard.html">Predição</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Cabeçalho -->
+  <header>
+    <h2>Muda Clima</h2>
+    <nav>
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/front-page.html">Gráfico</a></li>
+        <li><a href="/dashboard.html">Predição</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <div class="plot">
-        <div class="filter">
-            <form id="filter-form">
-                <label for="uf">UF:</label>
-                <input list="ufs-list" id="uf" placeholder="Digite a UF">
-                <datalist id="ufs-list"></datalist>
+  <!-- Conteúdo principal -->
+  <main>
+    <section class="plot">
+      <p>Insira os dados para rodar o modelo de machine learning.</p>
 
-                <label for="city">Cidade:</label>
-                <input list="cities-list" id="city" placeholder="Digite a cidade" disabled>
-                <datalist id="cities-list"></datalist>
+      <div class="filter">
+        <!-- Filtro de localização e doenças -->
+        <form id="filter-form">
+          <label for="uf">UF:</label>
+          <input list="ufs-list" id="uf" placeholder="Digite a UF">
+          <datalist id="ufs-list"></datalist>
 
-                <div class="disease-selector">
-                    <label for="disease-options">Selecione a(s) doença(s):</label>
-                    <div class="selected-diseases-container" id="selected-diseases">
-                    </div>
-                    <div class="disease-add-controls">
-                        <select id="disease-options">
-                        </select>
-                        <button type="button" id="add-disease-btn">+</button>
-                    </div>
-                </div>
-            </form>
-        
-        <p>Insira os dados para rodar o modelo de machine learning.</p>
+          <label for="city">Cidade:</label>
+          <input list="cities-list" id="city" placeholder="Digite a cidade" disabled>
+          <datalist id="cities-list"></datalist>
+
+          <div class="disease-selector">
+            <label for="disease-options">Selecione a(s) doença(s):</label>
+            <div class="selected-diseases-container" id="selected-diseases"></div>
+            <div class="disease-add-controls">
+              <select id="disease-options"></select>
+              <button type="button" id="add-disease-btn">+</button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Formulário de previsão -->
         <form id="prediction-form">
-            <div class="form-group">
-                <label for="data">Selecione uma data:</label>
-                <input type="date" id="data" name="data" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="cod_ibge">Código do IBGE</label>
-                <input type="number" id="cod_ibge" name="cod_ibge" readonly>
-            </div>
-            <div class="form-group">
-                <label for="alti">Altitude</label>
-                <input type="number" id="alti" name="altitude" step="any" readonly value="0">
-            </div>
-            <div class="form-group">
-                <label for="lati">Latitude</label>
-                <input type="number" id="lati" name="lati" step="any" readonly>
-            </div>
-            <div class="form-group">
-                <label for="long">Longitude</label>
-                <input type="number" id="long" name="long" step="any" readonly>
-            </div>
-            <div class="form-group">
-                <label for="pop_2000">População em 2000</label>
-                <input type="number" id="pop_2000" name="pop_2000" step="any" readonly>
-            </div>
-            <div class="form-group">
-                <label for="pop_2010">População em 2010</label>
-                <input type="number" id="pop_2010" name="pop_2010" step="any" readonly>
-            </div>
-            <div class="form-group">
-                <label for="pop_2021">População em 2021</label>
-                <input type="number" id="pop_2021" name="pop_2021" step="any" readonly>
-            </div>
-            <!-- Usuário preenche os campos -->
-            <div class="form-group">
-                <label for="Direcao_vento">Direção do vento</label>
-                <input type="number" id="Direcao_vento" name="Direcao_vento" step="any" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="Insolação">Insolação</label>
-                <input type="number" id="Insolação" name="Insolação" step="any" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="num_dias_chuva">Número de dias de chuva</label>
-                <input type="number" id="num_dias_chuva" name="num_dias_chuva" step="any" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="Precipitacao">Precipitacao</label>
-                <input type="number" id="Precipitacao" name="Precipitacao" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="Pressao_atmosferica">Pressão atmosférica</label>
-                <input type="number" id="Pressao_atmosferica" name="Pressao_atmosferica" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="Radiacao_solar">Radiacao_solar</label>
-                <input type="number" id="Radiacao_solar" name="Radiacao_solar" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="Temperatura_ar">Temperatura do ar</label>
-                <input type="number" id="Temperatura_ar" name="Temperatura_ar" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="Temperatura_ponto_orvalho">Temperatura de ponto de orvalho</label>
-                <input type="number" id="Temperatura_ponto_orvalho" name="Temperatura_ponto_orvalho" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="Temperatura_maxima">Temperatura maxima (°C)</label>
-                <input type="number" id="Temperatura_maxima" name="Temperatura_maxima" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="Temperatura_minima">Temperatura minima (°C)</label>
-                <input type="number" id="Temperatura_minima" name="Temperatura_minima" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="Umidade_relativa">Umidade Relativa (%)</label>
-                <input type="number" id="Umidade_relativa" name="Umidade_relativa" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="Velocidade_vento">Velocidade do vento</label>
-                <input type="number" id="Velocidade_vento" name="Velocidade_vento" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="Velocidade_rajada">Velocidade de rajada</label>
-                <input type="number" id="Velocidade_rajada" name="Velocidade_rajada" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="y_lag_1">Número de internações do dia anterior</label>
-                <input type="number" id="y_lag_1" name="y_lag_1" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="y_lag_2">Número de internações de 2 dias anteriores</label>
-                <input type="number" id="y_lag_2" name="y_lag_2" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="y_lag_3">Número de internações de 3 dias anteriores</label>
-                <input type="number" id="y_lag_3" name="y_lag_3" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="y_lag_4">Número de internações de 4 dias anteriores</label>
-                <input type="number" id="y_lag_4" name="y_lag_4" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="y_lag_5">Número de internações de 5 dias anteriores</label>
-                <input type="number" id="y_lag_5" name="y_lag_5" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="y_lag_6">Número de internações de 6 dias anteriores</label>
-                <input type="number" id="y_lag_6" name="y_lag_6" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="y_lag_7">Número de internações de 7 dias anteriores</label>
-                <input type="number" id="y_lag_7" name="y_lag_7" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="y_lag_8">Número de internações de 8 dias anteriores</label>
-                <input type="number" id="y_lag_8" name="y_lag_8" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="y_lag_9">Número de internações de 9 dias anteriores</label>
-                <input type="number" id="y_lag_9" name="y_lag_9" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="y_lag_10">Número de internações de 10 dias anteriores</label>
-                <input type="number" id="y_lag_10" name="y_lag_10" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="y_lag_11">Número de internações de 11 dias anteriores</label>
-                <input type="number" id="y_lag_11" name="y_lag_11" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="y_lag_12">Número de internações de 12 dias anteriores</label>
-                <input type="number" id="y_lag_12" name="y_lag_12" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="y_lag_13">Número de internações de 13 dias anteriores</label>
-                <input type="number" id="y_lag_13" name="y_lag_13" step="any" required>
-            </div>
-            <div class="form-group">
-                <label for="y_lag_14">Número de internações de 14 dias anteriores</label>
-                <input type="number" id="y_lag_14" name="y_lag_14" step="any" required>
-            </div>
+          <div class="form-group">
+            <label for="data">Selecione uma data:</label>
+            <input type="date" id="data" name="data" required>
+          </div>
 
-            <button type="submit">Prever</button>
-    </form>
-                
-            <select id="export-format">
-                <option value="csv">CSV</option>
-                <option value="xlsx">XLSX</option>
-              </select>
-            <button id="export-button">Exportar Dados</button>
+          <div class="form-group">
+            <label for="cod_ibge">Código do IBGE</label>
+            <input type="number" id="cod_ibge" name="cod_ibge" readonly>
+          </div>
 
-             
-        </div>
-    </div>
+          <div class="form-group">
+            <label for="alti">Altitude</label>
+            <input type="number" id="alti" name="altitude" step="any" readonly value="0">
+          </div>
 
-        <div class="blocos-container"> 
-            <div class="bloco">
-                <h2>Previsão para um dia</h2>
-                
-                <div id="resultado"></div>
-            </div>
+          <div class="form-group">
+            <label for="lati">Latitude</label>
+            <input type="number" id="lati" name="lati" step="any" readonly>
+          </div>
 
-            <div class="bloco">
-                <p>Previsão por período</p>
-            </div>
+          <div class="form-group">
+            <label for="long">Longitude</label>
+            <input type="number" id="long" name="long" step="any" readonly>
+          </div>
 
-            <div class="bloco">
-                <p>Bloco 3</p>
-        </div>
-    
-    
+          <div class="form-group">
+            <label for="pop_2000">População em 2000</label>
+            <input type="number" id="pop_2000" name="pop_2000" step="any" readonly>
+          </div>
 
-    </body>
-</html>
-    
-    <footer>
-        <p>© 2025 CNPQ | FAPERGS - Projeto "Associação entre as variáveis climáticas e as internações por doenças respiratórias"</p>
-    </footer>
+          <div class="form-group">
+            <label for="pop_2010">População em 2010</label>
+            <input type="number" id="pop_2010" name="pop_2010" step="any" readonly>
+          </div>
 
+          <div class="form-group">
+            <label for="pop_2021">População em 2021</label>
+            <input type="number" id="pop_2021" name="pop_2021" step="any" readonly>
+          </div>
+
+          <!-- Campos preenchidos pelo usuário -->
+          <fieldset>
+            <legend>Variáveis Climáticas</legend>
+
+            <div class="form-group"><label for="Direcao_vento">Direção do vento</label><input type="number" id="Direcao_vento" name="Direcao_vento" step="any" required></div>
+            <div class="form-group"><label for="Insolação">Insolação</label><input type="number" id="Insolação" name="Insolação" step="any" required></div>
+            <div class="form-group"><label for="num_dias_chuva">Número de dias de chuva</label><input type="number" id="num_dias_chuva" name="num_dias_chuva" step="any" required></div>
+            <div class="form-group"><label for="Precipitacao">Precipitação</label><input type="number" id="Precipitacao" name="Precipitacao" step="any" required></div>
+            <div class="form-group"><label for="Pressao_atmosferica">Pressão atmosférica</label><input type="number" id="Pressao_atmosferica" name="Pressao_atmosferica" step="any" required></div>
+            <div class="form-group"><label for="Radiacao_solar">Radiação solar</label><input type="number" id="Radiacao_solar" name="Radiacao_solar" step="any" required></div>
+            <div class="form-group"><label for="Temperatura_ar">Temperatura do ar</label><input type="number" id="Temperatura_ar" name="Temperatura_ar" step="any" required></div>
+            <div class="form-group"><label for="Temperatura_ponto_orvalho">Temperatura de ponto de orvalho</label><input type="number" id="Temperatura_ponto_orvalho" name="Temperatura_ponto_orvalho" step="any" required></div>
+            <div class="form-group"><label for="Temperatura_maxima">Temperatura máxima (°C)</label><input type="number" id="Temperatura_maxima" name="Temperatura_maxima" step="any" required></div>
+            <div class="form-group"><label for="Temperatura_minima">Temperatura mínima (°C)</label><input type="number" id="Temperatura_minima" name="Temperatura_minima" step="any" required></div>
+            <div class="form-group"><label for="Umidade_relativa">Umidade relativa (%)</label><input type="number" id="Umidade_relativa" name="Umidade_relativa" step="any" required></div>
+            <div class="form-group"><label for="Velocidade_vento">Velocidade do vento</label><input type="number" id="Velocidade_vento" name="Velocidade_vento" step="any" required></div>
+            <div class="form-group"><label for="Velocidade_rajada">Velocidade de rajada</label><input type="number" id="Velocidade_rajada" name="Velocidade_rajada" step="any" required></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Histórico de internações</legend>
+            <!-- Campos y_lag -->
+            <div class="form-group"><label for="y_lag_1">Número de internações do dia anterior</label><input type="number" id="y_lag_1" name="y_lag_1" step="any" required></div>
+            <div class="form-group"><label for="y_lag_2">Número de internações de 2 dias anteriores</label><input type="number" id="y_lag_2" name="y_lag_2" step="any" required></div>
+            <div class="form-group"><label for="y_lag_3">Número de internações de 3 dias anteriores</label><input type="number" id="y_lag_3" name="y_lag_3" step="any" required></div>
+            <div class="form-group"><label for="y_lag_4">Número de internações de 4 dias anteriores</label><input type="number" id="y_lag_4" name="y_lag_4" step="any" required></div>
+            <div class="form-group"><label for="y_lag_5">Número de internações de 5 dias anteriores</label><input type="number" id="y_lag_5" name="y_lag_5" step="any" required></div>
+            <div class="form-group"><label for="y_lag_6">Número de internações de 6 dias anteriores</label><input type="number" id="y_lag_6" name="y_lag_6" step="any" required></div>
+            <div class="form-group"><label for="y_lag_7">Número de internações de 7 dias anteriores</label><input type="number" id="y_lag_7" name="y_lag_7" step="any" required></div>
+            <div class="form-group"><label for="y_lag_8">Número de internações de 8 dias anteriores</label><input type="number" id="y_lag_8" name="y_lag_8" step="any" required></div>
+            <div class="form-group"><label for="y_lag_9">Número de internações de 9 dias anteriores</label><input type="number" id="y_lag_9" name="y_lag_9" step="any" required></div>
+            <div class="form-group"><label for="y_lag_10">Número de internações de 10 dias anteriores</label><input type="number" id="y_lag_10" name="y_lag_10" step="any" required></div>
+            <div class="form-group"><label for="y_lag_11">Número de internações de 11 dias anteriores</label><input type="number" id="y_lag_11" name="y_lag_11" step="any" required></div>
+            <div class="form-group"><label for="y_lag_12">Número de internações de 12 dias anteriores</label><input type="number" id="y_lag_12" name="y_lag_12" step="any" required></div>
+            <div class="form-group"><label for="y_lag_13">Número de internações de 13 dias anteriores</label><input type="number" id="y_lag_13" name="y_lag_13" step="any" required></div>
+            <div class="form-group"><label for="y_lag_14">Número de internações de 14 dias anteriores</label><input type="number" id="y_lag_14" name="y_lag_14" step="any" required></div>
+          </fieldset>
+
+          <button type="submit">Prever</button>
+        </form>
+    </section>
+
+    <!-- Resultados -->
+    <section class="blocos-container">
+      <div class="bloco">
+        <h2>Previsão para um dia</h2>
+        <div id="resultado"></div>
+      </div>
+
+      <div class="bloco">
+        <h2>Previsão por período</h2>
+      </div>
+
+      <div class="bloco">
+        <h2>Bloco 3</h2>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>© 2025 CNPQ | FAPERGS - Projeto "Associação entre as variáveis climáticas e as internações por doenças respiratórias"</p>
+  </footer>
 </body>
 </html>

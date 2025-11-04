@@ -1,4 +1,5 @@
 import { API_BASE_URL } from "./utils/config.js";
+import * as exports from "./utils/export.js";
 
 let internacoesChart;
 let dadosExportacao = [];
@@ -67,9 +68,16 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             const formato = document.getElementById("export-format").value;
             if (formato === "csv") {
-                exportarParaCSV(dadosExportacao);
-            } else {
-                exportarParaXLSX(dadosExportacao, 'dados_filtrados.xlsx');
+                exports.exportarParaCSV(dadosExportacao);
+            } 
+            else if (formato === "pdf") {
+                exports.exportarParaPDF(internacoesChart);
+            }
+            else if (formato === "png") {
+                exports.exportarParaPNG(internacoesChart);
+            }
+            else  {
+                exports.exportarParaXLSX(dadosExportacao, 'dados_filtrados.xlsx');
             }
         });
     } else {
@@ -86,13 +94,19 @@ async function filtrar() {
         const city = document.getElementById("city").value;
         const station = document.getElementById("station").value;
         const group = window.getSelectedDiseases(); 
-        const startDate = document.getElementById("start-date").value;
-        const endDate = document.getElementById("end-date").value;
+        let startDate = document.getElementById("start-date").value;
+        let endDate = document.getElementById("end-date").value;
         const inmet = document.getElementById("inmet").value;
 
         if (group.length === 0) {
             alert("Por favor, selecione pelo menos uma doença.");
             return;
+        }
+
+        if (endDate < startDate) {
+            let aux = endDate;
+            endDate = startDate;
+            startDate = aux;
         }
 
         let pop;
