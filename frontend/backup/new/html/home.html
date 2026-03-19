@@ -14,12 +14,11 @@
     <header>
         <h2>Muda Clima</h2>
         <nav>
-        <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/front-page.html">Gráfico</a></li>
-            <li><a href="#" id="btn-predicao">Previsões Mensais Pneumonia</a></li>
-            <li><a href="#" id="btn-predicao-beta">Previsões Multiplas</a></li>
-      </ul>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/front-page.html">Gráfico</a></li>
+                <li><a href="/dashboard.html">Predição</a></li>
+            </ul>
         </nav>
     </header>
 
@@ -84,26 +83,5 @@
     <footer>
         <p>© 2025 CNPQ - Projeto "Associação entre as variáveis climáticas e as internações por doenças respiratórias"</p>
     </footer>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const btnPredicao = document.getElementById("btn-predicao");
-    const btnPredicaoBeta = document.getElementById("btn-predicao-beta");
-
-    if (btnPredicao) {
-      btnPredicao.addEventListener("click", function (e) {
-        e.preventDefault();
-        window.location.href = "/dashboard.html?view=shiny";
-      });
-    }
-
-    if (btnPredicaoBeta) {
-      btnPredicaoBeta.addEventListener("click", function (e) {
-        e.preventDefault();
-        window.location.href = "/dashboard.html?view=xgb";
-      });
-    }
-  });
-</script>
 </body>
 </html>

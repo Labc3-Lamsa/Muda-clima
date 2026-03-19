@@ -2,7 +2,8 @@
   "dependencies": {
     "chart.js": "^4.5.0",
     "cors": "^2.8.5",
-    "express": "^4.21.2",
+    "express": "^4.22.1",
+    "node-fetch": "^3.3.2",
     "onnxruntime-node": "^1.23.0",
     "pg": "^8.16.3"
   },

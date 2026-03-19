@@ -17,27 +17,25 @@
 </head>
 <body>
     <header>
-    <h2>Muda Clima</h2>
-    <nav>
-      <ul>
-        <li><a href="/home">Home</a></li>
-            <li><a href="/front-page.html">Gráfico</a></li>
-            <li><a href="#" id="btn-predicao">Previsões Mensais Pneumonia</a></li>
-            <li><a href="#" id="btn-predicao-beta">Previsões Multiplas</a></li>
-      </ul>
-    </nav>
-  </header>
-
+        <h2>Muda Clima</h2>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="front-page.html">Gráfico</a></li>
+                <li><a href="dashboard.html">Predição</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <div class="plot">
         <div class="filter">
             <form id="filter-form">
                 <label for="uf">UF:</label>
-                <input list="ufs-list" id="uf" placeholder="Digite a UF" value="RS">
+                <input list="ufs-list" id="uf" placeholder="Digite a UF">
                 <datalist id="ufs-list"></datalist>
 
                 <label for="city">Cidade:</label>
-                <input list="cities-list" id="city" placeholder="Digite a cidade" value="Rio Grande">
+                <input list="cities-list" id="city" placeholder="Digite a cidade">
                 <datalist id="cities-list"></datalist>
 
                 <label for="station">Selecione a estação climática:</label>
@@ -103,7 +101,6 @@
         <p>© 2025 CNPQ - Projeto "Associação entre as variáveis climáticas e as internações por doenças respiratórias"</p>
     </footer>
 
-
   <!-- ========================================================= -->
   <!-- ===================== CHATBOT POPUP ===================== -->
   <!-- ========================================================= -->
@@ -113,7 +110,6 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-
   const btn = document.createElement("div");
   btn.id = "chat-float-btn";
   btn.innerHTML = "💬";
@@ -121,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const popup = document.createElement("iframe");
   popup.id = "chat-popup";
-  popup.src = "/chat.html";
+  popup.src = "/chat.html"; 
   document.body.appendChild(popup);
 
   btn.addEventListener("click", () => {
@@ -135,28 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-</script>
-
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const btnPredicao = document.getElementById("btn-predicao");
-    const btnPredicaoBeta = document.getElementById("btn-predicao-beta");
-
-    if (btnPredicao) {
-      btnPredicao.addEventListener("click", function (e) {
-        e.preventDefault();
-        window.location.href = "/dashboard.html?view=shiny";
-      });
-    }
-
-    if (btnPredicaoBeta) {
-      btnPredicaoBeta.addEventListener("click", function (e) {
-        e.preventDefault();
-        window.location.href = "/dashboard.html?view=xgb";
-      });
-    }
-  });
 </script>
 
 
