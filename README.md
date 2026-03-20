@@ -1,2 +1,2 @@
 # Muda-Clima
-Projeto da FURG
+Projeto Lamsa da FURG
