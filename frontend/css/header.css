@@ -8,6 +8,18 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
 }
 
+/* Container para alinhar logo e texto ClimArS */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Espaço entre a logo e o texto */
+}
+
+.logo-img {
+    height: 45px; /* Ajuste a altura da sua logo aqui */
+    width: auto;
+}
+
 header h2 {
     margin: 0;
     font-size: 1.8rem;
