@@ -3,110 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para gráficos -->
-    <link rel="stylesheet" href="../css/index.css">
+    <title>Muda Clima</title>
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/home.css">
-    <title>Muda Clima</title>
 </head>
 <body>
- <header>
+    <header>
         <div class="logo-container">
             <img src="../img/logoclimars.png" alt="Logo ClimArS" class="logo-img">
-            <h2>Muda Clima</h2>
+            <div class="logo-text">
+                <span class="brand-name">ClimArS</span>
+                <span class="brand-sub">Clima • Ar • Saúde</span>
+            </div>
         </div>
         <nav>
             <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/front-page.html">Gráfico</a></li>
-                <li><a href="#" id="btn-predicao">Previsões Mensais Pneumonia</a></li>
-                <li><a href="#" id="btn-predicao-beta">Previsões Multiplas</a></li>
+                <li><a href="/home" class="active">Inicio</a></li>
+                <li><a href="/front-page.html">Gráficos</a></li>
+                <li><a href="#">Previsões Mensais</a></li>
+                <li><a href="#">Previsões Múltiplas</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section class="hero">
-            <h1>Muda Clima</h1>
-            <p>Analisando a Relação entre Clima, Poluição e Saúde Respiratória no Brasil</p>
+            <div class="hero-card">
+                <h1>Muda Clima</h1>
+                <p>Analisando a Relação entre Clima, Poluição e Saúde Respiratória no Brasil</p>
+            </div>
         </section>
 
-        <section class="project-goal">
-            <h2>Nosso Objetivo</h2>
-            <p>
-                O objetivo principal deste projeto é associar as variáveis meteorológicas e a poluição do ar com as internações hospitalares por doenças respiratórias (CID-10).
-            </p>
-            <p>
-                Buscamos entender como esses fatores ambientais impactam a saúde da população e quais são os custos econômicos relacionados ao Sistema Único de Saúde (SUS).
-            </p>
-            <p>
-                A plataforma proposta representa um avanço no sentido de facilitar o acesso às informações, permitindo que gestores, profissionais da saúde e pesquisadores utilizem os dados de forma prática e eficiente.
-            </p>
-        </section>
-
-        <section class="data-section">
-            <h2>Nossas Fontes de Dados</h2>
-            <p>Para realizar esta análise, unificamos três grandes bases de dados de diferentes fontes:</p>
-            <div class="data-sources">
-                <div class="data-card">
-                    <h3>Dados de Saúde</h3>
-                    <p>Registros de internações por doenças respiratórias extraídos do Sistema de Informações Hospitalares (SIH) do <strong>DATASUS</strong>.</p>
-                </div>
-                <div class="data-card">
-                    <h3>Dados Meteorológicos</h3>
-                    <p>Variáveis como temperatura, vento e pressão, coletadas de 273 estações do <strong>Instituto Nacional de Meteorologia (INMet)</strong>.</p>
-                </div>
-                <div class="data-card">
-                    <h3>Dados de Poluição</h3>
-                    <p>Informações sobre poluição do ar, disponibilizadas pelo <strong>Instituto de Energia e Meio Ambiente (IEMA)</strong>.</p>
+        <section class="goal-section">
+            <div class="container">
+                <h2>Nosso Objetivo</h2>
+                <div class="goal-list">
+                    <div class="goal-item">
+                        <span class="goal-icon">❤️</span>
+                        <p>O objetivo principal desta pesquisa é entender a complexa dinâmica de fatores ambientais, a poluição atmosférica e o número de internações hospitalares por problemas respiratórios (CID-10).</p>
+                    </div>
+                    <div class="goal-item">
+                        <span class="goal-icon">☀️</span>
+                        <p>Baseia-se no uso de dados meteorológicos e informações populacionais, a fim de criar uma ferramenta de apoio à decisão para profissionais de saúde e gestão do Sistema Único de Saúde (SUS).</p>
+                    </div>
+                    <div class="goal-item">
+                        <span class="goal-icon">📈</span>
+                        <p>A plataforma atua como uma experiência web que fornece ferramentas de visualização, predições, e insights para profissionais de saúde, pesquisadores, formuladores de políticas públicas e cidadãos.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="cta-section">
-            <h2>Explore Nossas Ferramentas</h2>
-            <p>
-                Este website foi desenvolvido para disponibilizar os resultados e modelos de forma interativa para gestores, profissionais de saúde e o público em geral.
-            </p>
-            <div class="cta-links">
-                <div class="cta-card">
-                    <h3>Visualizar Gráficos</h3>
-                    <p>Explore as associações entre dados climáticos e internações de forma customizável.</p>
-                    <a href="/frontpage">Acessar Ferramenta de Gráficos</a>
+        <section class="data-section">
+            <div class="container">
+                <h2>Nossas Fontes de Dados</h2>
+                <div class="data-grid">
+                    <div class="data-card">
+                        <span class="card-emoji">🏥</span>
+                        <h3>Dados de Saúde</h3>
+                        <p>Registros de internações por doenças respiratórias extraídos do Sistema de Informações Hospitalares (SIH) do DATASUS.</p>
+                    </div>
+                    <div class="data-card">
+                        <span class="card-emoji">🌤️</span>
+                        <h3>Dados Meteorológicos</h3>
+                        <p>Variáveis como temperatura, vento e pressão, coletadas de 273 estações do Instituto Nacional de Meteorologia (INMET).</p>
+                    </div>
+                    <div class="data-card">
+                        <span class="card-emoji">🏭</span>
+                        <h3>Dados de Poluição</h3>
+                        <p>Informações sobre poluição do ar, disponibilizadas pelo Instituto de Energia e Meio Ambiente (IEMA).</p>
+                    </div>
                 </div>
-                <div class="cta-card">
-                    <h3>Testar Predições</h3>
-                    <p>Acesse nosso dashboard para rodar modelos de machine learning e prever cenários de internação.</p>
-                    <a href="/dashboard">Acessar Dashboard de Predição</a>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <div class="container">
+                <h2>Explore Nossas Ferramentas</h2>
+                <div class="tools-grid">
+                    <div class="tool-card teal">
+                        <img src="../img/gráficos.png" alt="Gráficos">
+                        <div class="tool-info">
+                            <h3>Visualizar Gráficos</h3>
+                            <p>Explore as interações que afetam a poluição e a saúde da comunidade.</p>
+                            <a href="/front-page.html" class="btn-dark">Acessar Ferramenta de Gráficos</a>
+                        </div>
+                    </div>
+                    <div class="tool-card blue">
+                        <img src="../img/Predições.png" alt="Predições">
+                        <div class="tool-info">
+                            <h3>Testar Predições</h3>
+                            <p>Acessar como dashboard de modelos preditivos com base no histórico e perfis de risco.</p>
+                            <a href="#" class="btn-dark">Acessar Dashboard de Predição</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2025 CNPQ - Projeto "Associação entre as variáveis climáticas e as internações por doenças respiratórias" - Muda Clima</p>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="#">Dados de Saúde</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Sobre o Projeto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/front-page.html">Gráficos</a></li>
+                    <li><a href="#">Previsões Mensais</a></li>
+                    <li><a href="#">Previsões Múltiplas</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-partners">
+                <h4>Parceiros Institucionais</h4>
+                <div class="partners-logos">
+                    <img src="../img/iema.svg" alt="IEMA">
+                    <img src="../img/inmet.png" alt="INMET">
+                    <img src="../img/datasus.png" alt="DATASUS">
+                </div>
+            </div>
+        </div>
+        <p class="footer-bottom">© 2026 CNPQ | FAPERGS - Projeto "Associação entre as variáveis climáticas e as internações por doenças respiratórias"</p>
     </footer>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const btnPredicao = document.getElementById("btn-predicao");
-    const btnPredicaoBeta = document.getElementById("btn-predicao-beta");
-
-    if (btnPredicao) {
-      btnPredicao.addEventListener("click", function (e) {
-        e.preventDefault();
-        window.location.href = "/dashboard.html?view=shiny";
-      });
-    }
-
-    if (btnPredicaoBeta) {
-      btnPredicaoBeta.addEventListener("click", function (e) {
-        e.preventDefault();
-        window.location.href = "/dashboard.html?view=xgb";
-      });
-    }
-  });
-</script>
 </body>
 </html>
