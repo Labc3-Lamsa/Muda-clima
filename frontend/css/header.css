@@ -1,53 +1,18 @@
 header {
-    background-color: #ffffff;
+    background: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 5%;
-    border-bottom: 1px solid #e0e0e0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    padding: 15px 5%;
+    border-bottom: 1px solid #eee;
 }
 
-/* Container para alinhar logo e texto ClimArS */
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 12px; /* Espaço entre a logo e o texto */
-}
+.logo-container { display: flex; align-items: center; gap: 12px; }
+.logo-img { height: 45px; }
+.logo-text { display: flex; flex-direction: column; }
+.brand-name { font-weight: bold; font-size: 20px; color: #00306e; line-height: 1; }
+.brand-sub { font-size: 11px; color: #777; }
 
-.logo-img {
-    height: 45px; /* Ajuste a altura da sua logo aqui */
-    width: auto;
-}
-
-header h2 {
-    margin: 0;
-    font-size: 1.8rem;
-    color: #0d47a1; 
-}
-
-header nav ul {
-    display: flex; 
-    gap: 2rem; 
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-header nav a {
-    text-decoration: none;
-    color: #007bff;
-    font-size: 1.1rem;
-    font-weight: 500;
-    padding-bottom: 5px;
-    transition: color 0.3s ease;
-}
-
-header nav a:hover {
-    color: #0056b3; 
-}
-
-header nav a.current-page {
-    font-weight: 700;
-    border-bottom: 2px solid #007bff;
-}
+header nav ul { display: flex; list-style: none; gap: 25px; }
+header nav a { text-decoration: none; color: #333; font-weight: 500; font-size: 15px; }
+header nav a.active { color: #00306e; font-weight: bold; }
