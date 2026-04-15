@@ -1,20 +1,50 @@
-footer { padding: 50px 5% 20px; border-top: 1px solid #eee; background: #fff; }
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 30px;
+/* Reset básico para o footer */
+footer {
+    background-color: #f8fafc !important; /* Cor clara do fundo da Home */
+    padding: 60px 0 20px 0;
+    border-top: 1px solid #e2e8f0;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+}
+
+.footer-container {
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* Afasta as colunas como no Figma */
+    padding: 0 50px;
 }
-.footer-col h4 { color: #00306e; margin-bottom: 20px; font-size: 16px; }
-.footer-col ul { list-style: none; }
-.footer-col a { text-decoration: none; color: #666; font-size: 14px; line-height: 2; }
-.partners-logos { display: flex; gap: 20px; align-items: center; }
-.partners-logos img { height: 35px; opacity: 0.8; }
-.footer-bottom {
+
+.footer-column h4, .footer-partners h4 {
+    color: #00306e; /* Azul marinho padrão ClimArS */
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.footer-column a {
+    display: block;
+    color: #64748b; /* Cinza suave para os links */
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.partner-logos {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.partner-logos img {
+    height: 40px; /* Tamanho proporcional ao protótipo */
+}
+
+.copyright {
     text-align: center;
-    margin-top: 40px;
-    font-size: 12px;
-    color: #999;
+    margin-top: 50px;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 20px;
 }
