@@ -261,7 +261,7 @@ app.post("/chat", async (req, res) => {
         }
 
         const systemPrompt = `
-Você é o chatbot do projeto Muda Clima.
+Você é o chatbot do projeto ClimaArs.
 Responda sempre em português, de forma curta, simpática e direta.
 Importante: NÃO diga "olá" nem "bem-vindo" se já tiver cumprimentado antes.
 

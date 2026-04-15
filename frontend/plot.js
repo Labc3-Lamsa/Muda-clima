@@ -156,67 +156,103 @@ function atualizarGrafico(dados) {
     const internacoes = dados.map(item => parseInt(item.valor));
     const valoresMeteorologicos = dados.map(item => {
         const valor = parseFloat(item[variavelSelecionada]);
-        return isNaN(valor) ? null : valor;});
+        return isNaN(valor) ? null : valor;
+    });
 
     if (internacoesChart) {
         internacoesChart.destroy();
     }
 
     const ctx = document.getElementById("internacoesChart").getContext("2d");
+    
+    // Configurações para igualar ao Figma (Background.jpg)
     internacoesChart = new Chart(ctx, {
         type: "line",
         data: {
             labels: labels,
             datasets: [
                 {
-                    label: "Internações por Doenças Respiratórias",
+                    label: "Internações por doenças respiratórias",
                     data: internacoes,
-                    borderColor: "red",
-                    backgroundColor: "rgba(255, 0, 0, 0.2)",
-                    borderWidth: 2,
+                    borderColor: "#8B1A1A", // Vermelho escuro conforme o protótipo
+                    backgroundColor: "#8B1A1A",
+                    borderWidth: 3,         // Linha mais grossa
+                    pointRadius: 0,         // Esconde os pontos conforme o design
+                    pointHoverRadius: 6,    // Ponto aparece só ao passar o mouse
+                    tension: 0.3,           // Curva suave na linha
                     fill: false,
-                    yAxisID: "y1",
-                    pointRadius: 0,
-                    pointHoverRadius: 6,
-                    spanGaps: true
+                    yAxisID: "y1"
                 },
                 {
-                    label: `Valores de ${descricaoVariavel}`,
+                    label: `Temperatura média (°C)`, // Ou o nome da variável selecionada
                     data: valoresMeteorologicos,
-                    borderColor: "blue",
-                    backgroundColor: "rgba(0, 0, 255, 0.2)",
-                    borderWidth: 2,
-                    fill: false,
-                    tension: 0.4,
-                    yAxisID: "y2",
+                    borderColor: "#00306E", // Azul marinho do projeto
+                    backgroundColor: "#00306E",
+                    borderWidth: 3,
                     pointRadius: 0,
                     pointHoverRadius: 6,
-                    spanGaps: true
+                    tension: 0.3,
+                    fill: false,
+                    yAxisID: "y2"
                 }
             ]
         },
         options: {
-            responsive: false,
+            responsive: true,
+            maintainAspectRatio: false,
             interaction: {
-                mode: 'nearest',
-                intersect: false
+                mode: 'index',
+                intersect: false,
             },
             plugins: {
+                legend: {
+                    display: false,
+                    position: 'top',
+                    align: 'start', // Alinhado à esquerda como no Figma
+                    labels: {
+                        usePointStyle: true, // Bolinhas na legenda em vez de quadrados
+                        pointStyle: 'rectRounded',
+                        boxWidth: 12,
+                        padding: 20,
+                        font: {
+                            size: 13,
+                            weight: '500'
+                        }
+                    }
+                },
                 tooltip: {
-                    enabled: true
+                    backgroundColor: '#1e293b',
+                    padding: 12,
+                    titleFont: { size: 14 },
+                    bodyFont: { size: 13 },
+                    cornerRadius: 8
                 }
             },
             scales: {
                 y1: {
                     type: "linear",
                     position: "left",
-                    title: { display: true, text: "Internações" }
+                    grid: {
+                        color: "#f0f0f0", // Linhas de grade mais claras e sutis
+                        drawBorder: false
+                    },
+                    title: { display: false } // O design usa rótulos verticais fixos
                 },
                 y2: {
                     type: "linear",
                     position: "right",
-                    title: { display: true, text: descricaoVariavel },
-                    grid: { drawOnChartArea: false }
+                    grid: {
+                        display: false // Remove a grade da segunda escala para não poluir
+                    },
+                    title: { display: false }
+                },
+                x: {
+                    grid: {
+                        display: false // Remove linhas verticais
+                    },
+                    ticks: {
+                        color: "#94a3b8" // Cor dos meses em cinza
+                    }
                 }
             }
         }
