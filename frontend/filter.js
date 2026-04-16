@@ -5,36 +5,52 @@ async function carregarUFs() {
     const resposta = await fetch(`${API_BASE_URL}/ufs`);
     const ufs = await resposta.json();
 
-    const listaUFs = document.getElementById('ufs-list');
-    listaUFs.innerHTML = '';
+    const ufSelect = document.getElementById('uf');
+    if (!ufSelect) return;
 
+    ufSelect.innerHTML = '<option value="">Escolha a UF</option>';
     ufs.forEach(uf => {
-        listaUFs.innerHTML += `<option value="${uf}">`;
+        const option = document.createElement('option');
+        option.value = uf;
+        option.textContent = uf;
+        ufSelect.appendChild(option);
     });
 }
 
-// Buscar cidades da UF digitada
+// Buscar cidades da UF selecionada
 async function carregarCidades() {
     const uf = document.getElementById('uf').value.trim().toUpperCase();
-    const cidadeInput = document.getElementById('city');
-    const listaCidades = document.getElementById('cities-list');
+    const cidadeSelect = document.getElementById('city');
+    const selectEstacao = document.getElementById('station');
+
+    if (!cidadeSelect) return;
 
     if (!uf) {
-        cidadeInput.disabled = true;
-        listaCidades.innerHTML = '';
+        cidadeSelect.disabled = true;
+        cidadeSelect.innerHTML = '<option value="">Escolha a cidade</option>';
+        if (selectEstacao) {
+            selectEstacao.innerHTML = '<option value="">Escolha uma estação</option>';
+            selectEstacao.disabled = true;
+        }
         return;
     }
 
     const resposta = await fetch(`${API_BASE_URL}/cidades/${uf}`);
     const cidades = await resposta.json();
 
-    // Preencher o <datalist> com as cidades da UF digitada
-    listaCidades.innerHTML = '';
+    cidadeSelect.innerHTML = '<option value="">Escolha a cidade</option>';
     cidades.forEach(cidade => {
-        listaCidades.innerHTML += `<option value="${cidade}">`;
+        const option = document.createElement('option');
+        option.value = cidade;
+        option.textContent = cidade;
+        cidadeSelect.appendChild(option);
     });
 
-    cidadeInput.disabled = false;
+    cidadeSelect.disabled = false;
+    if (selectEstacao) {
+        selectEstacao.innerHTML = '<option value="">Escolha uma estação</option>';
+        selectEstacao.disabled = true;
+    }
 }
 
 async function carregarEstacoes() {
@@ -87,6 +103,196 @@ async function carregarEstacoes() {
         selectEstacao.innerHTML = '<option value="">Erro ao carregar</option>';
         selectEstacao.disabled = true;
     }
+}
+
+const MONTHS = [
+    { value: '01', label: 'Jan' },
+    { value: '02', label: 'Fev' },
+    { value: '03', label: 'Mar' },
+    { value: '04', label: 'Abr' },
+    { value: '05', label: 'Mai' },
+    { value: '06', label: 'Jun' },
+    { value: '07', label: 'Jul' },
+    { value: '08', label: 'Ago' },
+    { value: '09', label: 'Set' },
+    { value: '10', label: 'Out' },
+    { value: '11', label: 'Nov' },
+    { value: '12', label: 'Dez' }
+];
+
+function formatarData(date) {
+    return date.toISOString().slice(0, 10);
+}
+
+function preencherSelectData(prefix) {
+    const daySelect = document.getElementById(`${prefix}-day`);
+    const monthSelect = document.getElementById(`${prefix}-month`);
+    const yearSelect = document.getElementById(`${prefix}-year`);
+
+    if (!daySelect || !monthSelect || !yearSelect) return;
+
+    daySelect.innerHTML = '<option value="">Dia</option>';
+    monthSelect.innerHTML = '<option value="">Mês</option>';
+    yearSelect.innerHTML = '<option value="">Ano</option>';
+
+    MONTHS.forEach(month => {
+        const option = document.createElement('option');
+        option.value = month.value;
+        option.textContent = month.label;
+        monthSelect.appendChild(option);
+    });
+
+    const currentYear = new Date().getFullYear();
+    for (let year = currentYear; year >= 2000; year--) {
+        const option = document.createElement('option');
+        option.value = String(year);
+        option.textContent = String(year);
+        yearSelect.appendChild(option);
+    }
+
+    atualizarDias(prefix);
+}
+
+function atualizarDias(prefix) {
+    const daySelect = document.getElementById(`${prefix}-day`);
+    const month = document.getElementById(`${prefix}-month`).value;
+    const year = document.getElementById(`${prefix}-year`).value;
+    if (!daySelect) return;
+
+    const selectedDay = daySelect.value;
+    const maxDays = month && year ? new Date(Number(year), Number(month), 0).getDate() : 31;
+
+    let options = '<option value="">Dia</option>';
+    for (let dia = 1; dia <= maxDays; dia++) {
+        const value = String(dia).padStart(2, '0');
+        const selected = value === selectedDay ? ' selected' : '';
+        options += `<option value="${value}"${selected}>${value}</option>`;
+    }
+
+    daySelect.innerHTML = options;
+}
+
+function getSelectedDate(prefix) {
+    const day = document.getElementById(`${prefix}-day`).value;
+    const month = document.getElementById(`${prefix}-month`).value;
+    const year = document.getElementById(`${prefix}-year`).value;
+    if (!day || !month || !year) {
+        return null;
+    }
+    return `${year}-${month}-${day}`;
+}
+
+function setSelectedDate(prefix, date) {
+    const daySelect = document.getElementById(`${prefix}-day`);
+    const monthSelect = document.getElementById(`${prefix}-month`);
+    const yearSelect = document.getElementById(`${prefix}-year`);
+    if (!daySelect || !monthSelect || !yearSelect) return;
+
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = String(date.getFullYear());
+
+    monthSelect.value = month;
+    yearSelect.value = year;
+    atualizarDias(prefix);
+    daySelect.value = day;
+}
+
+function updateHiddenDateFields() {
+    const startDateInput = document.getElementById('start-date');
+    const endDateInput = document.getElementById('end-date');
+    const startDate = getSelectedDate('start');
+    const endDate = getSelectedDate('end');
+
+    if (startDateInput) startDateInput.value = startDate || '';
+    if (endDateInput) endDateInput.value = endDate || '';
+}
+
+function showDateFeedback(message) {
+    const feedback = document.getElementById('date-feedback');
+    if (!feedback) return;
+    if (!message) {
+        feedback.classList.remove('visible');
+        feedback.textContent = '';
+    } else {
+        feedback.classList.add('visible');
+        feedback.textContent = message;
+    }
+}
+
+function differenceInDays(startDate, endDate) {
+    return Math.round((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+}
+
+function selecionarIntervaloDias(dias) {
+    const startDateValue = getSelectedDate('start');
+    if (!startDateValue) {
+        showDateFeedback('Selecione a data inicial primeiro antes de escolher o intervalo.');
+        return false;
+    }
+
+    const startDate = new Date(startDateValue);
+    const currentEndValue = getSelectedDate('end');
+    if (currentEndValue) {
+        const currentEnd = new Date(currentEndValue);
+        if (differenceInDays(startDate, currentEnd) < dias) {
+            showDateFeedback(`O intervalo atual é menor que ${dias} dias. Ajustando a data final para completar o período.`);
+        } else {
+            showDateFeedback('');
+        }
+    } else {
+        showDateFeedback('');
+    }
+
+    const endDate = new Date(startDate);
+    endDate.setDate(startDate.getDate() + dias - 1);
+    setSelectedDate('end', endDate);
+    updateHiddenDateFields();
+    return true;
+}
+
+function configurarDateSelectors() {
+    ['start', 'end'].forEach(prefix => {
+        preencherSelectData(prefix);
+
+        ['month', 'year'].forEach(part => {
+            const select = document.getElementById(`${prefix}-${part}`);
+            if (select) {
+                select.addEventListener('change', () => {
+                    atualizarDias(prefix);
+                    updateHiddenDateFields();
+                    showDateFeedback('');
+                });
+            }
+        });
+
+        const daySelect = document.getElementById(`${prefix}-day`);
+        if (daySelect) {
+            daySelect.addEventListener('change', () => {
+                updateHiddenDateFields();
+                showDateFeedback('');
+            });
+        }
+    });
+}
+
+function configurarBotoesIntervalo() {
+    const botoes = document.querySelectorAll('.time-filters button');
+    const botaoFiltrar = document.getElementById('btn-filtrar');
+
+    botoes.forEach(botao => {
+        botao.addEventListener('click', () => {
+            botoes.forEach(b => b.classList.remove('active'));
+            botao.classList.add('active');
+
+            const dias = parseInt(botao.dataset.days, 10);
+            if (!Number.isNaN(dias) && selecionarIntervaloDias(dias)) {
+                if (botaoFiltrar) {
+                    botaoFiltrar.click();
+                }
+            }
+        });
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -163,10 +369,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const ufInput = document.getElementById('uf');
     const cidadeInput = document.getElementById('city');
 
-    if (ufInput) ufInput.addEventListener('input', carregarCidades);
-    if (cidadeInput) cidadeInput.addEventListener('input', carregarEstacoes);
+    if (ufInput) ufInput.addEventListener('change', carregarCidades);
+    if (cidadeInput) cidadeInput.addEventListener('change', carregarEstacoes);
 
     carregarUFs();
+    configurarDateSelectors();
+    configurarBotoesIntervalo();
 
     window.getSelectedDiseases = () => selectedDiseaseIds;
     
