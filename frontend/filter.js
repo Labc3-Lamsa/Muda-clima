@@ -5,36 +5,52 @@ async function carregarUFs() {
     const resposta = await fetch(`${API_BASE_URL}/ufs`);
     const ufs = await resposta.json();
 
-    const listaUFs = document.getElementById('ufs-list');
-    listaUFs.innerHTML = '';
+    const ufSelect = document.getElementById('uf');
+    if (!ufSelect) return;
 
+    ufSelect.innerHTML = '<option value="">Escolha a UF</option>';
     ufs.forEach(uf => {
-        listaUFs.innerHTML += `<option value="${uf}">`;
+        const option = document.createElement('option');
+        option.value = uf;
+        option.textContent = uf;
+        ufSelect.appendChild(option);
     });
 }
 
-// Buscar cidades da UF digitada
+// Buscar cidades da UF selecionada
 async function carregarCidades() {
     const uf = document.getElementById('uf').value.trim().toUpperCase();
-    const cidadeInput = document.getElementById('city');
-    const listaCidades = document.getElementById('cities-list');
+    const cidadeSelect = document.getElementById('city');
+    const selectEstacao = document.getElementById('station');
+
+    if (!cidadeSelect) return;
 
     if (!uf) {
-        cidadeInput.disabled = true;
-        listaCidades.innerHTML = '';
+        cidadeSelect.disabled = true;
+        cidadeSelect.innerHTML = '<option value="">Escolha a cidade</option>';
+        if (selectEstacao) {
+            selectEstacao.innerHTML = '<option value="">Escolha uma estação</option>';
+            selectEstacao.disabled = true;
+        }
         return;
     }
 
     const resposta = await fetch(`${API_BASE_URL}/cidades/${uf}`);
     const cidades = await resposta.json();
 
-    // Preencher o <datalist> com as cidades da UF digitada
-    listaCidades.innerHTML = '';
+    cidadeSelect.innerHTML = '<option value="">Escolha a cidade</option>';
     cidades.forEach(cidade => {
-        listaCidades.innerHTML += `<option value="${cidade}">`;
+        const option = document.createElement('option');
+        option.value = cidade;
+        option.textContent = cidade;
+        cidadeSelect.appendChild(option);
     });
 
-    cidadeInput.disabled = false;
+    cidadeSelect.disabled = false;
+    if (selectEstacao) {
+        selectEstacao.innerHTML = '<option value="">Escolha uma estação</option>';
+        selectEstacao.disabled = true;
+    }
 }
 
 async function carregarEstacoes() {
@@ -163,8 +179,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const ufInput = document.getElementById('uf');
     const cidadeInput = document.getElementById('city');
 
-    if (ufInput) ufInput.addEventListener('input', carregarCidades);
-    if (cidadeInput) cidadeInput.addEventListener('input', carregarEstacoes);
+    if (ufInput) ufInput.addEventListener('change', carregarCidades);
+    if (cidadeInput) cidadeInput.addEventListener('change', carregarEstacoes);
 
     carregarUFs();
 
