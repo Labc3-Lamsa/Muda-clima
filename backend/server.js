@@ -257,7 +257,7 @@ app.post("/chat", async (req, res) => {
         const cumprimentos = ["oi", "olá", "ola", "bom dia", "boa tarde", "boa noite", "eae", "eai"];
         if (!saudacaoEnviada && cumprimentos.some(p => userMsg.includes(p))) {
             saudacaoEnviada = true;
-            return res.json({ reply: "Olá, bem-vindo ao Muda Clima! Como posso ajudar? 😊" });
+            return res.json({ reply: "Olá, bem-vindo ao ClimArS! Como posso ajudar? 😊" });
         }
 
         const systemPrompt = `

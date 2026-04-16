@@ -31,7 +31,7 @@
 
     <nav>
         <ul>
-            <li><a href="home.html">Home</a></li>
+            <li><a href="html/home.html">Home</a></li>
             <li><a href="front-page.html" class="active">Gráfico</a></li>
             <li><a href="#" id="btn-predicao">Previsões Mensais</a></li>
             <li><a href="#" id="btn-predicao-beta">Previsões Múltiplas</a></li>
@@ -82,9 +82,18 @@
                 <div class="filter-group">
                     <label>Selecionar coluna</label>
                     <select id="inmet">
+                        <option value="dir_vento">Direção do vento</option>
+                        <option value="insolacao">Insolação</option>
+                        <option value="dias_chuva">Dias de chuva</option>
+                        <option value="pressao">Pressão</option>
+                        <option value="radiacao">Radiação</option>
                         <option value="temp_ar">Temperatura do ar</option>
+                        <option value="temp_orvalho">Temperatura orvalho</option>
+                        <option value="temp_max">Temperatura máxima</option>
+                        <option value="temp_min">Temperatura mínima</option>
                         <option value="umidade">Umidade</option>
                         <option value="vel_vento">Velocidade do vento</option>
+                        <option value="vento_rajada">Vento rajada</option>
                     </select>
                 </div>
             </div>
@@ -188,6 +197,7 @@
 
 <script src="header-loader.js" defer></script>
 <script src="footer-loader.js" defer></script>
+<script src="./js/chat-widget.js" defer></script>
 
 </body>
 </html>
