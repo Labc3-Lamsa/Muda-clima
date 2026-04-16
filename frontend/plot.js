@@ -61,29 +61,59 @@ document.addEventListener("DOMContentLoaded", function () {
     const botaoExportar = document.getElementById('export-button');
     if (botaoExportar) {
         botaoExportar.addEventListener('click', () => {
-            console.log(dadosExportacao)
-            if (!dadosExportacao || !dadosExportacao.length) {
-                alert("Nenhum dado para exportar.");
-                return;
-            }
-            const formato = document.getElementById("export-format").value;
-            if (formato === "csv") {
-                exports.exportarParaCSV(dadosExportacao);
-            } 
-            else if (formato === "pdf") {
-                exports.exportarParaPDF(internacoesChart);
-            }
-            else if (formato === "png") {
-                exports.exportarParaPNG(internacoesChart);
-            }
-            else  {
-                exports.exportarParaXLSX(dadosExportacao, 'dados_filtrados.xlsx');
+            try {
+                console.log(dadosExportacao);
+                if (!dadosExportacao || !dadosExportacao.length) {
+                    alert("Nenhum dado para exportar. Faça uma filtragem primeiro.");
+                    return;
+                }
+
+                const formato = document.getElementById("export-format").value;
+                const exportMetadata = getExportMetadata();
+
+                if (formato === "csv") {
+                    exports.exportarParaCSV(dadosExportacao);
+                } else if (formato === "pdf") {
+                    exports.exportarParaPDF(internacoesChart, dadosExportacao, exportMetadata);
+                } else if (formato === "png") {
+                    exports.exportarParaPNG(internacoesChart, dadosExportacao, exportMetadata);
+                } else {
+                    exports.exportarParaXLSX(dadosExportacao, 'dados_filtrados.xlsx');
+                }
+            } catch (error) {
+                console.error('Erro na exportação:', error);
+                alert('Falha ao exportar os dados. Veja o console do navegador para mais detalhes.');
             }
         });
     } else {
         console.error('Botão "export-button" não foi encontrado.');
     }
 });
+
+function getExportMetadata() {
+    const uf = document.getElementById("uf")?.value || "Todas";
+    const city = document.getElementById("city")?.value || "Todas";
+    const station = document.getElementById("station")?.value || "Todas";
+    const inmetSelect = document.getElementById("inmet");
+    const inmet = inmetSelect?.value || "Não selecionada";
+    const inmetLabel = inmetSelect?.selectedOptions?.[0]?.text || inmet;
+    const startDate = document.getElementById("start-date")?.value;
+    const endDate = document.getElementById("end-date")?.value;
+    const group = window.getSelectedDiseases?.() || [];
+
+    return {
+        uf,
+        city,
+        station,
+        inmet,
+        inmetLabel,
+        start: startDate ? new Date(startDate).toLocaleDateString('pt-BR') : 'Não definido',
+        end: endDate ? new Date(endDate).toLocaleDateString('pt-BR') : 'Não definido',
+        diseases: group.length ? group.join(', ') : 'Todas as doenças',
+        generatedAt: new Date().toISOString(),
+        recordCount: dadosExportacao.length
+    };
+}
 
 export async function filtrar() {
     const loadingOverlay = document.getElementById('loading-overlay');
