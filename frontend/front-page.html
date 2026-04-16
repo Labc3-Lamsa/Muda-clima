@@ -48,9 +48,9 @@
             <p>Uma estrutura mais técnica e elegante.</p>
 
             <div class="time-filters">
-                <button class="active">30 dias</button>
-                <button>90 dias</button>
-                <button>12 meses</button>
+                <button type="button" class="active" data-days="30">30 dias</button>
+                <button type="button" data-days="90">90 dias</button>
+                <button type="button" data-days="365">12 meses</button>
             </div>
         </div>
 
@@ -111,16 +111,27 @@
 
             <div class="filter-box">
                 <h4>Intervalo</h4>
-                <div class="filter-row">
+                <div class="filter-row date-row">
                     <div class="filter-group">
                         <label>Data inicial</label>
-                        <input type="date" id="start-date">
+                        <div class="date-selectors">
+                            <select id="start-day"></select>
+                            <select id="start-month"></select>
+                            <select id="start-year"></select>
+                        </div>
                     </div>
                     <div class="filter-group">
                         <label>Data final</label>
-                        <input type="date" id="end-date">
+                        <div class="date-selectors">
+                            <select id="end-day"></select>
+                            <select id="end-month"></select>
+                            <select id="end-year"></select>
+                        </div>
                     </div>
                 </div>
+                <div id="date-feedback" class="date-feedback"></div>
+                <input type="hidden" id="start-date">
+                <input type="hidden" id="end-date">
             </div>
 
             <button id="btn-filtrar" class="btn-primary" type="button">

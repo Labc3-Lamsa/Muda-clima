@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-async function filtrar() {
+export async function filtrar() {
     const loadingOverlay = document.getElementById('loading-overlay');
     try {
         loadingOverlay.classList.remove('hidden');
