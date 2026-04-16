@@ -50,12 +50,14 @@
         <!-- Filtro de localização e doenças -->
         <form id="filter-form">
           <label for="uf">UF:</label>
-          <input list="ufs-list" id="uf" placeholder="Digite a UF">
-          <datalist id="ufs-list"></datalist>
+          <select id="uf">
+            <option value="">Escolha a UF</option>
+          </select>
 
           <label for="city">Cidade:</label>
-          <input list="cities-list" id="city" placeholder="Digite a cidade" disabled>
-          <datalist id="cities-list"></datalist>
+          <select id="city" disabled>
+            <option value="">Escolha a cidade</option>
+          </select>
 
           <div class="disease-selector">
             <label for="disease-options">Selecione a(s) doença(s):</label>
