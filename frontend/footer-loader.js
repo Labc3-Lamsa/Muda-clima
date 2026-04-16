@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     if (document.querySelector('.footer-container')) return;
 
+    const currentPath = window.location.pathname;
+    const isHtmlFolder = currentPath.includes('/html/');
+    const homeLink = isHtmlFolder ? 'home.html' : 'html/home.html';
+    const chartLink = isHtmlFolder ? '../front-page.html' : 'front-page.html';
+    const dashboardLink = isHtmlFolder ? '../dashboard.html' : 'dashboard.html';
+
     const footer = document.createElement('footer');
     footer.innerHTML = `
         <div class="footer-container">
@@ -12,10 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <div class="footer-column">
                 <h4>Links</h4>
-                <a href="/home">Home</a>
-                <a href="/front-page.html">Gráficos</a>
-                <a href="/dashboard.html?view=shiny">Previsões Mensais</a>
-                <a href="/dashboard.html?view=xgb">Previsões Múltiplas</a>
+                <a href="${homeLink}">Home</a>
+                <a href="${chartLink}">Gráficos</a>
+                <a href="${dashboardLink}?view=shiny">Previsões Mensais</a>
+                <a href="${dashboardLink}?view=xgb">Previsões Múltiplas</a>
             </div>
             <div class="footer-partners">
                 <h4>Parceiros Institucionais</h4>

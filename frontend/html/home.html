@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muda Clima</title>
+    <title>ClimArS</title>
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="../css/footer.css">
 </head>
 <body>
 
     <header>
-        <div class="logo-container">
-            <img src="../img/logoclimars.png" class="logo-img">
-            <div class="logo-text">
-                <span class="brand-name">ClimArS</span>
-                <span class="brand-sub">Clima • Ar • Saúde</span>
-            </div>
+        <a href="../html/home.html" class="logo-link">
+    <div class="logo-container">
+        <img src="../img/logoclimars.png" alt="Logo ClimArS" class="logo-img">
+        <div class="logo-text">
+            <span class="brand-name">ClimArS</span>
+            <span class="brand-sub">Clima • Ar • Saúde</span>
         </div>
+    </div>
+</a>
         <nav>
             <ul>
                 <li><a href="home.html" class="active">Home</a></li>
-                <li><a href="front-page.html">Gráfico</a></li>
+                <li><a href="../front-page.html">Gráfico</a></li>
                 <li><a href="#" id="btn-predicao">Previsões Mensais</a></li>
-                <li><a href="#" id="btn-predicao-beta">Previsões Múltiplas</a></li>
+                <li><a href="#" id="btn-predicao-beta">Previsões Multiplas</a></li>
             </ul>
         </nav>
     </header>
@@ -31,7 +33,7 @@
     <main>
         <section class="hero">
             <div class="hero-card">
-                <h1>Muda Clima</h1>
+                <h1>ClimArS</h1>
                 <p>Analisando a Relação entre Clima, Poluição e Saúde Respiratória no Brasil</p>
             </div>
         </section>
@@ -88,7 +90,7 @@
                         <div class="tool-info">
                             <h3>Visualizar Gráficos</h3>
                             <p>Explore as interações climáticas e de saúde.</p>
-                            <a href="front-page.html" class="btn-dark">Acessar Gráficos</a>
+                            <a href="../front-page.html" class="btn-dark">Acessar Gráficos</a>
                         </div>
                     </div>
                     <div class="tool-card blue">
@@ -96,7 +98,7 @@
                         <div class="tool-info">
                             <h3>Testar Predições</h3>
                             <p>Modelos preditivos baseados em perfis de risco.</p>
-                            <a href="dashboard.html?view=shiny" class="btn-dark">Acessar Predições</a>
+                            <a href="../dashboard.html?view=shiny" class="btn-dark">Acessar Predições</a>
                         </div>
                     </div>
                 </div>
@@ -111,21 +113,22 @@
         if (btnPredicao) {
           btnPredicao.addEventListener("click", function (e) {
             e.preventDefault();
-            window.location.href = "dashboard.html?view=shiny";
+            window.location.href = "../dashboard.html?view=shiny";
           });
         }
 
         if (btnPredicaoBeta) {
           btnPredicaoBeta.addEventListener("click", function (e) {
             e.preventDefault();
-            window.location.href = "dashboard.html?view=xgb";
+            window.location.href = "../dashboard.html?view=xgb";
           });
         }
       });
     </script>
 
-    <script src="header-loader.js" defer></script>
-    <script src="footer-loader.js" defer></script>
+    <script src="../header-loader.js" defer></script>
+    <script src="../footer-loader.js" defer></script>
+    <script src="../js/chat-widget.js" defer></script>
 
 </body>
 </html>

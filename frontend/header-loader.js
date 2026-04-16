@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     if (document.querySelector('header')) return;
 
+    const currentPath = window.location.pathname;
+    const isHtmlFolder = currentPath.includes('/html/');
+    const homeLink = isHtmlFolder ? 'home.html' : 'html/home.html';
+    const chartLink = isHtmlFolder ? '../front-page.html' : 'front-page.html';
+    const dashboardLink = isHtmlFolder ? '../dashboard.html' : 'dashboard.html';
+
     const header = document.createElement('header');
     header.innerHTML = `
         <div class="logo-container">
@@ -12,10 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <nav>
             <ul>
-                <li><a href="/home">Início</a></li>
-                <li><a href="/front-page.html">Gráficos</a></li>
-                <li><a href="/dashboard.html?view=shiny">Previsões Mensais</a></li>
-                <li><a href="/dashboard.html?view=xgb">Previsões Múltiplas</a></li>
+                <li><a href="${homeLink}">Início</a></li>
+                <li><a href="${chartLink}">Gráficos</a></li>
+                <li><a href="${dashboardLink}?view=shiny">Previsões Mensais</a></li>
+                <li><a href="${dashboardLink}?view=xgb">Previsões Múltiplas</a></li>
             </ul>
         </nav>
     `;
