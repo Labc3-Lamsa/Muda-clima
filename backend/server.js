@@ -257,11 +257,11 @@ app.post("/chat", async (req, res) => {
         const cumprimentos = ["oi", "olá", "ola", "bom dia", "boa tarde", "boa noite", "eae", "eai"];
         if (!saudacaoEnviada && cumprimentos.some(p => userMsg.includes(p))) {
             saudacaoEnviada = true;
-            return res.json({ reply: "Olá, bem-vindo ao Muda Clima! Como posso ajudar? 😊" });
+            return res.json({ reply: "Olá, bem-vindo ao ClimArS! Como posso ajudar? 😊" });
         }
 
         const systemPrompt = `
-Você é o chatbot do projeto Muda Clima.
+Você é o chatbot do projeto ClimaArs.
 Responda sempre em português, de forma curta, simpática e direta.
 Importante: NÃO diga "olá" nem "bem-vindo" se já tiver cumprimentado antes.
 

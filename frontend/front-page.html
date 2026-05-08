@@ -3,75 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para gráficos -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/graph.css">
-    <script src="plot.js" type="module"></script> <!-- Importando o script em javascript para gerar o gráfico -->
-    <script src="filter.js" type="module"></script> <!-- Importando o script em javascript que fornecem informações sobre o filtro -->
+
+    <script src="plot.js" type="module"></script>
+    <script src="filter.js" type="module"></script>
     <script src="utils/export.js" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script> <!-- Permite a exportação de dados no formato xlsx -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> <!-- Permite a exportação de dados no formato pdf -->
-    <title>Muda Clima</title>
+
+    <title>ClimArS - Gráficos</title>
 </head>
+
 <body>
-    <header>
-        <div class="logo-container">
-            <img src="../img/logoclimars.png" alt="Logo ClimArS" class="logo-img">
-            <h2>Muda Clima</h2>
+
+<header>
+    <div class="logo-container">
+        <img src="../img/logoclimars.png" class="logo-img">
+        <div class="logo-text">
+            <span class="brand-name">ClimArS</span>
+            <span class="brand-sub">Clima • Ar • Saúde</span>
         </div>
+    </div>
+
     <nav>
-      <ul>
-        <li><a href="/home">Home</a></li>
-            <li><a href="/front-page.html">Gráfico</a></li>
-            <li><a href="#" id="btn-predicao">Previsões Mensais Pneumonia</a></li>
-            <li><a href="#" id="btn-predicao-beta">Previsões Multiplas</a></li>
-      </ul>
+        <ul>
+            <li><a href="html/home.html">Home</a></li>
+            <li><a href="front-page.html" class="active">Gráfico</a></li>
+            <li><a href="#" id="btn-predicao">Previsões Mensais</a></li>
+            <li><a href="#" id="btn-predicao-beta">Previsões Múltiplas</a></li>
+        </ul>
     </nav>
-  </header>
+</header>
 
+<main class="dashboard-layout">
 
-    <div class="plot">
-        <div class="filter">
-            <form id="filter-form">
-                <label for="uf">UF:</label>
-                <input list="ufs-list" id="uf" placeholder="Digite a UF" value="RS">
-                <datalist id="ufs-list"></datalist>
+    <aside class="sidebar-filter">
+        <div class="filter-header">
+            <span>📊 Painel de filtros</span>
+            <h2>Filtros organizados</h2>
+            <p>Uma estrutura mais técnica e elegante.</p>
 
-                <label for="city">Cidade:</label>
-                <input list="cities-list" id="city" placeholder="Digite a cidade" value="Rio Grande">
-                <datalist id="cities-list"></datalist>
+            <div class="time-filters">
+                <button type="button" class="active" data-days="30">30 dias</button>
+                <button type="button" data-days="90">90 dias</button>
+                <button type="button" data-days="365">12 meses</button>
+            </div>
+        </div>
 
-                <label for="station">Selecione a estação climática:</label>
-                <select id="station" disabled>
-                    <option value="">Escolha uma estação</option>
-                </select>
-
-                <div class="disease-selector">
-                    <label for="disease-options">Selecione a(s) doença(s):</label>
-                    <div class="selected-diseases-container" id="selected-diseases">
-                    </div>
-                    <div class="disease-add-controls">
-                        <select id="disease-options">
+        <form id="filter-form">
+            <div class="filter-box">
+                <h4>Localização</h4>
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>UF</label>
+                        <select id="uf">
+                            <option value="">Escolha a UF</option>
                         </select>
-                        <button type="button" id="add-disease-btn">+</button>
+                    </div>
+                    <div class="filter-group">
+                        <label>Cidade</label>
+                        <select id="city" disabled>
+                            <option value="">Escolha a cidade</option>
+                        </select>
                     </div>
                 </div>
+            </div>
 
-                <label for="start-date">Data Inicial:</label>
-                <input type="date" id="start-date">
-                
-                <label for="end-date">Data Final:</label>
-                <input type="date" id="end-date">
-                
-                <label for="inmet">Selecione uma coluna:</label>
+            <div class="filter-box">
+                <h4>Parâmetros</h4>
+                <div class="filter-group">
+                    <label>Estação climática</label>
+                    <select id="station" disabled>
+                        <option>Escolha uma estação</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Selecionar coluna</label>
                     <select id="inmet">
                         <option value="dir_vento">Direção do vento</option>
                         <option value="insolacao">Insolação</option>
                         <option value="dias_chuva">Dias de chuva</option>
-                        <option value="pressao">Pressao</option>
-                        <option value="radiacao">Radiacao</option>
+                        <option value="pressao">Pressão</option>
+                        <option value="radiacao">Radiação</option>
                         <option value="temp_ar">Temperatura do ar</option>
                         <option value="temp_orvalho">Temperatura orvalho</option>
                         <option value="temp_max">Temperatura máxima</option>
@@ -80,67 +99,97 @@
                         <option value="vel_vento">Velocidade do vento</option>
                         <option value="vento_rajada">Vento rajada</option>
                     </select>
+                </div>
+            </div>
 
-                <button id="btn-filtrar" type="button">Filtrar</button>
-            </form>
-            <select id="export-format">
-                <option value="csv">CSV</option>
-                <option value="xlsx">XLSX</option>
-                <option value="pdf">PDF</option>
-                <option value="png">PNG</option>
-              </select>
-            <button id="export-button">Exportar Dados</button>
-        </div>
-        
-        <div class="chart-container"> 
-            <canvas id="internacoesChart" width="1000" height="500"></canvas>
-            <div id="loading-overlay" class="hidden">
-                <div class="loading-spinner"></div>
-                <p>Carregando dados...</p>
+            <div class="filter-box">
+                <h4>Doenças monitoradas</h4>
+                <div class="disease-add-controls">
+                    <select id="disease-options"></select>
+                    <button type="button" id="add-disease-btn">+</button>
+                </div>
+                <div id="selected-diseases"></div>
+            </div>
+
+            <div class="filter-box">
+                <h4>Intervalo</h4>
+                <div class="filter-row date-row">
+                    <div class="filter-group">
+                        <label>Data inicial</label>
+                        <div class="date-selectors">
+                            <select id="start-day"></select>
+                            <select id="start-month"></select>
+                            <select id="start-year"></select>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Data final</label>
+                        <div class="date-selectors">
+                            <select id="end-day"></select>
+                            <select id="end-month"></select>
+                            <select id="end-year"></select>
+                        </div>
+                    </div>
+                </div>
+                <div id="date-feedback" class="date-feedback"></div>
+                <input type="hidden" id="start-date">
+                <input type="hidden" id="end-date">
+            </div>
+
+            <button id="btn-filtrar" class="btn-primary" type="button">
+                Filtrar resultados
+            </button>
+        </form>
+    </aside>
+
+    <section class="chart-main-area">
+        <div class="chart-card">
+            <div class="chart-topbar">
+                <div class="chart-tabs">
+                    <button class="active">Linha temporal</button>
+                    <button>Comparar séries</button>
+                    <button>Exportação rápida</button>
+                </div>
+                <div class="chart-actions">
+                    <button class="ghost">Jan — Dez</button>
+                    <button class="ghost">Filtros rápidos</button>
+                </div>
+            </div>
+
+            <div class="chart-header">
+                <div>
+                    <h2>Internações vs fatores climáticos</h2>
+                    <p>Leitura com duas escalas laterais</p>
+                </div>
+                <div class="export-controls">
+                    <select id="export-format">
+                        <option value="csv">CSV</option>
+                        <option value="xlsx">XLSX</option>
+                        <option value="pdf">PDF</option>
+                        <option value="png">PNG</option>
+                    </select>
+                    <button id="export-button">Exportar dados</button>
+                </div>
+            </div>
+
+            <div class="custom-legend">
+                <div class="legend-item"><span class="dot red"></span> Internações por doenças respiratórias</div>
+                <div class="legend-item"><span class="dot blue"></span> Temperatura média (°C)</div>
+            </div>
+
+            <div class="chart-inner-card">
+                <div class="canvas-wrapper">
+                    <div class="y-label left">INTERNAÇÕES</div>
+                    <div class="y-label right">TEMPERATURA (°C)</div>
+                    <canvas id="internacoesChart"></canvas>
+                    <div id="loading-overlay" class="hidden">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
-    
-    <footer>
-        <p>© 2025 CNPQ - Projeto "Associação entre as variáveis climáticas e as internações por doenças respiratórias"</p>
-    </footer>
-
-
-  <!-- ========================================================= -->
-  <!-- ===================== CHATBOT POPUP ===================== -->
-  <!-- ========================================================= -->
-
-<link rel="stylesheet" href="/css/popup.css">
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-
-  const btn = document.createElement("div");
-  btn.id = "chat-float-btn";
-  btn.innerHTML = "💬";
-  document.body.appendChild(btn);
-
-  const popup = document.createElement("iframe");
-  popup.id = "chat-popup";
-  popup.src = "/chat.html";
-  document.body.appendChild(popup);
-
-  btn.addEventListener("click", () => {
-    if (popup.classList.contains("open")) {
-      popup.classList.remove("open");
-      setTimeout(() => popup.style.display = "none", 200);
-    } else {
-      popup.style.display = "block";
-      setTimeout(() => popup.classList.add("open"), 10);
-    }
-  });
-
-});
-</script>
-
-
+    </section>
+</main>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const btnPredicao = document.getElementById("btn-predicao");
@@ -149,19 +198,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnPredicao) {
       btnPredicao.addEventListener("click", function (e) {
         e.preventDefault();
-        window.location.href = "/dashboard.html?view=shiny";
+        window.location.href = "dashboard.html?view=shiny";
       });
     }
 
     if (btnPredicaoBeta) {
       btnPredicaoBeta.addEventListener("click", function (e) {
         e.preventDefault();
-        window.location.href = "/dashboard.html?view=xgb";
+        window.location.href = "dashboard.html?view=xgb";
       });
     }
   });
 </script>
 
+<script src="header-loader.js" defer></script>
+<script src="footer-loader.js" defer></script>
+<script src="./js/chat-widget.js" defer></script>
 
 </body>
 </html>
