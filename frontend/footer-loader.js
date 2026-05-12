@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h4>Parceiros Institucionais</h4>
                 <div class="partner-logos">
                     <img src="../img/iema.svg" alt="IEMA">
-                    <img src="../img/inmet.png" alt="INMET">
+                    <img src="../img/Inmet.png" alt="INMET">
                     <img src="../img/datasus.png" alt="DATASUS">
                 </div>
             </div>

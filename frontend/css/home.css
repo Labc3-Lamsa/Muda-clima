@@ -1,3 +1,14 @@
+#timer {
+    background-color: #e1f5fe; /* Azul bebê que você já usa na goal-section */
+    border: 2px solid #00306e;
+    padding: 15px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-top: 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+
 /* Reset Básico */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: sans-serif; color: #333; line-height: 1.6; }
@@ -6,24 +17,38 @@ h2 { font-size: 24px; color: #00306e; margin-bottom: 30px; }
 
 /* HERO - O Segredo do Globo */
 .hero {
-    background: url('../img/globo.png') center/cover no-repeat;
+    background: url('../img/globo.gif') center/cover no-repeat;
     height: 500px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
     position: relative;
+    width: 100%;
 }
 
 .hero-card {
-    background: rgba(0, 48, 110, 0.9);
-    color: #fff;
+    background: rgba(0, 48, 110, 0.9); /* Azul escuro com transparência */
+    color: #ffffff;
     padding: 40px 60px;
-    border-radius: 10px;
+    border-radius: 12px;
     text-align: center;
-    max-width: 700px;
+    max-width: 800px;
+    width: 90%; /* Responsivo para telas menores */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.hero h1 { font-size: 32px; margin-bottom: 10px; }
+.hero-card h1 {
+    font-size: 38px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.hero-card p {
+    font-size: 18px;
+    color: #e0e0e0;
+    line-height: 1.4;
+}
 
 /* OBJETIVO - Fundo Azul Bebê */
 .goal-section {
