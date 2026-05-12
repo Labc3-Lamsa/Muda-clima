@@ -332,3 +332,46 @@ input:focus, select:focus {
 .y-label.left { left: -50px; transform: rotate(-90deg); }
 .y-label.right { right: -50px; transform: rotate(90deg); }
 
+
+
+/* === AJUSTE PARA O GRÁFICO APARECER NO CELULAR === */
+@media (max-width: 1024px) {
+    .dashboard-layout {
+        flex-direction: column; /* Empilha Filtros e Gráfico */
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .sidebar-filter {
+        width: 100%;       /* Ocupa a largura toda da tela */
+        min-width: unset;  /* Remove a restrição de largura mínima */
+        box-shadow: none;  /* Remove sombra pesada no mobile */
+    }
+
+    .chart-main-area {
+        width: 100%;
+    }
+
+    .chart-card {
+        padding: 20px 15px; /* Reduz o respiro interno para sobrar espaço pro gráfico */
+    }
+
+    .canvas-wrapper {
+        height: 350px;     /* Reduz a altura do gráfico no celular para caber na tela */
+    }
+
+    /* Esconde os labels laterais "INTERNAÇÕES" que podem bugar o layout no mobile */
+    .y-label {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-row {
+        flex-direction: column; /* UF em cima, Cidade embaixo no celular */
+    }
+    
+    .chart-tabs {
+        justify-content: center;
+    }
+}

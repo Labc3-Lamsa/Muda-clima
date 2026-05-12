@@ -1,5 +1,6 @@
 import { API_BASE_URL } from "./utils/config.js";
 
+
 // Carregar UFs ao iniciar a página
 async function carregarUFs() {
     const resposta = await fetch(`${API_BASE_URL}/ufs`);
@@ -377,5 +378,14 @@ document.addEventListener("DOMContentLoaded", () => {
     configurarBotoesIntervalo();
 
     window.getSelectedDiseases = () => selectedDiseaseIds;
+
+    document.getElementById('btn-filtrar').addEventListener('click', function() {
+
+    if (window.innerWidth < 1024) {
+        setTimeout(() => {
+            document.querySelector('.chart-main-area').scrollIntoView({ behavior: 'smooth' });
+        }, 300); // Espera um pouco o gráfico carregar
+    }
+});
     
 });
