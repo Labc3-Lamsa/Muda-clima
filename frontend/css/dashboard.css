@@ -1,4 +1,4 @@
-/* === Conteúdo principal === */
+/* === Conteúdo principal === 
   main {
     flex: 1;
     padding: 2rem;
@@ -6,7 +6,7 @@
     margin: 0 auto;
   }
   
-  /* === Área de filtros e formulários === */
+  === Área de filtros e formulários === 
   .plot {
     background: #fff;
     border-radius: 12px;
@@ -26,7 +26,7 @@
     gap: 1.5rem;
   }
   
-  /* === Formulários === */
+   === Formulários === 
   form {
     display: grid;
     gap: 1rem;
@@ -44,7 +44,7 @@
     gap: 1.5rem;
   }
   
-  /* === Grupos de entrada === */
+   === Grupos de entrada === 
   .form-group {
     display: flex;
     flex-direction: column;
@@ -72,7 +72,7 @@
     outline: none;
   }
   
-  /* === Fieldsets === */
+   === Fieldsets === 
   fieldset {
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -86,7 +86,7 @@
     padding: 0 0.5rem;
   }
   
-  /* === Botões === */
+   === Botões === 
   button {
     background: #3a86ff;
     color: #fff;
@@ -106,7 +106,7 @@
     transform: scale(0.98);
   }
   
-  /* Botão de adicionar doença */
+   Botão de adicionar doença 
   #add-disease-btn {
     padding: 0.5rem 0.8rem;
     font-weight: bold;
@@ -114,7 +114,7 @@
     margin-left: 0.5rem;
   }
   
-  /* === Seletor de doenças === */
+   === Seletor de doenças === 
   .disease-selector {
     margin-bottom: 10px; 
 }
@@ -180,7 +180,7 @@
     color: #c8e6c9;
 }
   
-  /* === Blocos de resultado === */
+  === Blocos de resultado === 
   .blocos-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -207,7 +207,7 @@
   }
   
   
-  /* === Responsividade === */
+   === Responsividade === 
   @media (max-width: 768px) {
     header {
       flex-direction: column;
@@ -226,7 +226,7 @@
       width: 100%;
     }
   }
-  /* ================= PREDIÇÃO BETA ================= */
+   ================= PREDIÇÃO BETA ================= 
 
 #conteudo-beta {
   width: 100%;
@@ -235,7 +235,7 @@
 
 .beta-container {
   width: 100%;
-  height: calc(100vh - 120px); /* ajusta conforme altura do header */
+  height: calc(100vh - 120px);  ajusta conforme altura do header 
   background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
@@ -246,4 +246,167 @@
   width: 100%;
   height: 100%;
   border: none;
+}*/
+
+/* === Conteúdo principal === */
+main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%; /* Garante que ocupe a largura total disponível */
+}
+
+/* === Área de filtros e formulários === */
+.plot {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* === Formulários === */
+form {
+    display: grid;
+    gap: 1rem;
+}
+
+#filter-form {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    align-items: end;
+    gap: 1rem;
+}
+
+#prediction-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    color: #1e293b;
+}
+
+.form-group input,
+.form-group select {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0.6rem;
+    font-size: 0.9rem;
+}
+
+/* === Botões Gerais === */
+button {
+    background: #3a86ff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover { background: #2f6be0; }
+button:active { transform: scale(0.98); }
+
+/* === Correção do Seletor de Doenças === */
+.disease-add-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#add-disease-btn {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0; /* Reset de margens anteriores */
+}
+
+.selected-diseases-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 8px;
+    min-height: 45px;
+}
+
+.disease-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #3a86ff;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 99px;
+    font-size: 13px;
+}
+
+/* Reset específico para o botão de remover tag */
+button.remove-disease-btn {
+    background: transparent !important;
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    transform: none !important;
+    margin-left: 4px;
+}
+
+button.remove-disease-btn:hover {
+    color: #ff4d4d !important;
+}
+
+/* === Predição Beta Iframe === */
+.beta-container {
+    width: 100%;
+    height: 80vh; /* Melhor usar vh fixo para evitar quebras */
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 10px;
+    border: 1px solid #e2e8f0;
+}
+
+.beta-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* === Responsividade Corrigida === */
+@media (max-width: 768px) {
+    #add-disease-btn {
+        width: 42px !important; /* Impede que o botão + fique 100% de largura */
+    }
+    
+    .blocos-container {
+        grid-template-columns: 1fr;
+    }
 }

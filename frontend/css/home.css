@@ -74,20 +74,53 @@ h2 { font-size: 24px; color: #00306e; margin-bottom: 30px; }
 .card-emoji { font-size: 24px; display: block; margin-bottom: 15px; }
 
 /* FERRAMENTAS */
-.tools-section { padding: 60px 0; background: #f9f9f9; text-align: center; }
-.tools-grid { display: flex; gap: 20px; margin-top: 30px; }
-.tool-card {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    padding: 25px;
-    border-radius: 15px;
-    text-align: left;
+.tools-section {
+    padding: 60px 5%;
+    background: #ffffff;
+    text-align: center;
 }
-.tool-card.teal { background-color: #b2ebf2; }
-.tool-card.blue { background-color: #80deea; }
-.tool-card img { width: 180px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-.tool-info { margin-left: 20px; }
+.section-header h2 {
+    color: #00306e;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.tool-card {
+    background: #f8fafc;
+    padding: 30px;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    border: 1px solid #e2e8f0;
+}
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 48, 110, 0.1);
+}
+
+.tool-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.tool-card h3 {
+    color: #00306e;
+    margin-bottom: 10px;
+}
+
+.tool-card p {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
 .btn-dark {
     display: inline-block;
     background: #00306e;
@@ -98,4 +131,14 @@ h2 { font-size: 24px; color: #00306e; margin-bottom: 30px; }
     margin-top: 15px;
     font-weight: bold;
     font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .tool-card {
+        padding: 20px;
+    }
 }
