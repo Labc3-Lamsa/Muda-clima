@@ -9,32 +9,15 @@
     <link rel="stylesheet" href="../css/footer.css">
 </head>
 <body>
-
-    <header>
-        <a href="../html/home.html" class="logo-link">
-    <div class="logo-container">
-        <img src="../img/logoclimars.png" alt="Logo ClimArS" class="logo-img">
-        <div class="logo-text">
-            <span class="brand-name">ClimArS</span>
-            <span class="brand-sub">Clima • Ar • Saúde</span>
-        </div>
-    </div>
-</a>
-        <nav>
-            <ul>
-                <li><a href="home.html" class="active">Home</a></li>
-                <li><a href="../front-page.html">Gráfico</a></li>
-                <li><a href="#" id="btn-predicao">Previsões Mensais</a></li>
-                <li><a href="#" id="btn-predicao-beta">Previsões Multiplas</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <main>
-        <section class="hero">
-            <h1>Muda Clima</h1>
-            <p>Analisando a Relação entre Clima, Poluição e Saúde Respiratória no Brasil</p>
-        </section>
+       <section class="hero">
+    <div class="hero-card">
+       <h1 id="countdown-status">ClimArS (Em migração...)</h1>
+<div id="timer" style="font-size: 1.5rem; color: #00306e; font-weight: bold;">
+    Voltaremos ao normal em: 80:00:00
+</div>
+    </div>
+</section>
 
         <section class="goal-section">
             <div class="container">
@@ -84,7 +67,7 @@
                 <h2>Explore Nossas Ferramentas</h2>
                 <div class="tools-grid">
                     <div class="tool-card teal">
-                        <img src="../img/gráficos.png" alt="Gráficos">
+                        <img src="../img/Gráficos.png" alt="Gráficos">
                         <div class="tool-info">
                             <h3>Visualizar Gráficos</h3>
                             <p>Explore as interações climáticas e de saúde.</p>
@@ -128,5 +111,35 @@
     <script src="../footer-loader.js" defer></script>
     <script src="../js/chat-widget.js" defer></script>
 
+
+<script>
+      // 1. Definir a data alvo (Ex: 80 horas a partir de agora)
+      // Para uma data fixa, use: new Date("May 20, 2026 10:00:00").getTime();
+      const tempoFinal = new Date().getTime() + (80 * 60 * 60 * 1000);
+
+      const x = setInterval(function() {
+        const agora = new Date().getTime();
+        const distancia = tempoFinal - agora;
+
+        // Cálculos de tempo
+        const horas = Math.floor(distancia / (1000 * 60 * 60));
+        const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+        const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+        // Inserir no HTML
+        const timerElement = document.getElementById("timer");
+        if (timerElement) {
+            timerElement.innerHTML = "Voltaremos ao normal em: " + 
+                horas + "h " + minutos + "m " + segundos + "s ";
+        }
+
+        // Quando terminar
+        if (distancia < 0) {
+          clearInterval(x);
+          document.getElementById("timer").innerHTML = "Migração Concluída!";
+        }
+      }, 1000);
+    </script>
+    
 </body>
 </html>
