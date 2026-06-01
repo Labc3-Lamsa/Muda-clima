@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const btn = document.createElement("div");
   btn.id = "chat-float-btn";
-  btn.innerHTML = "💬";
+  btn.innerHTML = `<img src="../img/chatbot.svg" alt="Chatbot" class="chat-btn-icon">`;
   document.body.appendChild(btn);
 
   const popup = document.createElement("iframe");
