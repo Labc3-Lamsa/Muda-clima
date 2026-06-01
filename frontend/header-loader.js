@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const homeLink = isHtmlFolder ? 'home.html' : 'html/home.html';
     const chartLink = isHtmlFolder ? '../front-page.html' : 'front-page.html';
+    const predshinyLink = isHtmlFolder ? '../predshiny.html' : 'predshiny.html';
     const dashboardLink = isHtmlFolder ? '../dashboard.html' : 'dashboard.html';
 
     const header = document.createElement('header');
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <ul>
                 <li><a href="${homeLink}" id="nav-home">Início</a></li>
                 <li><a href="${chartLink}" id="nav-charts">Gráficos</a></li>
-                <li><a href="${dashboardLink}?view=shiny" id="btn-predicao">Previsões Mensais</a></li>
+                <li><a href="${predshinyLink}?view=shiny" id="btn-predicao">Previsões Mensais</a></li>
                 <li><a href="${dashboardLink}?view=xgb" id="btn-predicao-beta">Previsões Múltiplas</a></li>
             </ul>
         </nav>
@@ -86,7 +87,12 @@ if (btn && nav && overlay) {
         } else {
             document.getElementById('btn-predicao-beta').classList.add('active');
         }
-    }
+        
+        } else if (currentPath.includes('predshiny.html')) {
+    const btn = document.getElementById('btn-predicao');
+    if (btn) btn.classList.add('active');
+}
+    
 
     header.querySelectorAll('nav a').forEach(link => {
         link.addEventListener('click', () => {

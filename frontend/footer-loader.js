@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const homeLink = isHtmlFolder ? 'home.html' : 'html/home.html';
     const chartLink = isHtmlFolder ? '../front-page.html' : 'front-page.html';
     const dashboardLink = isHtmlFolder ? '../dashboard.html' : 'dashboard.html';
+    const predshinyLink = isHtmlFolder ? '../predshiny.html' : 'predshiny.html';
 
     const footer = document.createElement('footer');
     footer.innerHTML = `
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h4>Links</h4>
                 <a href="${homeLink}">Home</a>
                 <a href="${chartLink}">Gráficos</a>
-                <a href="${dashboardLink}?view=shiny">Previsões Mensais</a>
+                <a href="${predshinyLink}">Previsões Mensais</a>
                 <a href="${dashboardLink}?view=xgb">Previsões Múltiplas</a>
             </div>
             <div class="footer-partners">

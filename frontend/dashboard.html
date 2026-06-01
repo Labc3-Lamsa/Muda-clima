@@ -20,156 +20,235 @@
   <script src="filter.js" type="module"></script>
   <script src="js/info.js" type="module"></script>
   <script src="modelo-xgboost.js" defer></script>
+  
 </head>
 
 <body>
-  <!-- Conteúdo principal 
+  <!-- Conteúdo principal -->
   <main>
-    <div id="conteudo-normal">
-    <section class="plot">
-      <p>Insira os dados para rodar o modelo de machine learning.</p>
+    <div id="conteudo-normal" class="design-xgb" style="display: block;">
+      
+      <section class="dashboard-welcome">
+        <h1>Previsões Múltiplas</h1>
+        <p>Insira os dados organizados abaixo para rodar o modelo de machine learning e obter previsões precisas.</p>
+      </section>
 
-      <div class="filter">
-        <!-- Filtro de localização e doenças 
-        <form id="filter-form">
-          <label for="uf">UF:</label>
-          <select id="uf">
-            <option value="">Escolha a UF</option>
-          </select>
-
-          <label for="city">Cidade:</label>
-          <select id="city" disabled>
-            <option value="">Escolha a cidade</option>
-          </select>
-
-          <div class="disease-selector">
-            <label for="disease-options">Selecione a(s) doença(s):</label>
-            <div class="selected-diseases-container" id="selected-diseases"></div>
-            <div class="disease-add-controls">
-              <select id="disease-options"></select>
-              <button type="button" id="add-disease-btn">+</button>
+      <form id="prediction-form" class="db-main-form" onsubmit="return false;">
+        
+        <fieldset class="db-section">
+          <legend>
+           <img src="../img/loc.svg" alt="Ícone" class="badge-icon"> Dados Gerais e de Localização
+          </legend>
+          
+          <div class="db-row cols-2">
+            <div class="db-group">
+              <label for="uf">UF:</label>
+              <select id="uf">
+                <option value="">Escolha a UF</option>
+                <option value="AC">AC</option><option value="AL">AL</option><option value="AM">AM</option><option value="AP">AP</option><option value="BA">BA</option><option value="CE">CE</option><option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option><option value="MA">MA</option><option value="MG">MG</option><option value="MS">MS</option><option value="MT">MT</option><option value="PA">PA</option><option value="PB">PB</option><option value="PE">PE</option><option value="PI">PI</option><option value="PR">PR</option><option value="RJ">RJ</option><option value="RN">RN</option><option value="RO">RO</option><option value="RR">RR</option><option value="RS">RS</option><option value="SC">SC</option><option value="SE">SE</option><option value="SP">SP</option><option value="TO">TO</option>
+              </select>
+            </div>
+            <div class="db-group">
+              <label for="city">Cidade:</label>
+              <select id="city">
+                <option value="">Escolha a cidade</option>
+              </select>
             </div>
           </div>
-        </form>
 
-        <!-- Formulário de previsão 
-        <form id="prediction-form">
-          <div class="form-group">
-            <label for="data">Selecione uma data:</label>
-            <input type="date" id="data" name="data" required>
+          <div class="db-row cols-2">
+            <div class="db-group disease-selector">
+              <label for="disease-options">Selecione a(s) doença(s):</label>
+              <div class="selected-diseases-container" id="selected-diseases"></div>
+              <div class="disease-add-controls">
+                <select id="disease-options">
+                  <option value="">Escolha uma doença...</option>
+                  <option value="1">Faringite aguda e amigdalite aguda - J02-J03</option>
+                  <option value="2">Laringite e traqueíte agudas - J04</option>
+                  <option value="3">Outras infecções agudas das vias aéreas superiores - J00-J01, J05-J06</option>
+                  <option value="4">Influenza - J09-J11</option>
+                  <option value="5">Pneumonia - J12-J18</option>
+                  <option value="6">Bronquite aguda e bronquiolite aguda - J20-J21</option>
+                  <option value="7">Sinusite crônica - J32</option>
+                  <option value="8">Outras doenças do nariz e dos seios paranasais - J30-J31, J33-J34</option>
+                  <option value="9">Doenças crônicas das amígdalas e das adenóides - J35</option>
+                  <option value="10">Outras doenças do trato respiratório superior - J22, J66-J99</option>
+                  <option value="11">Bronquite, enfisema e outras doenças pulmonares obstrutivas crônicas - J40-J44</option>
+                  <option value="12">Asma - J45-J46</option>
+                  <option value="13">Pneumoconiose - J60-J65</option>
+                  <option value="14">Outras doenças do aparelho respiratório - J36-J39</option>
+                </select>
+                <button type="button" id="add-disease-btn">+</button>
+              </div>
+            </div>
+            <div class="db-group">
+              <label for="data">Selecione uma data:</label>
+              <input type="date" id="data" name="data" required="">
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="cod_ibge">Código do IBGE</label>
-            <input type="number" id="cod_ibge" name="cod_ibge" readonly>
+          <div class="db-row cols-4">
+            <div class="db-group">
+              <label for="cod_ibge">Código do IBGE</label>
+              <input type="number" id="cod_ibge" name="cod_ibge" readonly="">
+            </div>
+            <div class="db-group">
+              <label for="alti">Altitude</label>
+              <input type="number" id="alti" name="altitude" step="any" readonly="" value="0">
+            </div>
+            <div class="db-group">
+              <label for="lati">Latitude</label>
+              <input type="number" id="lati" name="lati" step="any" readonly="">
+            </div>
+            <div class="db-group">
+              <label for="long">Longitude</label>
+              <input type="number" id="long" name="long" step="any" readonly="">
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="alti">Altitude</label>
-            <input type="number" id="alti" name="altitude" step="any" readonly value="0">
+          <div class="db-row cols-3">
+            <div class="db-group">
+              <label for="pop_2000">População em 2000</label>
+              <input type="number" id="pop_2000" name="pop_2000" step="any" readonly="">
+            </div>
+            <div class="db-group">
+              <label for="pop_2010">População em 2010</label>
+              <input type="number" id="pop_2010" name="pop_2010" step="any" readonly="">
+            </div>
+            <div class="db-group">
+              <label for="pop_2021">População em 2021</label>
+              <input type="number" id="pop_2021" name="pop_2021" step="any" readonly="">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="db-section">
+          <legend>
+           <img src="../img/varclimaticas.svg" alt="Ícone" class="badge-icon"> Variáveis Climáticas
+          </legend>
+
+          <div class="climate-grid">
+            <div class="climate-card">
+              <label for="Direcao_vento">Direção do vento</label>
+              <input type="number" id="Direcao_vento" name="Direcao_vento" step="any" required="">
+            </div>
+            <div class="climate-card">
+              <label for="Insolação">Insolação</label>
+              <input type="number" id="Insolação" name="Insolação" step="any" required="">
+            </div>
+            <div class="climate-card">
+              <label for="num_dias_chuva">Dias de chuva</label>
+              <input type="number" id="num_dias_chuva" name="num_dias_chuva" step="any" required="">
+            </div>
+            <div class="climate-card">
+              <label for="Precipitacao">Precipitação</label>
+              <input type="number" id="Precipitacao" name="Precipitacao" step="any" required="">
+            </div>
+            <div class="climate-card">
+              <label for="Pressao_atmosferica">Pressão atmosférica</label>
+              <input type="number" id="Pressao_atmosferica" name="Pressao_atmosferica" step="any" required="">
+            </div>
+            <div class="climate-card">
+              <label for="Radiacao_solar">Radiação solar</label>
+              <input type="number" id="Radiacao_solar" name="Radiacao_solar" step="any" required="">
+            </div>
+            <div class="climate-card">
+              <label for="Temperatura_ar">Temperatura do ar</label>
+              <input type="number" id="Temperatura_ar" name="Temperatura_ar" step="any" required="">
+            </div>
+            <div class="climate-card">
+              <label for="Temperatura_ponto_orvalho">Ponto de orvalho</label>
+              <input type="number" id="Temperatura_ponto_orvalho" name="Temperatura_ponto_orvalho" step="any" required="">
+            </div>
+            <div class="climate-card">
+              <label for="Temperatura_maxima">Temperatura máxima (°C)</label>
+              <input type="number" id="Temperatura_maxima" name="Temperatura_maxima" step="any" required="">
+            </div>
+            <div class="climate-card">
+              <label for="Temperatura_minima">Temperatura mínima (°C)</label>
+              <input type="number" id="Temperatura_minima" name="Temperatura_minima" step="any" required="">
+            </div>
+            <div class="climate-card">
+              <label for="Umidade_relativa">Umidade (%)</label>
+              <input type="number" id="Umidade_relativa" name="Umidade_relativa" step="any" required="">
+            </div>
+            <div class="climate-card">
+              <label for="Velocidade_vento"> Velocidade do vento</label>
+              <input type="number" id="Velocidade_vento" name="Velocidade_vento" step="any" required="">
+            </div>
+            <div class="climate-card">
+              <label for="Velocidade_rajada"> Velocidade rajada</label>
+              <input type="number" id="Velocidade_rajada" name="Velocidade_rajada" step="any" required="">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="db-section">
+          <legend>
+          <img src="../img/historico.svg" alt="Ícone" class="badge-icon"> Histórico de Internações
+          </legend>
+          <div class="lags-container">
+            <div class="lag-card"><label for="y_lag_1">Dia 1</label><input type="number" id="y_lag_1" name="y_lag_1" step="any" required=""></div>
+            <div class="lag-card"><label for="y_lag_2">Dia 2</label><input type="number" id="y_lag_2" name="y_lag_2" step="any" required=""></div>
+            <div class="lag-card"><label for="y_lag_3">Dia 3</label><input type="number" id="y_lag_3" name="y_lag_3" step="any" required=""></div>
+            <div class="lag-card"><label for="y_lag_4">Dia 4</label><input type="number" id="y_lag_4" name="y_lag_4" step="any" required=""></div>
+            <div class="lag-card"><label for="y_lag_5">Dia 5</label><input type="number" id="y_lag_5" name="y_lag_5" step="any" required=""></div>
+            <div class="lag-card"><label for="y_lag_6">Dia 6</label><input type="number" id="y_lag_6" name="y_lag_6" step="any" required=""></div>
+            <div class="lag-card"><label for="y_lag_7">Dia 7</label><input type="number" id="y_lag_7" name="y_lag_7" step="any" required=""></div>
+            <div class="lag-card"><label for="y_lag_8">Dia 8</label><input type="number" id="y_lag_8" name="y_lag_8" step="any" required=""></div>
+            <div class="lag-card"><label for="y_lag_9">Dia 9</label><input type="number" id="y_lag_9" name="y_lag_9" step="any" required=""></div>
+            <div class="lag-card"><label for="y_lag_10">Dia 10</label><input type="number" id="y_lag_10" name="y_lag_10" step="any" required=""></div>
+            <div class="lag-card"><label for="y_lag_11">Dia 11</label><input type="number" id="y_lag_11" name="y_lag_11" step="any" required=""></div>
+            <div class="lag-card"><label for="y_lag_12">Dia 12</label><input type="number" id="y_lag_12" name="y_lag_12" step="any" required=""></div>
+            <div class="lag-card"><label for="y_lag_13">Dia 13</label><input type="number" id="y_lag_13" name="y_lag_13" step="any" required=""></div>
+            <div class="lag-card"><label for="y_lag_14">Dia 14</label><input type="number" id="y_lag_14" name="y_lag_14" step="any" required=""></div>
+          </div>
+        </fieldset>
+
+        <div class="submit-container">
+          <button type="submit" id="btn-prever-submit">
+           <img src="../img/SVG.svg" alt="Ícone" class="btn-icon">
+              Rodar Previsão
+            </button>
+        </div>
+      </form> 
+
+<section class="results-layout">
+        <div class="result-block main-prediction-card">
+          <div class="card-header-row">
+            <span class="prediction-badge">
+              <img src="../img/resultados.svg" alt="Ícone" class="badge-icon"> Resultado da previsão
+            </span>
+            <span class="prediction-scope">Previsão para 1 dia</span>
           </div>
 
-          <div class="form-group">
-            <label for="lati">Latitude</label>
-            <input type="number" id="lati" name="lati" step="any" readonly>
+          <div class="card-body-content">
+            <div class="value-display-group">
+              <span class="quantity-label">Quantidade prevista</span>
+              
+              <div id="resultado">--</div>
+              
+              <span class="fallback-description">Estimativa gerada com base nas variáveis climáticas e no histórico informado.</span>
+            </div>
+
+            <div class="metrics-subgrid">
+<div class="metrics-subgrid">
+  <div class="sub-card info-blue">
+    <span class="sub-card-label">Tendência</span>
+    <span class="sub-card-value text-blue" id="tendencia-valor">--</span>
+  </div>
+  <div class="sub-card info-gray">
+    <span class="sub-card-label">Confiança</span>
+    <span class="sub-card-value text-dark" id="confianca-valor">--</span>
+  </div>
+</div>
           </div>
-
-          <div class="form-group">
-            <label for="long">Longitude</label>
-            <input type="number" id="long" name="long" step="any" readonly>
-          </div>
-
-          <div class="form-group">
-            <label for="pop_2000">População em 2000</label>
-            <input type="number" id="pop_2000" name="pop_2000" step="any" readonly>
-          </div>
-
-          <div class="form-group">
-            <label for="pop_2010">População em 2010</label>
-            <input type="number" id="pop_2010" name="pop_2010" step="any" readonly>
-          </div>
-
-          <div class="form-group">
-            <label for="pop_2021">População em 2021</label>
-            <input type="number" id="pop_2021" name="pop_2021" step="any" readonly>
-          </div>
-
-          <!-- Campos preenchidos pelo usuário 
-          <fieldset>
-            <legend>Variáveis Climáticas</legend>
-
-            <div class="form-group"><label for="Direcao_vento">Direção do vento</label><input type="number" id="Direcao_vento" name="Direcao_vento" step="any" required></div>
-            <div class="form-group"><label for="Insolação">Insolação</label><input type="number" id="Insolação" name="Insolação" step="any" required></div>
-            <div class="form-group"><label for="num_dias_chuva">Número de dias de chuva</label><input type="number" id="num_dias_chuva" name="num_dias_chuva" step="any" required></div>
-            <div class="form-group"><label for="Precipitacao">Precipitação</label><input type="number" id="Precipitacao" name="Precipitacao" step="any" required></div>
-            <div class="form-group"><label for="Pressao_atmosferica">Pressão atmosférica</label><input type="number" id="Pressao_atmosferica" name="Pressao_atmosferica" step="any" required></div>
-            <div class="form-group"><label for="Radiacao_solar">Radiação solar</label><input type="number" id="Radiacao_solar" name="Radiacao_solar" step="any" required></div>
-            <div class="form-group"><label for="Temperatura_ar">Temperatura do ar</label><input type="number" id="Temperatura_ar" name="Temperatura_ar" step="any" required></div>
-            <div class="form-group"><label for="Temperatura_ponto_orvalho">Temperatura de ponto de orvalho</label><input type="number" id="Temperatura_ponto_orvalho" name="Temperatura_ponto_orvalho" step="any" required></div>
-            <div class="form-group"><label for="Temperatura_maxima">Temperatura máxima (°C)</label><input type="number" id="Temperatura_maxima" name="Temperatura_maxima" step="any" required></div>
-            <div class="form-group"><label for="Temperatura_minima">Temperatura mínima (°C)</label><input type="number" id="Temperatura_minima" name="Temperatura_minima" step="any" required></div>
-            <div class="form-group"><label for="Umidade_relativa">Umidade relativa (%)</label><input type="number" id="Umidade_relativa" name="Umidade_relativa" step="any" required></div>
-            <div class="form-group"><label for="Velocidade_vento">Velocidade do vento</label><input type="number" id="Velocidade_vento" name="Velocidade_vento" step="any" required></div>
-            <div class="form-group"><label for="Velocidade_rajada">Velocidade de rajada</label><input type="number" id="Velocidade_rajada" name="Velocidade_rajada" step="any" required></div>
-          </fieldset>
-
-          <fieldset>
-            <legend>Histórico de internações</legend>
-                        <!-- Campos y_lag 
-            <div class="form-group"><label for="y_lag_1">Número de internações do dia anterior</label><input type="number" id="y_lag_1" name="y_lag_1" step="any" required></div>
-            <div class="form-group"><label for="y_lag_2">Número de internações de 2 dias anteriores</label><input type="number" id="y_lag_2" name="y_lag_2" step="any" required></div>
-            <div class="form-group"><label for="y_lag_3">Número de internações de 3 dias anteriores</label><input type="number" id="y_lag_3" name="y_lag_3" step="any" required></div>
-            <div class="form-group"><label for="y_lag_4">Número de internações de 4 dias anteriores</label><input type="number" id="y_lag_4" name="y_lag_4" step="any" required></div>
-            <div class="form-group"><label for="y_lag_5">Número de internações de 5 dias anteriores</label><input type="number" id="y_lag_5" name="y_lag_5" step="any" required></div>
-            <div class="form-group"><label for="y_lag_6">Número de internações de 6 dias anteriores</label><input type="number" id="y_lag_6" name="y_lag_6" step="any" required></div>
-            <div class="form-group"><label for="y_lag_7">Número de internações de 7 dias anteriores</label><input type="number" id="y_lag_7" name="y_lag_7" step="any" required></div>
-            <div class="form-group"><label for="y_lag_8">Número de internações de 8 dias anteriores</label><input type="number" id="y_lag_8" name="y_lag_8" step="any" required></div>
-            <div class="form-group"><label for="y_lag_9">Número de internações de 9 dias anteriores</label><input type="number" id="y_lag_9" name="y_lag_9" step="any" required></div>
-            <div class="form-group"><label for="y_lag_10">Número de internações de 10 dias anteriores</label><input type="number" id="y_lag_10" name="y_lag_10" step="any" required></div>
-            <div class="form-group"><label for="y_lag_11">Número de internações de 11 dias anteriores</label><input type="number" id="y_lag_11" name="y_lag_11" step="any" required></div>
-            <div class="form-group"><label for="y_lag_12">Número de internações de 12 dias anteriores</label><input type="number" id="y_lag_12" name="y_lag_12" step="any" required></div>
-            <div class="form-group"><label for="y_lag_13">Número de internações de 13 dias anteriores</label><input type="number" id="y_lag_13" name="y_lag_13" step="any" required></div>
-            <div class="form-group"><label for="y_lag_14">Número de internações de 14 dias anteriores</label><input type="number" id="y_lag_14" name="y_lag_14" step="any" required></div>
-          </fieldset>
-
-          <button type="submit">Prever</button>
-        </form>
-    </section>
-
-     Resultados 
-
-    <section class="blocos-container">
-      <div class="bloco">
-        <h2>Previsão para um dia</h2>
-        <div id="resultado"></div>
-      </div>
-
-      <div class="bloco">
-        <h2>Previsão por período</h2>
-      </div>
-
-      <div class="bloco">
-        <h2>Bloco 3</h2>
-      </div>
-    </section>
-    </div>
-    <div id="conteudo-beta" style="display:none;">
-    <div class="beta-container">
-      <iframe 
-        src="https://pneumoniabrasil.shinyapps.io/FURGS/"
-        title="Predição Beta - Modelo R"
-        loading="lazy"
-        allowfullscreen>
-      </iframe>
-    </div>
-    </div>
+        </div>
+      </section>      
   </main>
--->
+
 
 <div class="chart-header">
-                <div>
-                    <h2>Temporariamente indisponível devido a migração de domínio</h2>
-                </div>
 
   <!-- ========================================================= -->
   <!-- ===================== CHATBOT POPUP ===================== -->
@@ -182,7 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const btn = document.createElement("div");
   btn.id = "chat-float-btn";
-  btn.innerHTML = "💬";
+  btn.innerHTML = `<img src="../img/chatbot.svg" alt="Chatbot" class="chat-btn-icon">`;
   document.body.appendChild(btn);
 
   const popup = document.createElement("iframe");
@@ -222,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function() {
     conteudoBeta.style.display = "block";
   }
 
-  // 🔥 Decide baseado no parâmetro da URL
+  // Decide baseado no parâmetro da URL
   const params = new URLSearchParams(window.location.search);
   const view = params.get("view");
 
@@ -232,7 +311,7 @@ document.addEventListener("DOMContentLoaded", function() {
     mostrarXGB();
   }
 
-  // 🔥 Clique interno (quando já está no dashboard)
+  // Clique interno (quando já está no dashboard)
 
   if (btnPredicao) {
     btnPredicao.addEventListener("click", function(e) {
