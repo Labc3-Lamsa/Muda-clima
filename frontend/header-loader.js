@@ -13,8 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ADD PÁGINA DE TUTORIAIS
     const tutoriaisLink = isHtmlFolder ? 'tutoriais.html' : 'html/tutoriais.html';
+    //ADD PÁGINA DE MATERIAIS EDUCATIVOS
+    const materiaisEducativosLink = isHtmlFolder ? 'materiais-educativos.html' : 'html/materiais-educativos.html';
     //--- 
-    
+
     const header = document.createElement('header');
     header.innerHTML = `
         <a href="${homeLink}" class="logo-link">
@@ -42,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <li><a href="${predshinyLink}?view=shiny" id="btn-predicao">Previsões Mensais</a></li>
                 <li><a href="${dashboardLink}?view=xgb" id="btn-predicao-beta">Previsões Múltiplas</a></li>
                 <li><a href="${tutoriaisLink}" id="nav-tutoriais">Tutoriais</a></li>
+                <li><a href="${materiaisEducativosLink}" id="nav-materiais-educativos">Materiais Educativos</a></li>
             </ul>
         </nav>
     `;
@@ -99,7 +102,12 @@ if (btn && nav && overlay) {
 }
     // adiciona lógica para tutoriais
     else if (currentPath.includes('tutoriais.html')) {
-        document.getElementById('nav-tutoriais').classList.add('active');
+            document.getElementById('nav-tutoriais').classList.add('active');
+    }
+
+    // adiciona lógica para materiais educativos
+    else if (currentPath.includes('materiais-educativos.html')) {
+        document.getElementById('nav-materiais-educativos').classList.add('active');
     }
 
     header.querySelectorAll('nav a').forEach(link => {

@@ -11,6 +11,8 @@ const redirect_home = require('./routes/home.js');
 
 // Rota para tutoriais
 const redirect_tutoriais = require('../frontend/menu-tutoriais/rota-tutoriais.js');
+// Rota para materiais educativos
+const redirect_materiais_educativos = require('../frontend/menu-materiais-educativos/rota-materiais-educativos.js');    
 
 //Dependências para o chatbot ===
 const fs = require('fs');
@@ -33,10 +35,14 @@ const municipiosRouter = createMunicipiosRouter(pool);
 const homeRouter = redirect_home();
 // Rota para tutoriais
 const tutoriaisRouter = redirect_tutoriais();
+// Rota para materiais educativos
+const materiais_educativosRouter = redirect_materiais_educativos();
 
 app.use(municipiosRouter);
 app.use(homeRouter);
+//Rotas para as funcionalidades de tutoriais e materiais educativos
 app.use(tutoriaisRouter);
+app.use(materiais_educativosRouter);
 
 
 
