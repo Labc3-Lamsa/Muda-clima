@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const predshinyLink = isHtmlFolder ? '../predshiny.html' : 'predshiny.html';
     const dashboardLink = isHtmlFolder ? '../dashboard.html' : 'dashboard.html';
 
+    // ADD PÁGINA DE TUTORIAIS
+    const tutoriaisLink = isHtmlFolder ? 'tutoriais.html' : 'html/tutoriais.html';
+    //--- 
+    
     const header = document.createElement('header');
     header.innerHTML = `
         <a href="${homeLink}" class="logo-link">
@@ -37,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <li><a href="${chartLink}" id="nav-charts">Gráficos</a></li>
                 <li><a href="${predshinyLink}?view=shiny" id="btn-predicao">Previsões Mensais</a></li>
                 <li><a href="${dashboardLink}?view=xgb" id="btn-predicao-beta">Previsões Múltiplas</a></li>
+                <li><a href="${tutoriaisLink}" id="nav-tutoriais">Tutoriais</a></li>
             </ul>
         </nav>
     `;
@@ -92,7 +97,10 @@ if (btn && nav && overlay) {
     const btn = document.getElementById('btn-predicao');
     if (btn) btn.classList.add('active');
 }
-    
+    // adiciona lógica para tutoriais
+    else if (currentPath.includes('tutoriais.html')) {
+        document.getElementById('nav-tutoriais').classList.add('active');
+    }
 
     header.querySelectorAll('nav a').forEach(link => {
         link.addEventListener('click', () => {
