@@ -9,6 +9,9 @@ const path = require('path');
 const createMunicipiosRouter = require('./routes/predicao.js');
 const redirect_home = require('./routes/home.js');
 
+// Rota para tutoriais
+const redirect_tutoriais = require('../frontend/menu-tutoriais/rota-tutoriais.js');
+
 //Dependências para o chatbot ===
 const fs = require('fs');
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
@@ -28,9 +31,14 @@ app.use(express.json());
 
 const municipiosRouter = createMunicipiosRouter(pool);
 const homeRouter = redirect_home();
+// Rota para tutoriais
+const tutoriaisRouter = redirect_tutoriais();
 
 app.use(municipiosRouter);
 app.use(homeRouter);
+app.use(tutoriaisRouter);
+
+
 
 
 // Rota para obter todas as UFs
@@ -144,6 +152,7 @@ app.use('/modelos_XGboost_onnx_todas_cidades_pneumonia', express.static(path.joi
 
 app.use(express.static(path.join(__dirname, '../frontend')));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../frontend/html/home.html')));
+
 
 // =======================================================
 // =======================================================
