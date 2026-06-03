@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicações Científicas</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/publicacoes.css">
+    
+</head>
+<body>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- ========== HERO ========== -->
+<section class="pub-hero">
+    <h1>📄 Publicações</h1>
+    <p>Artigos, capítulos, livros e relatórios produzidos pelo grupo de pesquisa</p>
+</section>
+
+<!-- ========== BARRA DE ESTATÍSTICAS ========== -->
+<div class="stats-bar">
+    <div class="stats-inner">
+        <div class="stat-item">
+            <span class="stat-icon">📚</span>
+            <div>
+                <div class="stat-num" id="total-count">23</div>
+                <div class="stat-label">Total de<br>Publicações</div>
+            </div>
+        </div>
+        <div class="stat-item">
+            <span class="stat-icon">📝</span>
+            <div>
+                <div class="stat-num">18</div>
+                <div class="stat-label">Artigos em<br>Periódicos</div>
+            </div>
+        </div>
+        <div class="stat-item">
+            <span class="stat-icon">📖</span>
+            <div>
+                <div class="stat-num">1</div>
+                <div class="stat-label">Capítulos<br>de Livros</div>
+            </div>
+        </div>
+        <div class="stat-item">
+            <span class="stat-icon">🏛️</span>
+            <div>
+                <div class="stat-num">4</div>
+                <div class="stat-label">Teses &amp;<br>Dissertações &amp;<br>TCC</div>
+            </div>
+        </div>
+        <div class="stat-item">
+            <span class="stat-icon">📊</span>
+            <div>
+                <div class="stat-num">0</div>
+                <div class="stat-label">Relatórios<br>Técnicos</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== CONTEÚDO PRINCIPAL ========== -->
+<main class="pub-main">
+
+    <!-- Filtros -->
+    <div class="filter-bar">
+        <input type="search" id="searchInput" placeholder="🔍  Buscar por título, autor ou palavra-chave…" oninput="filterArticles()">
+        <div class="filter-group" id="filterGroup">
+            <button class="filter-btn active" onclick="setFilter('todos', this)">Todos</button>
+            <button class="filter-btn" onclick="setFilter('artigo', this)">Artigos</button>
+            <button class="filter-btn" onclick="setFilter('capitulo', this)">Capítulos</button>
+            <button class="filter-btn" onclick="setFilter('tese', this)">Teses</button>
+            <button class="filter-btn" onclick="setFilter('relatorio', this)">Relatórios</button>
+        </div>
+    </div>
+
+    <!-- Lista de artigos -->
+    <div class="articles-grid" id="articlesGrid">
+
+        <!-- ARTIGO 1 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="plataforma consulta dados internacões hospitalares doenças respiratórias clima">
+            <div class="article-index">01</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2026</span>
+                    <span class="badge-qualis">B4</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="#" target="_blank">Plataforma para Consulta de Dados sobre Internacões Hospitalares por Doenças Respiratórias, Poluição e Clima</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Allan M. Gonçalves</strong>; Ricardo A. Machado; Marla P. Melo; Ronabson C. Fernandes; Washington C. Filho; Rosalia Neves; Elizabet Silva; Flavio Da Silva-Junior; Diana F. Adamatti
+                </div>
+                <div class="article-source">
+                    WESAAC
+                    <span>·</span> v. 00, n. 0, p. 4
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">palavra-chave 1</span>
+                    <span class="kw-tag">palavra-chave 1</span>
+                    <span class="kw-tag">palavra-chave 2</span>
+                    <span class="kw-tag">palavra-chave 3</span>
+                    <span class="kw-tag">palavra-chave 4</span>
+                    <span class="kw-tag">palavra-chave 5</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.xxxx/xxxxx" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- ARTIGO 2 -->
+                   
+
+        <!-- ARTIGO 3 -->
+        
+
+        <!-- ARTIGO 4 -->
+        
+
+        <!-- ARTIGO 5 -->
+        
+
+        <!-- ARTIGO 6 -->
+        
+
+        <!-- ARTIGO 7 -->
+        
+        <!-- ARTIGO 8 -->
+
+        <!-- ARTIGO 9 -->
+
+        <!-- ARTIGO 10 -->
+
+        <!-- ARTIGO 11 -->
+
+        <!-- ARTIGO 12 -->
+
+
+        <!-- ARTIGO 13 -->
+
+        <!-- ARTIGO 14 -->
+
+        <!-- ARTIGO 15 -->
+
+        <!-- ARTIGO 16 -->
+
+        <!-- ARTIGO 17 -->
+
+        <!-- ARTIGO 18 -->
+
+        <!-- CAPÍTULO 1 -->
+        <article class="article-card tipo-capitulo" data-tipo="capitulo"
+                 data-text="capítulo livro epidemiologia exposição ambiental dióxido de nitrogênio saúde pública">
+            <div class="article-index">19</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-capitulo">Capítulo de Livro</span>
+                    <span class="badge-ano">2025</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="#" target="_blank">Epidemiological Studies on the Long-term Effects of Nitrogen Dioxide</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Elizabet Saes-Silva</strong>; Rosália Garcia Neves; Letícia Willrich; Ronan Adler Tavella; Flávio Manoel Rodrigues da Silva Júnior 
+                </div>
+                <div class="article-source">
+                    In: -- <em>nome do livro</em>
+                    <span>·</span> Ed. nome da editora, Cap. 5, p. 20
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">Nitrogen dioxide</span>
+                    <span class="kw-tag">Air pollution</span>
+                    <span class="kw-tag">Environmental exposure</span>
+                    <span class="kw-tag">Toxicity</span>
+                    <span class="kw-tag">Public health</span>
+
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.xxxx/xxxxx" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        
+        <!-- TESE 1 -->
+        <article class="article-card tipo-tese" data-tipo="tese"
+                 data-text="tese doutorado eficiência prestadoras saneamento análise envoltória dados DEA">
+            <div class="article-index">20</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-tese">Tese</span>
+                    <span class="badge-ano">2024</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="#" target="_blank">Aplicação de Modelo de Aprendizado de Máquina para a Previsão de Doenças Respiratórias em Ambientes Afetados pela Poluição do Ar</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Gabriel Fuscald Scursone</strong>
+                </div>
+                <div class="article-source">
+                    Qualificação de Tese de Doutorado
+                    <span>·</span> Universidade Federal do Rio Grande, Programa de Pós-graduação em Modeagem Computacional
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">Poluição do ar</span>
+                    <span class="kw-tag">aprendizado de máquina</span>
+                    <span class="kw-tag">doenças respiratórias</span>
+                    <span class="kw-tag">XGBoost</span>
+                    <span class="kw-tag">saúde pública</span>
+                </div>
+                <div class="article-footer">
+                    <a href="#" target="_blank" class="btn-doi">
+                        📥 Repositório
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- TESE 2 -->
+        <article class="article-card tipo-tese" data-tipo="tese"
+                 data-text="dissertação mestrado mortalidade poluentes ar região exploração carvão cenários simulados aumento temperatura">
+            <div class="article-index">21</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-tese">Dissertação</span>
+                    <span class="badge-ano">2024</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="#" target="_blank">Avaliação de impacto e mortalidade atribuída a poluentes do ar de uma região de exploração de carvão em cenários simulados de aumento de temperatura</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Alicia Bonifácio</strong>
+                </div>
+                <div class="article-source">
+                    Dissertação de Mestrado
+                    <span>·</span> Universidade Federal do Rio Grande, Faculdade de Medicina, Programa de Pós-graduação em Ciências da Saúde
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">mortalidade infantil</span>
+                    <span class="kw-tag">doenças hídricas</span>
+                    <span class="kw-tag">cobertura sanitária</span>
+                    <span class="kw-tag">epidemiologia</span>
+                </div>
+                <div class="article-footer">
+                    <a href="#" target="_blank" class="btn-doi">
+                        📥 Repositório
+                    </a>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- TCC 1 -->
+        <article class="article-card tipo-tese" data-tipo="tese"
+                 data-text="tcc material particulados fatores socioambientais Brasil">
+            <div class="article-index">22</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-tese">TCC</span>
+                    <span class="badge-ano">2024</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="#" target="_blank">Avaliação entre diferentes dimensões de material particulados e fatores socioambientais no Brasil</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Gustavo de Oliveira Silveira</strong>
+                </div>
+                <div class="article-source">
+                    Trabalho de Conclusão de Curso
+                    <span>·</span> Universidade Federal de Rio Grande, Instituto de Ciências Biológicas, Tecnologia em Toxicologia Ambiental
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">Poluição atmosférica</span>
+                    <span class="kw-tag">material particulado</span>
+                    <span class="kw-tag">sensores de baixo custo</span>
+                    <span class="kw-tag">qualidade do ar</span>
+                </div>
+                <div class="article-footer">
+                    <a href="#" target="_blank" class="btn-doi">
+                        📥 Repositório
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- TCC 2 -->
+        <article class="article-card tipo-tese" data-tipo="tese"
+                 data-text="tcc poluentes atmosféricos MP transtornos mentais comportamentais">
+            <div class="article-index">23</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-tese">TCC</span>
+                    <span class="badge-ano">2024</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="#" target="_blank">Associação entre os poluentes atmosféricos MP1, MP2,5 e MP10 e transtornos mentais e comportamentais</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Rafaela Danemberg de Oliveira</strong>
+                </div>
+                <div class="article-source">
+                    Trabalho de Conclusão de Curso
+                    <span>·</span> Universidade Federal de Rio Grande, Instituto de Ciências Biológicas, Tecnologia em Toxicologia Ambiental
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">Saúde mental</span>
+                    <span class="kw-tag">poluição do ar</span>
+                    <span class="kw-tag">material particulado</span>
+                </div>
+                <div class="article-footer">
+                    <a href="#" target="_blank" class="btn-doi">
+                        📥 Repositório
+                    </a>
+                </div>
+            </div>
+        </article>
+
+    
+        <!-- RELATÓRIO 
+        <article class="article-card tipo-relatorio" data-tipo="relatorio"
+                 data-text="texto do relatório para busca por título, autor ou palavra-chave">
+            <div class="article-index">24</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-relatorio">Relatório Técnico</span>
+                    <span class="badge-ano">2026</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="#" target="_blank"> Titulo do relatório</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>ClimArS</strong> – Equipe de Pesquisa
+                </div>
+                <div class="article-source">
+                    Relatório Técnico Nº 01/2024
+                    <span>·</span> nome do editor
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">diagnóstico</span>
+                    <span class="kw-tag">universalização</span>
+                    <span class="kw-tag">metas 2033</span>
+                    <span class="kw-tag">Marco Legal</span>
+                    <span class="kw-tag">monitoramento</span>
+                </div>
+                <div class="article-footer">
+                    <a href="#" target="_blank" class="btn-doi">
+                        📥 PDF
+                    </a>
+                </div>
+            </div>
+        </article>-->
+
+    </div><!-- /articles-grid -->
+
+    <!-- Nenhum resultado -->
+    <div class="no-results" id="noResults">
+        <div class="no-results-icon">🔍</div>
+        <p>Nenhuma publicação encontrada para este filtro.</p>
+    </div>
+
+</main>
+
+       
+<!-- ========== SCRIPTS ========== -->
+<script>
+    /* --- Filtro por tipo --- */
+    let currentFilter = 'todos';
+
+    function setFilter(tipo, btn) {
+        currentFilter = tipo;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filterArticles();
+    }
+
+    /* --- Busca + filtro combinados --- */
+    function filterArticles() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const cards = document.querySelectorAll('.article-card');
+        let visible = 0;
+
+        cards.forEach(card => {
+            const matchTipo   = currentFilter === 'todos' || card.dataset.tipo === currentFilter;
+            const searchText  = (card.dataset.text + ' ' + card.innerText).toLowerCase();
+            const matchSearch = query === '' || searchText.includes(query);
+
+            if (matchTipo && matchSearch) {
+                card.style.display = '';
+                visible++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        document.getElementById('total-count').textContent = visible;
+        document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    /* --- Inicializa filtros ao carregar --- */
+    document.addEventListener('DOMContentLoaded', () => {
+        filterArticles();
+    });
+</script>
+
+
+
+<div class="chart-header">
+
+        <!-- ========================================================= -->
+        <!-- ===================== CHATBOT POPUP ===================== -->
+        <!-- ========================================================= -->
+
+        <link rel="stylesheet" href="/css/popup.css">
+
+        <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btn = document.createElement("div");
+            btn.id = "chat-float-btn";
+            btn.innerHTML = `<img src="../img/chatbot.svg" alt="Chatbot" class="chat-btn-icon">`;
+            document.body.appendChild(btn);
+
+            const popup = document.createElement("iframe");
+            popup.id = "chat-popup";
+            popup.src = "/chat.html"; 
+            document.body.appendChild(popup);
+
+            btn.addEventListener("click", () => {
+                if (popup.classList.contains("open")) {
+                popup.classList.remove("open");
+                setTimeout(() => popup.style.display = "none", 200);
+                } else {
+                popup.style.display = "block";
+                setTimeout(() => popup.classList.add("open"), 10);
+                }
+            });
+
+            });
+        </script>
+
+    <script src="../header-loader.js" defer></script>
+    <script src="../footer-loader.js" defer></script>
+    <script src="../js/chat-widget.js" defer></script>
+    
+</body>
+</html>

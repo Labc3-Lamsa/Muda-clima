@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const tutoriaisLink = isHtmlFolder ? 'tutoriais.html' : 'html/tutoriais.html';
     //ADD PÁGINA DE MATERIAIS EDUCATIVOS
     const materiaisEducativosLink = isHtmlFolder ? 'materiais-educativos.html' : 'html/materiais-educativos.html';
+    // ADD PÁGINA DE PUBLICAÇÕES
+    const publicacoesLink = isHtmlFolder ? 'publicacoes.html' : 'html/publicacoes.html';
     //--- 
 
     const header = document.createElement('header');
@@ -45,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <li><a href="${dashboardLink}?view=xgb" id="btn-predicao-beta">Previsões Múltiplas</a></li>
                 <li><a href="${tutoriaisLink}" id="nav-tutoriais">Tutoriais</a></li>
                 <li><a href="${materiaisEducativosLink}" id="nav-materiais-educativos">Materiais Educativos</a></li>
+                <li><a href="${publicacoesLink}" id="nav-publicacoes">Publicações</a></li>
             </ul>
         </nav>
     `;
@@ -108,6 +111,11 @@ if (btn && nav && overlay) {
     // adiciona lógica para materiais educativos
     else if (currentPath.includes('materiais-educativos.html')) {
         document.getElementById('nav-materiais-educativos').classList.add('active');
+    }
+
+    // adiciona lógica para publicações
+    else if (currentPath.includes('publicacoes.html')) {
+        document.getElementById('nav-publicacoes').classList.add('active');
     }
 
     header.querySelectorAll('nav a').forEach(link => {
