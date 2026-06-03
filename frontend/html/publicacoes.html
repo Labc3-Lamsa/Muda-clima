@@ -18,7 +18,7 @@
 
 <div class="menu-overlay" id="menuOverlay"></div>
 
-<!-- ========== HERO ========== -->
+
 <section class="pub-hero">
     <h1>📄 Publicações</h1>
     <p>Artigos, capítulos, livros e relatórios produzidos pelo grupo de pesquisa</p>
@@ -30,7 +30,7 @@
         <div class="stat-item">
             <span class="stat-icon">📚</span>
             <div>
-                <div class="stat-num" id="total-count">23</div>
+                <div class="stat-num" id="total-count"></div>
                 <div class="stat-label">Total de<br>Publicações</div>
             </div>
         </div>
@@ -78,6 +78,11 @@
             <button class="filter-btn" onclick="setFilter('tese', this)">Teses</button>
             <button class="filter-btn" onclick="setFilter('relatorio', this)">Relatórios</button>
         </div>
+        <select id="sortYear" class="sort-dropdown" onchange="filterArticles()">
+            <option value="">Ordenar por ano</option>
+            <option value="asc">📅 Mais antigos</option>
+            <option value="desc">📅 Mais recentes</option>
+        </select>
     </div>
 
     <!-- Lista de artigos -->
@@ -85,8 +90,629 @@
 
         <!-- ARTIGO 1 -->
         <article class="article-card tipo-artigo" data-tipo="artigo"
-                 data-text="plataforma consulta dados internacões hospitalares doenças respiratórias clima">
+                 data-text="This study examines the impact of projected temperature increases on air pollutant levels and associated health outcomes in Candiota, Brazil, a major coal mining region. Using meteorological and air pollutant data (PM2.5, PM10, O3) and machine learning, we simulated pollutant levels under 2 ◦C and 4 ◦C increases and assessed the consequent health impacts. Results indicate increases in O3, PM10, and PM2.5 levels across all investigated cities, with marked seasonal differences, leading to higher mortality and hospitalizations due to cardiovascular and respiratory diseases. Underscoring the need for targeted interventions in coal mining areas as climate change exacerbates air pollution health impacts.">
             <div class="article-index">01</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2024</span>
+                    <span class="badge-qualis">A2</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="#" target="_blank">Health impact assessment of air pollutants in simulated temperature scenarios in the largest coal mining region of Brazil</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Alicia da Silva Bonifacio,</strong> Rodrigo de Lima Brum, Ronan Adler Tavella, Ng Haig They, Willian Cezar Nadaleti, Mariana Vieira Coronas, Elizabet Saes-Silva, Aline Neutzling Brum, Romina Buffarini, Washin Luiz Félix Correia Filho, Diana Francisca Adamatti, Rosalia Garcia Neves, Flavio Manoel Rodrigues da Silva Júnior.
+                </div>
+                <div class="article-source">
+                    Case Studies in Chemical and Environmental Engineering
+                    <span>·</span> v. 10, p. 1--11
+                </div>
+                <div class="article-abstract">
+                    This study examines the impact of projected temperature increases on air pollutant levels and associated health outcomes in Candiota, Brazil, a major coal mining region. Using meteorological and air pollutant data (PM2.5, PM10, O3) and machine learning, we simulated pollutant levels under 2 ◦C and 4 ◦C increases and assessed the consequent health impacts. Results indicate increases in O3, PM10, and PM2.5 levels across all investigated cities, with marked seasonal differences, leading to higher mortality and hospitalizations due to cardiovascular and respiratory diseases. Underscoring the need for targeted interventions in coal mining areas as climate change exacerbates air pollution health impacts.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">Candiota</span>
+                    <span class="kw-tag">Machine learning</span>
+                    <span class="kw-tag">Predictive models</span>
+                    <span class="kw-tag">Climate change</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.1016/j.cscee.2024.100923" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- ARTIGO 2 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="This study aimed to examine the impact of temperature increase on air pollutants, and deaths attributed to air pollution in Dom Pedrito, a small city in the southernmost of Brazil. To simulate temperature increase scenarios, a Machine Learning technique was performed. The temperature increase simulation indicated that pollutant levels (O3, PM2.5, and PM10) could rise by approximately 7 to 18 %. In these more severe scenarios, the city would experience deaths attributed to PM2.5 pollution, albeit at a very low percentage. The results underscore the need for monitoring air pollutants in small cities, particularly considering the possibility of temperature increase.">
+            <div class="article-index">02</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2024</span>
+                    <span class="badge-qualis">A2</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="#" target="_blank">Impact of temperature increase on air pollutants - A case study in a small city in southern Brazil</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Aline Neutzling Brum,</strong> Rodrigo de Lima Brum, Alicia da Silva Bonifácio, Flavio Manoel Rodrigues da Silva Júnior.
+                </div>
+                <div class="article-source">
+                    Case Studies in Chemical and Environmental Engineering
+                    <span>·</span> v. 9, p. 1--6
+                </div>
+                <div class="article-abstract">
+                    This study aimed to examine the impact of temperature increase on air pollutants, and deaths attributed to air pollution in Dom Pedrito, a small city in the southernmost of Brazil. To simulate temperature increase scenarios, a Machine Learning technique was performed. The temperature increase simulation indicated that pollutant levels (O3, PM2.5, and PM10) could rise by approximately 7 to 18 %. In these more severe scenarios, the city would experience deaths attributed to PM2.5 pollution, albeit at a very low percentage. The results underscore the need for monitoring air pollutants in small cities, particularly considering the possibility of temperature increase.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">Ozone</span>
+                    <span class="kw-tag">Particulate matter</span>
+                    <span class="kw-tag">Small cities</span>
+                    <span class="kw-tag">Temperature elevation</span>
+                    <span class="kw-tag">Machine learning</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.1016/j.cscee.2024.100624" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- ARTIGO 3 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="Air pollution is responsible for illness and death of millions of people worldwide annually and has strong impacts on the economy and society. Large cities typically have more robust and effective air quality monitoring coverage, however, less populated cities need to rely on monitoring via satellite data or low-cost sensors. Additionally, global and national study hotspots are megacities and highly industrialized regions, and the Southern Air Project aims to broaden the focus on the impact on populations in less populated areas. This article describes the initiatives of the Southern Air Project, aimed at providing data on air pollution and its health effects in small and medium-sized cities in southern Brazil. A significant portion of the air pollutant data used in the project originates from satellite information, low-cost sensors, passive samplers, and data provided by enterprises. These data have been used to understand the levels, dynamics and human health impacts of air pollutants in cities that do not have well-established monitoring networks and, consequently, are less studied. In addition to research initiatives, the project engages in community actions with the aim of informing about the risks of exposure to air pollution and the role of citizens in demanding quality air from public managers.">
+            <div class="article-index">03</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2024</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="#" target="_blank">Southern Air Project - scientific efforts to monitor and measure the mpacts of air pollution in southern Brazil</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Rodrigo de Lima Brum,</strong> Júlia Oliveira Penteado, Paula Florencio Ramires, Ronan Adler Tavella, Laiz Coutelle Honscha, Livia da Silva Freitas, Fernando Rafael de Moura, Alicia da Silva Bonifácio, Vitória Machado da Silva, Leopoldo dos Santos da Silva, Jéssica El Koury Santos, Flavio Manoel Rodrigues da Silva Júnior.
+                </div>
+                <div class="article-source">
+                    Societal Impacts
+                    <span>·</span> v. 4, p. 1--5
+                </div>
+                <div class="article-abstract">
+                    Air pollution is responsible for illness and death of millions of people worldwide annually and has strong impacts on the economy and society. Large cities typically have more robust and effective air quality monitoring coverage, however, less populated cities need to rely on monitoring via satellite data or low-cost sensors. Additionally, global and national study hotspots are megacities and highly industrialized regions, and the Southern Air Project aims to broaden the focus on the impact on populations in less populated areas. This article describes the initiatives of the Southern Air Project, aimed at providing data on air pollution and its health effects in small and medium-sized cities in southern Brazil. A significant portion of the air pollutant data used in the project originates from satellite information, low-cost sensors, passive samplers, and data provided by enterprises. These data have been used to understand the levels, dynamics and human health impacts of air pollutants in cities that do not have well-established monitoring networks and, consequently, are less studied. In addition to research initiatives, the project engages in community actions with the aim of informing about the risks of exposure to air pollution and the role of citizens in demanding quality air from public managers.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">Air quality Monitoring</span> 
+                    <span class="kw-tag">Vulnerable populations</span>
+                    <span class="kw-tag">Low- and Middle-income Countries</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.1016/j.socimp.2024.100074" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- ARTIGO 04 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="This study developed a predictive model of hospital admissions due to respiratory diseases using environmental and meteorological data from São Paulo (2017–2022). It analyzed hospitalizations classified under ICD-10 codes J00–J99. Weekly public data on air pollutants (PM2.5, PM10, O3, NO2, SO2, CO) and climate variables (temperature, humidity, precipitation, among others) were used. The methodology included feature engineering (lags, moving averages, interactions, trend, seasonality), Lasso regression for variable selection, and application of the CatBoost algorithm optimized via GridSearchCV. The model showed strong performance (R2 ≈ 0.895), with good accuracy in estimating healthcare demand. The Shapley Additive Explanations (SHAP) technique ensured model explainability, identifying the most influential predictors of respiratory admissions. The results highlight the potential of AI as a strategic Digital Health tool, especially for early outbreak detection and resource allocation within Brazil’s Unified Health System (SUS).">
+            <div class="article-index">04</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2025</span>
+                    <span class="badge-qualis">A1</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="https://cienciaesaudecoletiva.com.br/artigos/use-of-artificial-intelligence-and-environmental-data-to-estimate-respiratory-hospitalizations-in-support-of-sus-management/19880" target="_blank">Use of artificial intelligence and environmental data to estimate respiratory hospitalizations in support of SUS management</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Gabriel Fuscald Scursone,</strong>  Diana Francisca Adamatti, Flavio Manoel Rodrigues da Silva Júnior, Ronan Adler Tavella, Alicia da Silva Bonifácio, Ricardo Arend Machado, Elizabet Saes-Silva, Washington Correia Filho
+                </div>
+                <div class="article-source">
+                    Ciência &amp; Saúde Coletiva
+                    <span>·</span> v. 20, p. 1-36
+                </div>
+                <div class="article-abstract">
+                    This study developed a predictive model of hospital admissions due to respiratory diseases using environmental and meteorological data from São Paulo (2017–2022). It analyzed hospitalizations classified under ICD-10 codes J00–J99. Weekly public data on air pollutants (PM2.5, PM10, O3, NO2, SO2, CO) and climate variables (temperature, humidity, precipitation, among others) were used. The methodology included feature engineering (lags, moving averages, interactions, trend, seasonality), Lasso regression for variable selection, and application of the CatBoost algorithm optimized via GridSearchCV. The model showed strong performance (R2 ≈ 0.895), with good accuracy in estimating healthcare demand. The Shapley Additive Explanations (SHAP) technique ensured model explainability, identifying the most influential predictors of respiratory admissions. The results highlight the potential of AI as a strategic Digital Health tool, especially for early outbreak detection and resource allocation within Brazil's Unified Health System (SUS).
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">Artificial Intelligence</span>
+                    <span class="kw-tag">Respiratory Tract Diseases</span>
+                    <span class="kw-tag">Air Pollution</span>
+                    <span class="kw-tag">Predictive Models</span>
+                    <span class="kw-tag">Unified Health System</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://cienciaesaudecoletiva.com.br/artigos/use-of-artificial-intelligence-and-environmental-data-to-estimate-respiratory-hospitalizations-in-support-of-sus-management/19880" target="_blank" class="btn-doi">
+                        📥 Repositório
+                    </a>
+                </div>
+            </div>
+        </article>
+        <!-- ARTIGO 05 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="This study assessed air pollutant levels (O3, PM10 and PM2.5) in the Metropolitan Area of Porto Alegre, Brazil, from 2002 to 2021, focusing on the impact of PM10 on all-cause mortality for non-accidental causes in individuals over 30-years old. It also examined the health and economic benefits associated with the reduction of PM10 and O3 in simulated scenarios, considering the number of hospitalizations for respiratory and cardiovascular diseases. Overall, PM10 and PM2.5 levels decreased by 45.7% and 45.6%, respectively, at a rate of 3.2% per year. In contrast, O3 levels increased by 478.9% compared to the initial period, with a peak in 2012, followed by a 64.6% decrease from that maximum and an overall increase rate of 9.8% per year. Deaths attributed to PM10 exposure declined by over 50% in the second decade of the study, reflecting the trend in this pollutant concentration. Simulated scenarios of O3 and PM10 reduction demonstrated benefits in terms of prevented hospitalizations for respiratory and cardiovascular diseases, yielding economic savings exceeding 15 million Brazilian reais during the study period. The air pollution trends in the Metropolitan Area of Porto Alegre follow a global pattern, emphasizing the need for continued efforts to reduce air pollution levels and improve health indicators, such as reductions in hospitalizations for respiratory and cardiovascular diseases, decreases in mortality attributed to air pollution, and alleviation of the economic burden on healthcare systems.">
+            <div class="article-index">05</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2025</span>
+                    <span class="badge-qualis">A1</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="https://doi.org/10.1007/s13762-024-06300-5" target="_blank">Two decades of air pollution: health impacts in the metropolitan area of Porto Alegre, Brazil</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>A. N. Brum,</strong>  R. de Lima Brum, A. da Silva Bonifácio, R. A. Tavella, J. O. Penteado, A. M. Siebel, F. M. R. da Silva Júnior
+                </div>
+                <div class="article-source">
+                    International Journal of Environmental Science and Technology (IJEST)
+                    <span>·</span> v. 22, p. 1-14
+                </div>
+                <div class="article-abstract">
+                    This study assessed air pollutant levels (O3, PM10 and PM2.5) in the Metropolitan Area of Porto Alegre, Brazil, from 2002 to 2021, focusing on the impact of PM10 on all-cause mortality for non-accidental causes in individuals over 30-years old. It also examined the health and economic benefits associated with the reduction of PM10 and O3 in simulated scenarios, considering the number of hospitalizations for respiratory and cardiovascular diseases. Overall, PM10 and PM2.5 levels decreased by 45.7% and 45.6%, respectively, at a rate of 3.2% per year. In contrast, O3 levels increased by 478.9% compared to the initial period, with a peak in 2012, followed by a 64.6% decrease from that maximum and an overall increase rate of 9.8% per year. Deaths attributed to PM10 exposure declined by over 50% in the second decade of the study, reflecting the trend in this pollutant concentration. Simulated scenarios of O3 and PM10 reduction demonstrated benefits in terms of prevented hospitalizations for respiratory and cardiovascular diseases, yielding economic savings exceeding 15 million Brazilian reais during the study period. The air pollution trends in the Metropolitan Area of Porto Alegre follow a global pattern, emphasizing the need for continued efforts to reduce air pollution levels and improve health indicators, such as reductions in hospitalizations for respiratory and cardiovascular diseases, decreases in mortality attributed to air pollution, and alleviation of the economic burden on healthcare systems.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">Atmospheric pollution</span>
+                    <span class="kw-tag">Air quality</span>
+                    <span class="kw-tag">Health impact assessment</span>
+                    <span class="kw-tag">Ozone</span>
+                    <span class="kw-tag">Particulate matter</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.1007/s13762-024-06300-5" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+        <!-- ARTIGO 06 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="Air pollution, particularly particulate matter (PM1, PM2.5, and PM10), poses a significant environmental health risk globally. This study evaluates the predictive performance of three machine learning algorithms, Support Vector Machine (SVM), K-Nearest Neighbors (KNN), and Random Forest (RF), for forecasting particulate matter concentrations in four Brazilian cities (Porto Alegre, Recife, Goiânia, and Belém), which share similar demographic and urbanization characteristics but differ in geographic and climatic conditions. Using data from the Copernicus Atmosphere Monitoring Service, daily concentrations of PM1, PM2.5, and PM10 were modeled based on meteorological variables, including air temperature, relative humidity, wind speed, atmospheric pressure, and accumulated precipitation. The models were tested under two climate change scenarios (+2 °C and +4 °C temperature increases). The results indicate that RF consistently outperformed the other models, achieving low RMSE values, around 0.3 µg/m3, across all cities, regardless of their geographic and climatic differences. KNN showed stable performance under moderate temperature increases (+2 °C) but exhibited higher errors under more extreme warming, while SVM demonstrated higher sensitivity to temperature changes, leading to greater variability in bivariate contexts. However, in multivariate contexts, SVM adjusted better, improving its predictive performance by accounting for the combined influence of multiple meteorological variables. These findings underscore the importance of selecting suitable machine learning models, with RF proving to be the most robust approach for particulate matter prediction across diverse environmental contexts. This study contributes valuable insights for the development of region-specific air quality management strategies in the face of climate change.">
+            <div class="article-index">06</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2025</span>
+                    <span class="badge-qualis">A4</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="https://doi.org/10.3390/atmos16091052" target="_blank">Evaluating Machine Learning Models for Particulate Matter Prediction Under Climate Change Scenarios in Brazilian Capitals</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Bonifácio, A. d. S.,</strong>  Tavella, R. A., Brum, R. d. L., Silveira, G. d. O., Fernandes, R. C., Scursone, G. F., Machado, R. A., Adamatti, D. F., &amp; da Silva Júnior, F. M. R.
+                </div>
+                <div class="article-source">
+                    Atmosphere
+                    <span>·</span> v. 9, p. 1-16
+                </div>
+                <div class="article-abstract">
+                    Air pollution, particularly particulate matter (PM1, PM2.5, and PM10), poses a significant environmental health risk globally. This study evaluates the predictive performance of three machine learning algorithms, Support Vector Machine (SVM), K-Nearest Neighbors (KNN), and Random Forest (RF), for forecasting particulate matter concentrations in four Brazilian cities (Porto Alegre, Recife, Goiânia, and Belém), which share similar demographic and urbanization characteristics but differ in geographic and climatic conditions. Using data from the Copernicus Atmosphere Monitoring Service, daily concentrations of PM1, PM2.5, and PM10 were modeled based on meteorological variables, including air temperature, relative humidity, wind speed, atmospheric pressure, and accumulated precipitation. The models were tested under two climate change scenarios (+2 °C and +4 °C temperature increases). The results indicate that RF consistently outperformed the other models, achieving low RMSE values, around 0.3 µg/m3, across all cities, regardless of their geographic and climatic differences. KNN showed stable performance under moderate temperature increases (+2 °C) but exhibited higher errors under more extreme warming, while SVM demonstrated higher sensitivity to temperature changes, leading to greater variability in bivariate contexts. However, in multivariate contexts, SVM adjusted better, improving its predictive performance by accounting for the combined influence of multiple meteorological variables. These findings underscore the importance of selecting suitable machine learning models, with RF proving to be the most robust approach for particulate matter prediction across diverse environmental contexts. This study contributes valuable insights for the development of region-specific air quality management strategies in the face of climate change.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">air pollution</span>
+                    <span class="kw-tag">air quality</span>
+                    <span class="kw-tag">Brazil</span>
+                    <span class="kw-tag">climate change</span>
+                    <span class="kw-tag">machine learning</span>
+                    <span class="kw-tag">meteorological variables</span>
+                    <span class="kw-tag">particulate matter</span>
+                    <span class="kw-tag">predictive modeling</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.3390/atmos16091052" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+        <!-- ARTIGO 07 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="(1) Background: This study investigated seasonal variations in particulate matter (PM) ratios (PM1/PM2.5, PM2.5/PM10, and PM1/PM10) and their relationship with the meteorological conditions in Rio Grande, Brazil. (2) Methods: PM1, PM2.5, and PM10 levels were collected using low-cost Gaia Air Quality Monitors, which measured PM concentrations at high temporal resolution. Meteorological variables, including atmospheric pressure, temperature, relative humidity, wind speed, and precipitation, were obtained from the National Institute of Meteorology (INMET). The data were analyzed through multiple linear regression to assess the influence of meteorological factors on PM ratios. (3) Results: The results show that the highest PM ratios occurred in winter, indicating a predominance of fine and ultrafine particles, while the lowest ratios were observed in spring and summer. Multiple linear regression analysis identified atmospheric pressure, wind speed, and maximum temperature as the key drivers of PM distribution. (4) Conclusions: This study highlights the importance of continuous monitoring of PM ratios, particularly PM1, which remains underexplored in Brazil. The findings underscore the need for targeted air quality policies emphasizing seasonal mitigation strategies and improved pollution control to minimize the health risks associated with fine and ultrafine PM exposure.">
+            <div class="article-index">07</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2025</span>
+                    
+                </div>
+                <h2 class="article-title">
+                    <a href="https://doi.org/10.3390/cli13040071" target="_blank">A Pilot Study with Low-Cost Sensors: Seasonal Variation of Particulate Matter Ratios and Their Relationship with Meteorological Conditions in Rio Grande</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Silveira, G. d. O.,</strong>  Azevedo, G. M. G. V. d., Tavella, R. A., Ramires, P. F., Brum, R. d. L., Bonifácio, A. d. S., Machado, R. A., Brum, L. W., Buffarini, R., Adamatti, D. F., &amp; da Silva Júnior, F. M. R.
+                </div>
+                <div class="article-source">
+                    Climate
+                    <span>·</span> v. 13, p. 1-15
+                </div>
+                <div class="article-abstract">
+                    (1) Background: This study investigated seasonal variations in particulate matter (PM) ratios (PM1/PM2.5, PM2.5/PM10, and PM1/PM10) and their relationship with the meteorological conditions in Rio Grande, Brazil. (2) Methods: PM1, PM2.5, and PM10 levels were collected using low-cost Gaia Air Quality Monitors, which measured PM concentrations at high temporal resolution. Meteorological variables, including atmospheric pressure, temperature, relative humidity, wind speed, and precipitation, were obtained from the National Institute of Meteorology (INMET). The data were analyzed through multiple linear regression to assess the influence of meteorological factors on PM ratios. (3) Results: The results show that the highest PM ratios occurred in winter, indicating a predominance of fine and ultrafine particles, while the lowest ratios were observed in spring and summer. Multiple linear regression analysis identified atmospheric pressure, wind speed, and maximum temperature as the key drivers of PM distribution. (4) Conclusions: This study highlights the importance of continuous monitoring of PM ratios, particularly PM1, which remains underexplored in Brazil. The findings underscore the need for targeted air quality policies emphasizing seasonal mitigation strategies and improved pollution control to minimize the health risks associated with fine and ultrafine PM exposure.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">particulate matter</span>
+                    <span class="kw-tag">air pollution</span>
+                    <span class="kw-tag">seasonality</span>
+                    <span class="kw-tag">meteorological influences</span>
+                    <span class="kw-tag">air quality monitoring</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.3390/cli13040071" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+        <!-- ARTIGO 08 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="Air pollution, particularly from coarse particulate matter (PM10), is a major public health concern, significantly contributing to respiratory and cardiovascular diseases, especially among vulnerable populations. In 2024, Brazil introduced a new air quality resolution (CONAMA Resolution No. 506/2024), aligning its ultimate goal with the World Health Organization’s 2021 guidelines while establishing specific timelines for the interim targets. However, these interim targets, set for 2025, 2033, and 2044, along with the absence of a deadline for the final target of 15 µg/m3, raise concerns about their adequacy in addressing the urgent health impacts of air pollution. This study evaluates the economic and public health benefits of accelerating these targets in the city of Rio Grande, a region characterized by an industrial and port-driven economy and an aging population particularly vulnerable to air pollution. Using health impact assessments, economic cost analyses, and mortality estimates, we modeled three scenarios with PM10 concentration limits of 30 µg/m3, 20 µg/m3, and 15 µg/m3, corresponding to the resolution’s 2033 and 2044 goals and the undated final target. Our findings indicate that achieving the 15 µg/m3 target by 2025 could prevent 2568 respiratory hospitalizations, 1551 cardiac hospitalizations, and 1128 air pollution-related deaths in Rio Grande, resulting in approximately BRL 7.3 million in healthcare savings. When extrapolated to cities with similar pollution profiles across Brazil, these results suggest substantial potential for reducing the health burdens and economic costs nationwide. This study underscores the urgent need to establish more ambitious timelines in Brazil’s air quality policies to maximize public health benefits and mitigate the economic impacts of air pollution.">
+            <div class="article-index">08</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2025</span>
+                    <span class="badge-qualis">A4</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="https://doi.org/10.3390/atmos16030270" target="_blank">Health and Economic Benefits of Accelerating the PM10 Interim Targets in Brazil’s New Air Quality Resolution: A Case Study in Southern Brazil</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Alves Laucas e Myrrha, L. H.,</strong>  Loukili, Y. F. C., Silveira, G. d. O., Tavella, R. A., Bonifácio, A. d. S., Brum, R. d. L., Pereira, N., &amp; da Silva Júnior, F. M. R.
+                </div>
+                <div class="article-source">
+                    Atmosphere
+                    <span>·</span> v. 16, p. 1-12
+                </div>
+                <div class="article-abstract">
+                    Air pollution, particularly from coarse particulate matter (PM10), is a major public health concern, significantly contributing to respiratory and cardiovascular diseases, especially among vulnerable populations. In 2024, Brazil introduced a new air quality resolution (CONAMA Resolution No. 506/2024), aligning its ultimate goal with the World Health Organization's 2021 guidelines while establishing specific timelines for the interim targets. However, these interim targets, set for 2025, 2033, and 2044, along with the absence of a deadline for the final target of 15 µg/m3, raise concerns about their adequacy in addressing the urgent health impacts of air pollution. This study evaluates the economic and public health benefits of accelerating these targets in the city of Rio Grande, a region characterized by an industrial and port-driven economy and an aging population particularly vulnerable to air pollution. Using health impact assessments, economic cost analyses, and mortality estimates, we modeled three scenarios with PM10 concentration limits of 30 µg/m3, 20 µg/m3, and 15 µg/m3, corresponding to the resolution's 2033 and 2044 goals and the undated final target. Our findings indicate that achieving the 15 µg/m3 target by 2025 could prevent 2568 respiratory hospitalizations, 1551 cardiac hospitalizations, and 1128 air pollution-related deaths in Rio Grande, resulting in approximately BRL 7.3 million in healthcare savings. When extrapolated to cities with similar pollution profiles across Brazil, these results suggest substantial potential for reducing the health burdens and economic costs nationwide. This study underscores the urgent need to establish more ambitious timelines in Brazil's air quality policies to maximize public health benefits and mitigate the economic impacts of air pollution.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">air pollution</span>
+                    <span class="kw-tag">CONAMA</span>
+                    <span class="kw-tag">economic cost analysis</span>
+                    <span class="kw-tag">environmental policy</span>
+                    <span class="kw-tag">health impact assessment</span>
+                    <span class="kw-tag">particulate matter</span>
+                    <span class="kw-tag">public health</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.3390/atmos16030270" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+        <!-- ARTIGO 09 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="This study analyzed the impact of temperature increases on O3, PM2.5, and PM10 concentrations and cardiopulmonary deaths attributable to PM2.5 in 11 cities in southern Brazil, including Porto Alegre. In 2022, 12.80 % of cardiopulmonary deaths in the capital were attributed to PM2.5. Although small cities were within legal limits, simulated scenarios of +2 and + 4 °C indicated an increase in deaths in all cities. The results highlight the need for public health interventions and climate adaptation strategies to mitigate the impacts of pollution and global warming in smaller cities.">
+            <div class="article-index">09</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2025</span>
+                    <span class="badge-qualis">A2</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="https://doi.org/10.1016/j.cscee.2025.101170" target="_blank">Effects of increased temperature on atmospheric pollutant levels and human health in small and medium-sized cities in southern Brazil</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Rodrigo de Lima Brum,</strong> Júlia Oliveira Penteado, Ronan Adler Tavella, Willian Cézar Nadaleti, Aline Neutzling Brum, Ng Haig They, Mariana Vieira Coronas, Roberta Daniele Klein, Natália Pereira, Flavio Manoel Rodrigues da Silva Júnior
+                </div>
+                <div class="article-source">
+                    Case Studies in Chemical and Environmental Engineering
+                    <span>·</span> v. 11, p. 1-8
+                </div>
+                <div class="article-abstract">
+                    This study analyzed the impact of temperature increases on O3, PM2.5, and PM10 concentrations and cardiopulmonary deaths attributable to PM2.5 in 11 cities in southern Brazil, including Porto Alegre. In 2022, 12.80 % of cardiopulmonary deaths in the capital were attributed to PM2.5. Although small cities were within legal limits, simulated scenarios of +2 and + 4 °C indicated an increase in deaths in all cities. The results highlight the need for public health interventions and climate adaptation strategies to mitigate the impacts of pollution and global warming in smaller cities.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">Air pollutionAttributable deathsCardiovascular diseasesMachine learningModeling</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.1016/j.cscee.2025.101170" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+        <!-- ARTIGO 10 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="Air pollution is a growing public health concern, with diverse impacts on human health. This study aimed to conduct an exploratory analysis of the associations between air pollutants (O3, PM2.5, and PM10) and health outcomes, using ICD-10 Chapters, across 24 cities with different dimensions in the state of Rio Grande do Sul, Brazil. Three models were developed for both annual and monthly data: one encompassing all 24 cities (Model 1), another with medium and small-sized cities (Model 2), and the last exclusively focusing on small cities (Model 3). Multiple linear regression analyses were conducted with air pollutants and meteorological variables as independent variables, and hospitalization rates within each ICD-10 Chapters and specific respiratory diseases as dependent variables. Our analysis revealed significant positive associations among diverse chapters of the ICD-10 and air pollutants, with Model 3 exhibiting the most robust and significant positive associations with 12 chapters of the ICD-10 (Chapters: II, V, VI, VII, IX, X, XI, XII, XIV, XVI, XVII, XVIII, XIX, and XXI), highlighting the broad impact of pollution on human health beyond traditional respiratory and cardiovascular concerns. Moreover, positive associations were identified with specific respiratory diseases, including asthma, pneumonia, bronchiolitis, and acute bronchitis. Temperature, precipitation, and wind speed emerged as the meteorological factors most frequently associated with multiple health outcomes and ICD chapters. Notably, our findings reveal distinct patterns in associations across cities with different population sizes, highlighting the importance of considering contextual factors, such as city size, when assessing the health impacts of air pollution.">
+            <div class="article-index">10</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2025</span>
+                    <span class="badge-qualis">A2</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="https://doi.org/10.1016/j.apr.2024.102377" target="_blank">An exploratory study on the association between air pollution and health problems (ICD-10) with an emphasis on respiratory diseases</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Ronan Adler Tavella,</strong> Julia Oliveira Penteado, Rodrigo de Lima Brum, Alicia da Silva Bonifácio, Meister Coelho San Martin, Elizabet Saes-Silva, Aline Neutzling Brum, Romina Buffarini, Washington Luiz Félix Correia Filho, Diana Francisca Adamatti, Rosália Garcia Neves, Edmilson Dias de Freitas, Simone Georges El Khouri Miraglia, Flavio Manoel Rodrigues da Silva Júnior
+                </div>
+                <div class="article-source">
+                    Atmospheric Pollution Research
+                    <span>·</span> v. 16, p. 1-14
+                </div>
+                <div class="article-abstract">
+                    Air pollution is a growing public health concern, with diverse impacts on human health. This study aimed to conduct an exploratory analysis of the associations between air pollutants (O3, PM2.5, and PM10) and health outcomes, using ICD-10 Chapters, across 24 cities with different dimensions in the state of Rio Grande do Sul, Brazil. Three models were developed for both annual and monthly data: one encompassing all 24 cities (Model 1), another with medium and small-sized cities (Model 2), and the last exclusively focusing on small cities (Model 3). Multiple linear regression analyses were conducted with air pollutants and meteorological variables as independent variables, and hospitalization rates within each ICD-10 Chapters and specific respiratory diseases as dependent variables. Our analysis revealed significant positive associations among diverse chapters of the ICD-10 and air pollutants, with Model 3 exhibiting the most robust and significant positive associations with 12 chapters of the ICD-10 (Chapters: II, V, VI, VII, IX, X, XI, XII, XIV, XVI, XVII, XVIII, XIX, and XXI), highlighting the broad impact of pollution on human health beyond traditional respiratory and cardiovascular concerns. Moreover, positive associations were identified with specific respiratory diseases, including asthma, pneumonia, bronchiolitis, and acute bronchitis. Temperature, precipitation, and wind speed emerged as the meteorological factors most frequently associated with multiple health outcomes and ICD chapters. Notably, our findings reveal distinct patterns in associations across cities with different population sizes, highlighting the importance of considering contextual factors, such as city size, when assessing the health impacts of air pollution.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">Atmospheric pollutantParticulate matterOzoneHealth outcomesSmall cities</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.1016/j.apr.2024.102377" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+        <!-- ARTIGO 11 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="Given that climate change can exacerbate the health impacts of air pollutants, we evaluated the impact of temperature increase scenarios on air pollutant levels (O3, PM2.5, and PM10) in Porto Alegre and Recife, Brazil. Air pollutants and meteorological data were collected, and simulations were performed using a Support Vector Machine model with radial basis function kernel, applying temperature increases of 0.5°C, 1.0°C, 1.5°C, and 2.0°C to predict future pollutant concentrations. The data were analyzed seasonally and annually. Pearson correlation and principal component analyses (PCA) explored the relation with meteorological conditions. Simulations revealed that rising temperatures do not uniformly lead to increased pollutant concentrations; instead, the effects are highly dependent on local meteorological and climatic conditions. In Porto Alegre, O3 levels increased throughout the year, with a peak of 14.14% during the summer in the + 2.0°C scenario, while PM2.5 and PM10 also showed marked seasonal increases. Conversely, in Recife, O3 levels decreased in some seasons but increased during autumn, with particulate matter levels also rising during the summer. The findings underscore the need for health systems to consider these dynamics in their management strategies through location-specific investigations and emphasize the importance of policy-driven adaptive measures to build climate-resilient health systems.">
+            <div class="article-index">11</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2025</span>
+                    <span class="badge-qualis">A4</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="https://doi.org/10.1080/09603123.2025.2486598" target="_blank">Predicting air pollution changes due to temperature increases in two Brazilian capitals using machine learning – a necessary perspective for a climate resilient health future</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Adler Tavella, Ronan,</strong>  Gabriel Fuscald Scursone, Leopoldo dos Santos da Silva, Willian Cézar Nadaleti, Diana Francisca Adamatti, Simone Georges El Khouri Miraglia, and Flavio Manoel Rodrigues da Silva Júnior
+                </div>
+                <div class="article-source">
+                    International Journal of Environmental Health Research
+                    <span>·</span> v. 35, p. 1-16
+                </div>
+                <div class="article-abstract">
+                    Given that climate change can exacerbate the health impacts of air pollutants, we evaluated the impact of temperature increase scenarios on air pollutant levels (O3, PM2.5, and PM10) in Porto Alegre and Recife, Brazil. Air pollutants and meteorological data were collected, and simulations were performed using a Support Vector Machine model with radial basis function kernel, applying temperature increases of 0.5°C, 1.0°C, 1.5°C, and 2.0°C to predict future pollutant concentrations. The data were analyzed seasonally and annually. Pearson correlation and principal component analyses (PCA) explored the relation with meteorological conditions. Simulations revealed that rising temperatures do not uniformly lead to increased pollutant concentrations; instead, the effects are highly dependent on local meteorological and climatic conditions. In Porto Alegre, O3 levels increased throughout the year, with a peak of 14.14% during the summer in the + 2.0°C scenario, while PM2.5 and PM10 also showed marked seasonal increases. Conversely, in Recife, O3 levels decreased in some seasons but increased during autumn, with particulate matter levels also rising during the summer. The findings underscore the need for health systems to consider these dynamics in their management strategies through location-specific investigations and emphasize the importance of policy-driven adaptive measures to build climate-resilient health systems.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">Air qualityclimate changepredictive scenariospublic healthurban climate</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.1080/09603123.2025.2486598" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+        <!-- ARTIGO 12 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="This study investigated the relationship between surface meteorological variables and the levels of surface air pollutants (O3, PM10, and PM2.5) in scenarios of simulated temperature increases in Rio Grande, a medium-sized Brazilian city with strong industrial influence. This study utilized five years of daily meteorological data (from 1 January 2019 to 31 December 2023) to model atmospheric conditions and two years of daily air pollutant data (from 21 December 2021 to 20 December 2023) to simulate how pollutant levels would respond to annual temperature increases of 1 °C and 2 °C, employing a Support Vector Machine, a supervised machine learning algorithm. Predictive models were developed for both annual averages and seasonal variations. The predictive analysis results indicated that, when considering annual averages, pollutant concentrations showed a decreasing trend as temperatures increased. This same pattern was observed in seasonal scenarios, except during summer, when O3 levels increased with the simulated temperature rise. The greatest seasonal reduction in O3 occurred in winter (decreasing by 10.33% and 12.32% under 1 °C and 2 °C warming scenarios, respectively), while for PM10 and PM2.5, the most significant reductions were observed in spring. The lack of a correlation between temperature and pollutant levels, along with their relationship with other meteorological variables, explains the observed pattern in Rio Grande. This research provides important contributions to the understanding of the interactions between climate change, air pollution, and meteorological factors in similar contexts.">
+            <div class="article-index">12</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2025</span>
+                    <span class="badge-qualis">A4</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="https://doi.org/10.3390/atmos16040363" target="_blank">The Relationship Between Surface Meteorological Variables and Air Pollutants in Simulated Temperature Increase Scenarios in a Medium-Sized Industrial City</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Tavella, Ronan Adler,</strong>  das Neves, D. F., Silveira, G. d. O., Vieira de Azevedo, G. M. G., Brum, R. d. L., Bonifácio, A. d. S., Machado, R. A., Brum, L. W., Buffarini, R., Adamatti, D. F., &amp; da Silva Júnior, F. M. R.
+                </div>
+                <div class="article-source">
+                    Atmosphere
+                    <span>·</span> v. 16, p. 1-17
+                </div>
+                <div class="article-abstract">
+                    This study investigated the relationship between surface meteorological variables and the levels of surface air pollutants (O3, PM10, and PM2.5) in scenarios of simulated temperature increases in Rio Grande, a medium-sized Brazilian city with strong industrial influence. This study utilized five years of daily meteorological data (from 1 January 2019 to 31 December 2023) to model atmospheric conditions and two years of daily air pollutant data (from 21 December 2021 to 20 December 2023) to simulate how pollutant levels would respond to annual temperature increases of 1 °C and 2 °C, employing a Support Vector Machine, a supervised machine learning algorithm. Predictive models were developed for both annual averages and seasonal variations. The predictive analysis results indicated that, when considering annual averages, pollutant concentrations showed a decreasing trend as temperatures increased. This same pattern was observed in seasonal scenarios, except during summer, when O3 levels increased with the simulated temperature rise. The greatest seasonal reduction in O3 occurred in winter (decreasing by 10.33% and 12.32% under 1 °C and 2 °C warming scenarios, respectively), while for PM10 and PM2.5, the most significant reductions were observed in spring. The lack of a correlation between temperature and pollutant levels, along with their relationship with other meteorological variables, explains the observed pattern in Rio Grande. This research provides important contributions to the understanding of the interactions between climate change, air pollution, and meteorological factors in similar contexts.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">climate change</span>
+                    <span class="kw-tag">air quality</span>
+                    <span class="kw-tag">particulate matter</span>
+                    <span class="kw-tag">ozone</span>
+                    <span class="kw-tag">meteorological variables</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.3390/atmos16040363" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+        <!-- ARTIGO 13 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="Air pollution, particularly particulate matter (PM1, PM2.5, and PM10), poses a significant environmental health risk globally. This study evaluates the predictive performance of three machine learning algorithms, Support Vector Machine (SVM), K-Nearest Neighbors (KNN), and Random Forest (RF), for forecasting particulate matter concentrations in four Brazilian cities (Porto Alegre, Recife, Goiânia, and Belém), which share similar demographic and urbanization characteristics but differ in geographic and climatic conditions. Using data from the Copernicus Atmosphere Monitoring Service, daily concentrations of PM1, PM2.5, and PM10 were modeled based on meteorological variables, including air temperature, relative humidity, wind speed, atmospheric pressure, and accumulated precipitation. The models were tested under two climate change scenarios (+2 °C and +4 °C temperature increases). The results indicate that RF consistently outperformed the other models, achieving low RMSE values, around 0.3 µg/m3, across all cities, regardless of their geographic and climatic differences. KNN showed stable performance under moderate temperature increases (+2 °C) but exhibited higher errors under more extreme warming, while SVM demonstrated higher sensitivity to temperature changes, leading to greater variability in bivariate contexts. However, in multivariate contexts, SVM adjusted better, improving its predictive performance by accounting for the combined influence of multiple meteorological variables. These findings underscore the importance of selecting suitable machine learning models, with RF proving to be the most robust approach for particulate matter prediction across diverse environmental contexts. This study contributes valuable insights for the development of region-specific air quality management strategies in the face of climate change.">
+            <div class="article-index">13</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2025</span>
+                    <span class="badge-qualis">A4</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="https://doi.org/10.3390/atmos16091052" target="_blank">Evaluating Machine Learning Models for Particulate Matter Prediction Under Climate Change Scenarios in Brazilian Capitals</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Bonifácio, A. d. S.,</strong>  Tavella, R. A., Brum, R. d. L., Silveira, G. d. O., Fernandes, R. C., Scursone, G. F., Machado, R. A., Adamatti, D. F., &amp; da Silva Júnior, F. M. R.
+                </div>
+                <div class="article-source">
+                    Atmosphere
+                    <span>·</span> v. 16, p. 1-16
+                </div>
+                <div class="article-abstract">
+                    Air pollution, particularly particulate matter (PM1, PM2.5, and PM10), poses a significant environmental health risk globally. This study evaluates the predictive performance of three machine learning algorithms, Support Vector Machine (SVM), K-Nearest Neighbors (KNN), and Random Forest (RF), for forecasting particulate matter concentrations in four Brazilian cities (Porto Alegre, Recife, Goiânia, and Belém), which share similar demographic and urbanization characteristics but differ in geographic and climatic conditions. Using data from the Copernicus Atmosphere Monitoring Service, daily concentrations of PM1, PM2.5, and PM10 were modeled based on meteorological variables, including air temperature, relative humidity, wind speed, atmospheric pressure, and accumulated precipitation. The models were tested under two climate change scenarios (+2 °C and +4 °C temperature increases). The results indicate that RF consistently outperformed the other models, achieving low RMSE values, around 0.3 µg/m3, across all cities, regardless of their geographic and climatic differences. KNN showed stable performance under moderate temperature increases (+2 °C) but exhibited higher errors under more extreme warming, while SVM demonstrated higher sensitivity to temperature changes, leading to greater variability in bivariate contexts. However, in multivariate contexts, SVM adjusted better, improving its predictive performance by accounting for the combined influence of multiple meteorological variables. These findings underscore the importance of selecting suitable machine learning models, with RF proving to be the most robust approach for particulate matter prediction across diverse environmental contexts. This study contributes valuable insights for the development of region-specific air quality management strategies in the face of climate change.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">air pollution</span>
+                    <span class="kw-tag">air quality</span>
+                    <span class="kw-tag">Brazil</span>
+                    <span class="kw-tag">climate change</span>
+                    <span class="kw-tag">machine learning</span>
+                    <span class="kw-tag">meteorological variables</span>
+                    <span class="kw-tag">particulate matter</span>
+                    <span class="kw-tag">predictive modeling</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.3390/atmos16091052" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+        <!-- ARTIGO 14 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="Air pollution is associated with increases in hospital admissions for respiratory diseases, which demands reliable forecasts to support decision making in the Brazilian Unified Health System. This study analyzes the configuration of the XGBoost model using the daily demand for respiratory admissions in São Paulo, 2017 to 2022, and evaluates predictive quality in practice. We employed TimeSeriesSplit temporal validation with five folds and a 15-day embargo, preserving chronological order and keeping the test set isolated. Hyperparameter optimization with GridSearchCV explored n_estimators, learning_rate, max_depth, subsample, colsample_bytree, gamma, and min_child_weight. In testing, the model achieved R² = 0.653, RMSE = 22.692, MAE = 18.195, and Pearson correlation = 0.812, indicating good generalization. The residual analysis showed random dispersion around zero, greater variability at extremes, and increased errors in 2020 and 2021, consistent with pandemic effects. We conclude that the pipeline yields useful and auditable forecasts, with temporal robustness and limitations in extreme cases, contributing to hospital bed planning, surveillance, and risk communication for environmental health.">
+            <div class="article-index">14</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2025</span>
+                    <span class="badge-qualis">C</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="https://doi.org/10.54022/shsv6n4-035" target="_blank">Hyperparameter Optimization of XGBoost on Air Pollution and Respiratory Health Data</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Scursone, G. F.,</strong>  Adamatti, D. F., Silva Júnior, F. M. R. da, Tavella, R. A., Bonifácio, A. da S., Machado, R. A., Ferreira , D. P., &amp; Correia Filho, W. L. F.
+                </div>
+                <div class="article-source">
+                    Studies in Health Sciences
+                    <span>·</span> v. 6, p. 1-21
+                </div>
+                <div class="article-abstract">
+                    Air pollution is associated with increases in hospital admissions for respiratory diseases, which demands reliable forecasts to support decision making in the Brazilian Unified Health System. This study analyzes the configuration of the XGBoost model using the daily demand for respiratory admissions in São Paulo, 2017 to 2022, and evaluates predictive quality in practice. We employed TimeSeriesSplit temporal validation with five folds and a 15-day embargo, preserving chronological order and keeping the test set isolated. Hyperparameter optimization with GridSearchCV explored n_estimators, learning_rate, max_depth, subsample, colsample_bytree, gamma, and min_child_weight. In testing, the model achieved R² = 0.653, RMSE = 22.692, MAE = 18.195, and Pearson correlation = 0.812, indicating good generalization. The residual analysis showed random dispersion around zero, greater variability at extremes, and increased errors in 2020 and 2021, consistent with pandemic effects. We conclude that the pipeline yields useful and auditable forecasts, with temporal robustness and limitations in extreme cases, contributing to hospital bed planning, surveillance, and risk communication for environmental health.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">Air Quality</span>
+                    <span class="kw-tag">Machine Learning</span>
+                    <span class="kw-tag">Forecasting</span>
+                    <span class="kw-tag">Environmental Health</span>
+                    <span class="kw-tag">Data Governance</span>
+                    <span class="kw-tag">Public Policy</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.54022/shsv6n4-035" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+        <!-- ARTIGO 15 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="This study addresses the rise in respiratory disease hospitalizations associated with air pollution in large urban centers, using São Paulo, 2017 to 2022, as a case study. The objective was to clearly and practically assess the ability of XGBoost to predict daily fluctuations in hospitalizations and to provide operational inputs for  public  management.  We  employeda  reproducible  pipeline  with  median imputation, stabilization via PowerTransformer, a chronological train and test split at    70    to    30,    and    hyperparameter    tuning    with    GridSearchCV    using TimeSeriesSplit. Interpretability was ensured with SHAP and diagnosticsthrough a correlation matrix. On the test data, the model showed stable performance, R² ≈ 0.65, MAE ≈ 18, RMSE ≈ 22.7, r ≈ 0.81, with errors concentrated around zero. Explanations  indicated  a  dominant  contribution  of  seasonal  and  temporal markers, month, day of year, and day of week, followed by PM₁₀, PM₂.₅, and NO₂, and  the  strong  correlation  between  PM₁₀and  PM₂.₅,  r  =  0.96,  confirms redundancy among predictors. We conclude that XGBoost meets the proposed goal  by  bringing  environmental  surveillance  closer  to  care  management  in  the Brazilian  Unified  Health  System,  SUS,  while  preserving  transparency  and practical usefulness. Limitations are acknowledged, and advances are suggested in  contextual  variables,  tail-sensitive  loss  functions,  and  benchmarking  across algorithms">
+            <div class="article-index">15</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2025</span>
+                    <span class="badge-qualis">B1</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="https://doi.org/10.23900/2359-1552v14n9-4-2025" target="_blank">PREDICTIVE MODELING WITH XGBOOST FOR RESPIRATORY HOSPITALIZATIONS IN SÃO PAULO: PERFORMANCE AND DECISION SUPPORT IN THE PUBLIC HEALTH SYSTEM</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>Gabriel Fuscald Scursone,</strong>  Diana Francisca Adamatti , Flavio Manoel Rodrigues da Silva Júnior , Ronan Adler Tavella , Alicia da Silva Bonifácio , Ricardo Arend Machado , Washington Luiz Félix Correia Filho , Rosália Garcia Neves , José Augusto de Souza Júnior , Ronabson Cardoso Fernandes , Daniel Pereira Ferreira , Aline Neutzling Brum
+                </div>
+                <div class="article-source">
+                    Políticas Públicas e Cidades
+                    <span>·</span> v. 25, p. 1-21
+                </div>
+                <div class="article-abstract">
+                    This study addresses the rise in respiratory disease hospitalizations associated with air pollution in large urban centers, using São Paulo, 2017 to 2022, as a case study. The objective was to clearly and practically assess the ability of XGBoost to predict daily fluctuations in hospitalizations and to provide operational inputs for public management. We employed a reproducible pipeline with median imputation, stabilization via PowerTransformer, a chronological train and test split at 70 to 30, and hyperparameter tuning with GridSearchCV using TimeSeriesSplit. Interpretability was ensured with SHAP and diagnostics through a correlation matrix. On the test data, the model showed stable performance, R² ≈ 0.65, MAE ≈ 18, RMSE ≈ 22.7, r ≈ 0.81, with errors concentrated around zero. Explanations indicated a dominant contribution of seasonal and temporal markers, month, day of year, and day of week, followed by PM₁₀, PM₂.₅, and NO₂, and the strong correlation between PM₁₀ and PM₂.₅, r = 0.96, confirms redundancy among predictors. We conclude that XGBoost meets the proposed goal by bringing environmental surveillance closer to care management in the Brazilian Unified Health System, SUS, while preserving transparency and practical usefulness. Limitations are acknowledged, and advances are suggested in contextual variables, tail-sensitive loss functions, and benchmarking across algorithms.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">Artificial Intelligence.Boosting.XGBoost.Air Pollution.Public Health.Environmental Surveillance</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.23900/2359-1552v14n9-4-2025" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+        <!-- ARTIGO 16 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="Air pollution remains a major global public health concern, with fine particulate matter (PM2.5) recognized as an important environmental risk factor for lung cancer. This ecological study assessed lung cancer mortality attributable to long-term PM2.5 exposure in the 26 Brazilian state capitals and the Federal District (Brasília) from 2014 to 2023. Annual mean PM2.5 concentrations were estimated using reanalysis-based PM2.5 concentration estimates and atmospheric reanalysis data, ensuring consistent spatial and temporal coverage. Mortality data were obtained from the Brazilian Mortality Information System (SIM/DATASUS). Health impacts attributable to PM2.5 exposure were estimated using the World Health Organization’s AirQ+ model, based on exposure–response functions from the Global Burden of Disease framework. During the study period, 97.41% of annual PM2.5 means exceeded the WHO Air Quality Guideline of 5 µg/m3, and 28.52% surpassed the current Brazilian regulatory limit. Higher concentrations were observed mainly in capitals from the North and Southeast regions, reflecting the influence of biomass burning, urbanization, and regional atmospheric processes. Approximately 13.56% of lung cancer deaths in Brazilian capitals were attributable to PM2.5 exposure, with the highest absolute numbers concentrated in the Southeast region. These findings demonstrate a substantial and spatially heterogeneous lung cancer burden associated with urban air pollution in Brazil and highlight the need for strengthened air quality management and targeted urban public health policies.">
+            <div class="article-index">16</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2026</span>
+                    <span class="badge-qualis">A4</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="https://doi.org/10.3390/atmos17020175" target="_blank">PM2.5 and Lung Cancer: An Ecological Study (2014–2023) Using Data from Brazilian Capitals</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>de Almeida Neto,</strong>  B., de Moura, F. R., Bonifácio, A. d. S., da Silva, V. M., Brum, R. d. L., Tavella, R. A., Fernandes, R. C., Mariano, G. L., &amp; da Silva Júnior, F. M. R.
+                </div>
+                <div class="article-source">
+                    Atmosphere
+                    <span>·</span> v. 17, p. 1-15
+                </div>
+                <div class="article-abstract">
+                    Air pollution remains a major global public health concern, with fine particulate matter (PM2.5) recognized as an important environmental risk factor for lung cancer. This ecological study assessed lung cancer mortality attributable to long-term PM2.5 exposure in the 26 Brazilian state capitals and the Federal District (Brasília) from 2014 to 2023. Annual mean PM2.5 concentrations were estimated using reanalysis-based PM2.5 concentration estimates and atmospheric reanalysis data, ensuring consistent spatial and temporal coverage. Mortality data were obtained from the Brazilian Mortality Information System (SIM/DATASUS). Health impacts attributable to PM2.5 exposure were estimated using the World Health Organization's AirQ+ model, based on exposure–response functions from the Global Burden of Disease framework. During the study period, 97.41% of annual PM2.5 means exceeded the WHO Air Quality Guideline of 5 µg/m3, and 28.52% surpassed the current Brazilian regulatory limit. Higher concentrations were observed mainly in capitals from the North and Southeast regions, reflecting the influence of biomass burning, urbanization, and regional atmospheric processes. Approximately 13.56% of lung cancer deaths in Brazilian capitals were attributable to PM2.5 exposure, with the highest absolute numbers concentrated in the Southeast region. These findings demonstrate a substantial and spatially heterogeneous lung cancer burden associated with urban air pollution in Brazil and highlight the need for strengthened air quality management and targeted urban public health policies.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">fine particulate matter</span>
+                    <span class="kw-tag">lung cancer</span>
+                    <span class="kw-tag">air pollution</span>
+                    <span class="kw-tag">urban health</span>
+                    <span class="kw-tag">attributable mortality</span>
+                    <span class="kw-tag">Brazil</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.3390/atmos17020175" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- ARTIGO 17 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="Wildfire-related air pollution represents an escalating health threat in the Brazilian Amazon, where fine particulate matter (PM2.5) concentrations frequently exceed safe levels (5 µg/m−3). This study quantified long-term PM2.5 exposure and its impact on cardiorespiratory mortality across the seven Amazonian capitals, Belém, Boa Vista, Macapá, Manaus, Palmas, Porto Velho, and Rio Branco, between 2018 and 2023. In addition, disease-specific outcomes including chronic obstructive pulmonary disease (COPD), lung cancer (LC), and ischemic heart disease (IHD) were assessed. Daily PM2.5 data were obtained from the CAMS reanalysis, and mortality records from the Brazilian Health Data Platform. Health impacts were estimated using the WHO AirQ+ log-linear model. Annual mean PM2.5 ranged from 10.47 µg.m3 (Palmas, 2020) to 49.69 µg.m3 (Porto Velho, 2021), exceeding the WHO guideline of 5 µg.m3 in all cities. Most capitals experienced over 100 days per year above the 15 µg.m3 daily guideline, and significant correlations were observed between wildfire counts and PM2.5 in Porto Velho (r = 0.24) and Rio Branco (r = 0.21). Between 2018 and 2023, approximately 5472 (95 % CI: 4595–6711) deaths from circulatory diseases and 2621 (95 % CI: 864–4278) from respiratory diseases were attributable to PM2.5 exposure. COPD accounted for 627 (95 % CI: 462–781) deaths, LC for 427 (95 % CI: 314–534), and IHD for 304 (95 % CI: 150–467). The highest burdens occurred in Belém, Manaus, and Porto Velho. These findings demonstrate that persistent smoke from seasonal fires has become a critical environmental health crisis in the Amazon, demanding urgent action to prevent deforestation, reduce emissions, and protect population health.">
+            <div class="article-index">17</div>
+            <div class="article-body">
+                <div class="article-meta-top">
+                    <span class="badge-tipo badge-artigo">Artigo</span>
+                    <span class="badge-ano">2026</span>
+                    <span class="badge-qualis">A2</span>
+                </div>
+                <h2 class="article-title">
+                    <a href="https://doi.org/10.1016/j.tox.2026.154401" target="_blank">Impact of PM2.5 on cardiorespiratory mortality: A study in the capitals of Brazilian amazon rainforest</a>
+                </h2>
+                <div class="article-authors">
+                    <strong>de Oliveira Silveira, Gustavo,</strong>  de Lima Brum, Rodrigo, Tavella, Ronan Adler, da Silva Bonifácio, Alicia; Fernandes, Ronabson Cardoso, da Silva Júnior, Flavio Manoel Rodrigues
+                </div>
+                <div class="article-source">
+                    Toxicology
+                    <span>·</span> v. 521, p. 1-11
+                </div>
+                <div class="article-abstract">
+                    Wildfire-related air pollution represents an escalating health threat in the Brazilian Amazon, where fine particulate matter (PM2.5) concentrations frequently exceed safe levels (5 µg/m−3). This study quantified long-term PM2.5 exposure and its impact on cardiorespiratory mortality across the seven Amazonian capitals, Belém, Boa Vista, Macapá, Manaus, Palmas, Porto Velho, and Rio Branco, between 2018 and 2023. In addition, disease-specific outcomes including chronic obstructive pulmonary disease (COPD), lung cancer (LC), and ischemic heart disease (IHD) were assessed. Daily PM2.5 data were obtained from the CAMS reanalysis, and mortality records from the Brazilian Health Data Platform. Health impacts were estimated using the WHO AirQ+ log-linear model. Annual mean PM2.5 ranged from 10.47 µg.m3 (Palmas, 2020) to 49.69 µg.m3 (Porto Velho, 2021), exceeding the WHO guideline of 5 µg.m3 in all cities. Most capitals experienced over 100 days per year above the 15 µg.m3 daily guideline, and significant correlations were observed between wildfire counts and PM2.5 in Porto Velho (r = 0.24) and Rio Branco (r = 0.21). Between 2018 and 2023, approximately 5472 (95 % CI: 4595–6711) deaths from circulatory diseases and 2621 (95 % CI: 864–4278) from respiratory diseases were attributable to PM2.5 exposure. COPD accounted for 627 (95 % CI: 462–781) deaths, LC for 427 (95 % CI: 314–534), and IHD for 304 (95 % CI: 150–467). The highest burdens occurred in Belém, Manaus, and Porto Velho. These findings demonstrate that persistent smoke from seasonal fires has become a critical environmental health crisis in the Amazon, demanding urgent action to prevent deforestation, reduce emissions, and protect population health.
+                </div>
+                <div class="article-keywords">
+                    <span class="kw-tag">Air qualityAmazon RainforestHealth impact assessmentParticulate matterWildfire smoke</span>
+                </div>
+                <div class="article-footer">
+                    <a href="https://doi.org/10.1016/j.tox.2026.154401" target="_blank" class="btn-doi">
+                        🔗 DOI
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- ARTIGO 18 -->
+        <article class="article-card tipo-artigo" data-tipo="artigo"
+                 data-text="plataforma consulta dados internacões hospitalares doenças respiratórias clima">
+            <div class="article-index">18</div>
             <div class="article-body">
                 <div class="article-meta-top">
                     <span class="badge-tipo badge-artigo">Artigo</span>
@@ -97,68 +723,25 @@
                     <a href="#" target="_blank">Plataforma para Consulta de Dados sobre Internacões Hospitalares por Doenças Respiratórias, Poluição e Clima</a>
                 </h2>
                 <div class="article-authors">
-                    <strong>Allan M. Gonçalves</strong>; Ricardo A. Machado; Marla P. Melo; Ronabson C. Fernandes; Washington C. Filho; Rosalia Neves; Elizabet Silva; Flavio Da Silva-Junior; Diana F. Adamatti
+                    <strong>Allan M. Gonçalves,</strong> Ricardo A. Machado, Marla P. Melo, Ronabson C. Fernandes, Washington C. Filho, Rosalia Neves, Elizabet Silva, Flavio Da Silva-Junior, Diana F. Adamatti
                 </div>
                 <div class="article-source">
-                    WESAAC
-                    <span>·</span> v. 00, n. 0, p. 4
+                    WCAMA - 17º Workshop de Computação Aplicada à Gestão do Meio Ambiente e Recursos Naturais
+                    <span>·</span> v. 16, p. 4
                 </div>
                 <div class="article-keywords">
-                    <span class="kw-tag">palavra-chave 1</span>
-                    <span class="kw-tag">palavra-chave 1</span>
-                    <span class="kw-tag">palavra-chave 2</span>
-                    <span class="kw-tag">palavra-chave 3</span>
-                    <span class="kw-tag">palavra-chave 4</span>
-                    <span class="kw-tag">palavra-chave 5</span>
+                    <span class="kw-tag">Plataforma web</span>
+            
                 </div>
                 <div class="article-footer">
-                    <a href="https://doi.org/10.xxxx/xxxxx" target="_blank" class="btn-doi">
+                    <a href="https://doi.org/10" target="_blank" class="btn-doi">
                         🔗 DOI
                     </a>
                 </div>
             </div>
         </article>
 
-        <!-- ARTIGO 2 -->
-                   
-
-        <!-- ARTIGO 3 -->
         
-
-        <!-- ARTIGO 4 -->
-        
-
-        <!-- ARTIGO 5 -->
-        
-
-        <!-- ARTIGO 6 -->
-        
-
-        <!-- ARTIGO 7 -->
-        
-        <!-- ARTIGO 8 -->
-
-        <!-- ARTIGO 9 -->
-
-        <!-- ARTIGO 10 -->
-
-        <!-- ARTIGO 11 -->
-
-        <!-- ARTIGO 12 -->
-
-
-        <!-- ARTIGO 13 -->
-
-        <!-- ARTIGO 14 -->
-
-        <!-- ARTIGO 15 -->
-
-        <!-- ARTIGO 16 -->
-
-        <!-- ARTIGO 17 -->
-
-        <!-- ARTIGO 18 -->
-
         <!-- CAPÍTULO 1 -->
         <article class="article-card tipo-capitulo" data-tipo="capitulo"
                  data-text="capítulo livro epidemiologia exposição ambiental dióxido de nitrogênio saúde pública">
@@ -172,11 +755,11 @@
                     <a href="#" target="_blank">Epidemiological Studies on the Long-term Effects of Nitrogen Dioxide</a>
                 </h2>
                 <div class="article-authors">
-                    <strong>Elizabet Saes-Silva</strong>; Rosália Garcia Neves; Letícia Willrich; Ronan Adler Tavella; Flávio Manoel Rodrigues da Silva Júnior 
+                    <strong>Elizabet Saes-Silva,</strong> Rosália Garcia Neves, Letícia Willrich, Ronan Adler Tavella, Flávio Manoel Rodrigues da Silva Júnior
                 </div>
                 <div class="article-source">
-                    In: -- <em>nome do livro</em>
-                    <span>·</span> Ed. nome da editora, Cap. 5, p. 20
+            
+                    <span></span> Cap. 5, p. 1--20
                 </div>
                 <div class="article-keywords">
                     <span class="kw-tag">Nitrogen dioxide</span>
@@ -186,11 +769,7 @@
                     <span class="kw-tag">Public health</span>
 
                 </div>
-                <div class="article-footer">
-                    <a href="https://doi.org/10.xxxx/xxxxx" target="_blank" class="btn-doi">
-                        🔗 DOI
-                    </a>
-                </div>
+                
             </div>
         </article>
 
@@ -208,7 +787,7 @@
                     <a href="#" target="_blank">Aplicação de Modelo de Aprendizado de Máquina para a Previsão de Doenças Respiratórias em Ambientes Afetados pela Poluição do Ar</a>
                 </h2>
                 <div class="article-authors">
-                    <strong>Gabriel Fuscald Scursone</strong>
+                    <strong>Gabriel Fuscald Scursone;</strong>
                 </div>
                 <div class="article-source">
                     Qualificação de Tese de Doutorado
@@ -221,11 +800,7 @@
                     <span class="kw-tag">XGBoost</span>
                     <span class="kw-tag">saúde pública</span>
                 </div>
-                <div class="article-footer">
-                    <a href="#" target="_blank" class="btn-doi">
-                        📥 Repositório
-                    </a>
-                </div>
+                
             </div>
         </article>
 
@@ -242,7 +817,7 @@
                     <a href="#" target="_blank">Avaliação de impacto e mortalidade atribuída a poluentes do ar de uma região de exploração de carvão em cenários simulados de aumento de temperatura</a>
                 </h2>
                 <div class="article-authors">
-                    <strong>Alicia Bonifácio</strong>
+                    <strong>Alicia Bonifácio;</strong>
                 </div>
                 <div class="article-source">
                     Dissertação de Mestrado
@@ -255,7 +830,7 @@
                     <span class="kw-tag">epidemiologia</span>
                 </div>
                 <div class="article-footer">
-                    <a href="#" target="_blank" class="btn-doi">
+                    <a href="https://sistemas.furg.br/sistemas/sab/arquivos/bdtd/0000016713.pdf" target="_blank" class="btn-doi">
                         📥 Repositório
                     </a>
                 </div>
@@ -276,7 +851,7 @@
                     <a href="#" target="_blank">Avaliação entre diferentes dimensões de material particulados e fatores socioambientais no Brasil</a>
                 </h2>
                 <div class="article-authors">
-                    <strong>Gustavo de Oliveira Silveira</strong>
+                    <strong>Gustavo de Oliveira Silveira;</strong>
                 </div>
                 <div class="article-source">
                     Trabalho de Conclusão de Curso
@@ -288,11 +863,7 @@
                     <span class="kw-tag">sensores de baixo custo</span>
                     <span class="kw-tag">qualidade do ar</span>
                 </div>
-                <div class="article-footer">
-                    <a href="#" target="_blank" class="btn-doi">
-                        📥 Repositório
-                    </a>
-                </div>
+        
             </div>
         </article>
 
@@ -309,7 +880,7 @@
                     <a href="#" target="_blank">Associação entre os poluentes atmosféricos MP1, MP2,5 e MP10 e transtornos mentais e comportamentais</a>
                 </h2>
                 <div class="article-authors">
-                    <strong>Rafaela Danemberg de Oliveira</strong>
+                    <strong>Rafaela Danemberg de Oliveira;</strong>
                 </div>
                 <div class="article-source">
                     Trabalho de Conclusão de Curso
@@ -320,11 +891,7 @@
                     <span class="kw-tag">poluição do ar</span>
                     <span class="kw-tag">material particulado</span>
                 </div>
-                <div class="article-footer">
-                    <a href="#" target="_blank" class="btn-doi">
-                        📥 Repositório
-                    </a>
-                </div>
+                
             </div>
         </article>
 
@@ -342,7 +909,7 @@
                     <a href="#" target="_blank"> Titulo do relatório</a>
                 </h2>
                 <div class="article-authors">
-                    <strong>ClimArS</strong> – Equipe de Pesquisa
+                    <strong>ClimArS,</strong>  – Equipe de Pesquisa
                 </div>
                 <div class="article-source">
                     Relatório Técnico Nº 01/2024
@@ -386,13 +953,16 @@
         filterArticles();
     }
 
-    /* --- Busca + filtro combinados --- */
+    /* --- Busca + filtro + ordenação combinados --- */
     function filterArticles() {
         const query = document.getElementById('searchInput').value.toLowerCase();
-        const cards = document.querySelectorAll('.article-card');
+        const sortValue = document.getElementById('sortYear').value;
+        const container = document.getElementById('articlesGrid');
+        const cards = Array.from(document.querySelectorAll('.article-card'));
         let visible = 0;
 
-        cards.forEach(card => {
+        // Filtrar artigos
+        const filtered = cards.filter(card => {
             const matchTipo   = currentFilter === 'todos' || card.dataset.tipo === currentFilter;
             const searchText  = (card.dataset.text + ' ' + card.innerText).toLowerCase();
             const matchSearch = query === '' || searchText.includes(query);
@@ -400,10 +970,26 @@
             if (matchTipo && matchSearch) {
                 card.style.display = '';
                 visible++;
+                return true;
             } else {
                 card.style.display = 'none';
+                return false;
             }
         });
+
+        // Ordenar por ano se selecionado
+        if (sortValue !== '') {
+            filtered.sort((a, b) => {
+                const yearA = parseInt(a.querySelector('.badge-ano')?.innerText || 0);
+                const yearB = parseInt(b.querySelector('.badge-ano')?.innerText || 0);
+                return sortValue === 'desc' ? yearB - yearA : yearA - yearB;
+            });
+
+            // Reordenar no DOM
+            filtered.forEach(card => {
+                container.appendChild(card);
+            });
+        }
 
         document.getElementById('total-count').textContent = visible;
         document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
