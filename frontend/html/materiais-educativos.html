@@ -6,20 +6,111 @@
         <title>Materiais Educativos</title>
         
         <!-- Estilos -->
+        <link rel="stylesheet" href="../css/materiais-educativos.css">
         <link rel="stylesheet" href="../css/home.css">
         <link rel="stylesheet" href="../css/header.css">
         <link rel="stylesheet" href="../css/footer.css">
+        
     </head>
 
     <body>
         <main>
-            <section class="tools-section">
-                <div class="container">
-                    <h1>Materiais Educativos</h1>
-                    
-                    
-                </div>
+            <section class="materiais-educativos-header"> 
+                <h1>Materiais Educativos e Ações de Extensão</h1>
+                <p>Explore nossos materiais educativos e ações de extensão para aprender sobre mudanças climáticas!</p>
             </section>
+
+            <section class="tools-section">
+            <div class="container">
+                <h2>Nossos Materiais</h2>
+                <div class="materiais-educativos-grid">
+                    <div class="tool-card blue">
+                        <img src="" alt="">
+                        <div class="tool-info">
+                            <h3>Ações de extensão</h3>
+                            <p>Confira as ações de extensão realizadas pelo grupo de pesquisadores.</p>
+                            <a href="#secao-acoes" class="btn-dark">Acessar</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card blue">
+                        <img src="" alt="">
+                        <div class="tool-info">
+                            <h3>Cartilhas</h3>
+                            <p> Poluição do ar e mudanças climáticas: entenda a relação e os impactos.</p>
+                            <a href="#secao-cartilha" class="btn-dark">Acessar</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card blue">
+                        <img src="" alt="">
+                        <div class="tool-info">
+                            <h3>Atividades</h3>
+                            <p>Aprenda sobre mudanças climáticas através de atividades práticas.</p>
+                            <a href="../atividades.html" class="btn-dark">Acessar as atividades</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card blue">
+                        <img src="" alt="">
+                        <div class="tool-info">
+                            <h3>Jogos</h3>
+                            <p>Divirta-se enquanto aprende sobre mudanças climáticas.</p>
+                            <a href="../jogos.html" class="btn-dark">Acessar os jogos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+            
+            <div class="container-materiais-educativos">
+            
+                <div class="secao-materiais-educativos">
+                    <div class="materiais-educativos-header">
+                        <h2 id="secao-acoes">Ações de Extensão</h2>
+                        <p>Confira nossas ações de extensão sobre mudanças climáticas.</p>
+                        <br>
+                        <div class="viewer-container">
+                            <object data="/Acoes-extensao.pdf" type="application/pdf" width="100%" height="100%">
+                                <div class="pdf-fallback">
+                                    <p>Seu dispositivo não suporta a visualização direta de PDFs.</p>
+                                    <a href="/Acoes-extensao.pdf" download class="btn btn-download">
+                                        Baixar PDF
+                                    </a>
+                                </div>
+                            </object>
+                        </div>
+                        <br>
+                        <div class="botoes-grupo">
+                            <a href="/Acoes-extensao.pdf" download class="btn btn-download">
+                                Baixar PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="secao-materiais-educativos">
+                    <div class="materiais-educativos-header">
+                        <h2 id="secao-cartilha">Cartilha</h2>
+                        <p>Confia e baixe nossa cartilha de Mudanças Climáticas.</p>    
+                        <div class="viewer-container">
+                            <object data="/cartilha.pdf" type="application/pdf" width="100%" height="100%">
+                                <div class="pdf-fallback">
+                                    <p>Seu dispositivo não suporta a visualização direta de PDFs.</p>
+                                    <br>
+                                    <a href="/cartilha.pdf" download class="btn btn-download" style="display:inline-flex; flex:none;">Clique aqui para Baixar</a>
+                                </div>
+                            </object>
+                        </div>
+                    </div>
+                
+                    <div class="botoes-grupo">
+                        <a href="/cartilha.pdf" download class="btn btn-download">
+                            Baixar PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <div class="chart-header">
@@ -55,31 +146,9 @@
             });
         </script>
         
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const btnPredicao = document.getElementById("btn-predicao");
-                const btnPredicaoBeta = document.getElementById("btn-predicao-beta");
-
-                if (btnPredicao) {
-                btnPredicao.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    window.location.href = "../dashboard.html?view=shiny";
-                });
-                }
-
-                if (btnPredicaoBeta) {
-                btnPredicaoBeta.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    window.location.href = "../dashboard.html?view=xgb";
-                });
-                }
-            });
-        </script>
-
     <script src="../header-loader.js" defer></script>
     <script src="../footer-loader.js" defer></script>
     <script src="../js/chat-widget.js" defer></script>
     
-</body>
+    </body>
 </html>
