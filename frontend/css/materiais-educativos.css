@@ -52,6 +52,16 @@ body {
     margin-right: auto;
 }
 
+.jogos-educativos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Container dos Botões em Linha (Lado a Lado) */
 .botoes-grupo { 
     display: flex; 

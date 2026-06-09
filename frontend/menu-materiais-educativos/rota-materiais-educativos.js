@@ -66,6 +66,43 @@ function redirect_materiais_educativos(){
     // Rotas para os arquivos dos jogos 
     ////////////////////////////////////////
 
+     //Rota para o arquivo do jogo caça-palavras
+    router.get('/7-Erros-Parque.png', (req, res) => {
+        res.sendFile(path.join(__dirname, "../../materiais-educativos/jogos/7-Erros-Parque.png"));
+    });  
+    
+    //Rota para o arquivo do jogo caça-palavras
+    router.get('/Caca-palavras.pdf', (req, res) => {
+        res.sendFile(path.join(__dirname, "../../materiais-educativos/jogos/Caca-palavras.pdf"));
+    });
+    
+    // Rota para o arquivo do jogo de cruzadinha
+    router.get('/Cruzadinha-Facil-Intermediaria.pdf', (req, res) => {
+        res.sendFile(path.join(__dirname, "../../materiais-educativos/jogos/Cruzadinha-Facil-Intermediaria.pdf"));
+    });
+    
+    // Rota para o arquivo do jogo de desafio
+    router.get('/Desafio-Ilustrado-Final.pdf', (req, res) => {
+        res.sendFile(path.join(__dirname, "../../materiais-educativos/jogos/Desafio-Ilustrado-Final.pdf"));
+    });
+
+    // Rota para o arquivo do jogo da memória
+    router.get('/Jogo-memoria.pdf', (req, res) => {
+        res.sendFile(path.join(__dirname, "../../materiais-educativos/jogos/Jogo-memoria.pdf"));
+    });
+
+    // Rota para o arquivo do jogo dos patruleiros do ar
+    router.get('/Patrulheiros-do-Ar-jogos.pdf', (req, res) => {
+        res.sendFile(path.join(__dirname, "../../materiais-educativos/jogos/Patrulheiros-do-Ar-jogos.pdf"));
+    });
+
+    // Rota para o arquivo do gabarito dos patruleiros do ar
+    router.get('/Respostas-Patrulheiros-do-Ar.pdf', (req, res) => {
+        res.sendFile(path.join(__dirname, "../../materiais-educativos/jogos/Respostas-Patrulheiros-do-Ar.pdf"));
+    });
+
+
+
     return router;
 }
 
