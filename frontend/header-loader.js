@@ -8,7 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const homeLink = isHtmlFolder ? 'home.html' : 'html/home.html';
     const chartLink = isHtmlFolder ? '../front-page.html' : 'front-page.html';
+    const predshinyLink = isHtmlFolder ? '../predshiny.html' : 'predshiny.html';
     const dashboardLink = isHtmlFolder ? '../dashboard.html' : 'dashboard.html';
+
+    // ADD PÁGINA DE TUTORIAIS
+    const tutoriaisLink = isHtmlFolder ? 'tutoriais.html' : 'html/tutoriais.html';
+    //ADD PÁGINA DE MATERIAIS EDUCATIVOS
+    const materiaisEducativosLink = isHtmlFolder ? 'materiais-educativos.html' : 'html/materiais-educativos.html';
+    // ADD PÁGINA DE PUBLICAÇÕES
+    const publicacoesLink = isHtmlFolder ? 'publicacoes.html' : 'html/publicacoes.html';
+    //--- 
 
     const header = document.createElement('header');
     header.innerHTML = `
@@ -34,8 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
             <ul>
                 <li><a href="${homeLink}" id="nav-home">Início</a></li>
                 <li><a href="${chartLink}" id="nav-charts">Gráficos</a></li>
-                <li><a href="${dashboardLink}?view=shiny" id="btn-predicao">Previsões Mensais</a></li>
+                <li><a href="${predshinyLink}?view=shiny" id="btn-predicao">Previsões Mensais</a></li>
                 <li><a href="${dashboardLink}?view=xgb" id="btn-predicao-beta">Previsões Múltiplas</a></li>
+                <li><a href="${tutoriaisLink}" id="nav-tutoriais">Tutoriais</a></li>
+                <li><a href="${materiaisEducativosLink}" id="nav-materiais-educativos">Materiais Educativos</a></li>
+                <li><a href="${publicacoesLink}" id="nav-publicacoes">Publicações</a></li>
             </ul>
         </nav>
     `;
@@ -86,6 +98,24 @@ if (btn && nav && overlay) {
         } else {
             document.getElementById('btn-predicao-beta').classList.add('active');
         }
+        
+        } else if (currentPath.includes('predshiny.html')) {
+    const btn = document.getElementById('btn-predicao');
+    if (btn) btn.classList.add('active');
+}
+    // adiciona lógica para tutoriais
+    else if (currentPath.includes('tutoriais.html')) {
+            document.getElementById('nav-tutoriais').classList.add('active');
+    }
+
+    // adiciona lógica para materiais educativos
+    else if (currentPath.includes('materiais-educativos.html')) {
+        document.getElementById('nav-materiais-educativos').classList.add('active');
+    }
+
+    // adiciona lógica para publicações
+    else if (currentPath.includes('publicacoes.html')) {
+        document.getElementById('nav-publicacoes').classList.add('active');
     }
 
     header.querySelectorAll('nav a').forEach(link => {

@@ -1,0 +1,160 @@
+/* Título */
+.materiais-educativos-header {
+    text-align: center !important;
+    margin-bottom: 35px !important;
+    display: block !important;
+}
+
+
+/* Configurações Gerais Base */
+* { 
+    box-sizing: border-box; 
+    margin: 0; padding: 0; 
+}
+
+body { 
+    font-family: sans-serif; 
+    background-color: #f4f6f9; 
+    color: #333; 
+    padding: 15px; }
+
+/* Container Principal */
+.container-materiais-educativos { 
+    max-width: 1000px; 
+    margin: 0 auto; 
+    background: white; 
+    padding: 20px; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+}
+
+/* Cabeçalho de cada atividade */
+.materiais-educativos-header { 
+    display: flex; flex-direction: column; 
+    gap: 15px; 
+    margin-bottom: 15px; 
+    border-bottom: 2px solid #edf2f7; 
+    padding-bottom: 15px; 
+}
+
+.materiais-educativos-header h2 { 
+    color: #00306e;
+    font-size: 2rem;
+}
+
+.materiais-educativos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.jogos-educativos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Container dos Botões em Linha (Lado a Lado) */
+.botoes-grupo { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 10px; 
+}
+
+/* Estilo dos Botões */
+.btn { 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 8px; 
+    padding: 10px 20px; 
+    border-radius: 6px; 
+    font-weight: 600; 
+    text-decoration: none; 
+    font-size: 0.95rem; 
+    cursor: pointer; 
+    border: none; 
+    transition: background 0.2s ease, transform 0.1s ease; 
+    min-width: 160px; 
+    flex: 1; 
+}
+
+.btn:active { 
+    transform: scale(0.98); 
+}
+
+.btn-download { 
+    background: #00306e;
+    color: #fff; 
+}
+.btn-download:hover { 
+    background-color: #00306e; 
+}
+
+.btn-visualizar { 
+    background-color: #4a5568; 
+    color: white; display: none; 
+} /* Oculto por padrão, aparece no mobile se necessário */
+
+.btn-visualizar:hover { 
+    background-color: #2d3748; 
+}
+
+/* Container de Visualização */
+.viewer-container { 
+    width: 100%; 
+    height: 650px; 
+    border: 1px solid #e2e8f0; 
+    border-radius: 8px; 
+    overflow-y: auto; 
+    background-color: #f8fafc; 
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); 
+}
+
+.secao-materiais-educativos { 
+    margin-bottom: 40px; 
+}
+
+/* =======================================================
+    REGRAS PARA DISPOSITIVOS MÓVEIS (CELULARES E TABLETS)
+    ======================================================= */
+@media (max-width: 768px) {
+    body { padding: 10px; }
+    .container { padding: 15px; border-radius: 8px; }
+    .materiais-educativos-header h2 { 
+        font-size: 1.2rem; 
+        text-align: center; 
+    }
+    
+    /* Ajusta botões para ocupar a largura total no mobile se a tela for muito pequena */
+    .botoes-grupo { 
+        width: 100%; 
+    }
+    
+    .btn { 
+        flex: 1 1 100%; 
+        font-size: 0.9rem; 
+        padding: 12px; 
+    }
+    
+    /* Reduz a altura do visualizador em telas pequenas para melhor navegação */
+    .viewer-container { 
+        height: 450px; 
+    }
+    
+    /* Explicitação para PDF mobile: a tag object/embed costuma não renderizar em celulares. */
+    .pdf-fallback { 
+        display: block; 
+        padding: 20px; 
+        text-align: center; 
+        color: #4a5568; 
+    }
+}
