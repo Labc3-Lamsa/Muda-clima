@@ -1,412 +1,431 @@
-/* === Conteúdo principal === 
-  main {
-    flex: 1;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+/* ==========================================================================
+   FOLHA DE DASHBOARD ISOLADA - APENAS PREVISÕES MÚLTIPLAS (XGBOOST)
+   ========================================================================== */
+
+/* Fundo cinza e espaçamentos aplicados apenas à aba ativa do XGBoost */
+div.design-xgb {
+  background-color: #f1f5f9 !important;
+  padding: 40px 20px !important;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+  min-height: 100vh !important;
+  display: block !important;
+  box-sizing: border-box !important;
+}
+
+/* Título e Texto de Boas Vindas */
+div.design-xgb .dashboard-welcome {
+  text-align: center !important;
+  margin-bottom: 35px !important;
+  display: block !important;
+}
+div.design-xgb .dashboard-welcome h1 {
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  margin: 0 0 10px 0 !important;
+}
+div.design-xgb .dashboard-welcome p {
+  font-size: 1.05rem !important;
+  color: #475569 !important;
+  margin: 0 !important;
+}
+
+/* Card Principal do Formulário */
+div.design-xgb .db-main-form {
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05) !important;
+  padding: 40px !important;
+  max-width: 1140px !important;
+  margin: 0 auto 35px auto !important;
+  display: block !important;
+  box-sizing: border-box !important;
+}
+
+/* Estilo das seções (Fieldsets) */
+div.design-xgb .db-section {
+  border: none !important;
+  margin: 0 0 40px 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  float: none !important;
+}
+div.design-xgb .db-section legend {
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  margin-bottom: 20px !important;
+  padding-bottom: 8px !important;
+  border-bottom: 2px solid #00609C !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+/* Grades de linhas */
+div.design-xgb .db-row {
+  display: grid !important;
+  gap: 20px !important;
+  margin-bottom: 20px !important;
+  width: 100% !important;
+}
+div.design-xgb .db-row.cols-2 { grid-template-columns: repeat(2, 1fr) !important; }
+div.design-xgb .db-row.cols-3 { grid-template-columns: repeat(3, 1fr) !important; }
+div.design-xgb .db-row.cols-4 { grid-template-columns: repeat(4, 1fr) !important; }
+
+/* Grupos de Inputs */
+div.design-xgb .db-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+div.design-xgb .db-group label {
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  color: #334155 !important;
+  text-align: left !important;
+  margin: 0 !important;
+}
+div.design-xgb .db-group input,
+div.design-xgb .db-group select {
+  width: 100% !important;
+  height: 42px !important;
+  padding: 0 12px !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  font-size: 0.95rem !important;
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  box-sizing: border-box !important;
+}
+div.design-xgb .db-group input[readonly] {
+  background-color: #f8fafc !important;
+  color: #64748b !important;
+  cursor: not-allowed !important;
+}
+
+/* Controle de seleção de Doenças */
+div.design-xgb .disease-add-controls {
+  display: flex !important;
+  gap: 10px !important;
+  width: 100% !important;
+}
+div.design-xgb .disease-add-controls select { flex: 1 !important; }
+div.design-xgb .disease-add-controls button {
+  width: 42px !important;
+  height: 42px !important;
+  background-color: #e2e8f0 !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  font-weight: bold !important;
+  font-size: 1.1rem !important;
+  cursor: pointer !important;
+}
+
+/* Grade de Variáveis Climáticas */
+div.design-xgb .climate-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 16px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+div.design-xgb .climate-card {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  padding: 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  box-sizing: border-box !important;
+}
+div.design-xgb .climate-card label {
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  color: #475569 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+div.design-xgb .climate-card input {
+  width: 100% !important;
+  height: 38px !important;
+  padding: 0 12px !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  background: #ffffff !important;
+  font-size: 0.95rem !important;
+  box-sizing: border-box !important;
+}
+
+/* Grade do Histórico de Internações */
+div.design-xgb .lags-container {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  gap: 12px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+div.design-xgb .lag-card {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  padding: 10px 4px !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  box-sizing: border-box !important;
+}
+div.design-xgb .lag-card label {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  color: #64748b !important;
+}
+div.design-xgb .lag-card input {
+  width: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  text-align: center !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+/* Botão de Envio Centralizado */
+div.design-xgb .submit-container {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 10px !important;
+}
+div.design-xgb #btn-prever-submit {
+  background-color: #00609C !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 14px 50px !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease !important;
+}
+div.design-xgb #btn-prever-submit:hover {
+  background-color: #004b7c !important;
+}
+
+/* Card isolado do Gráfico */
+div.design-xgb .chart-container {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05) !important;
+  padding: 24px !important;
+  max-width: 1140px !important;
+  margin: 0 auto 35px auto !important;
+  box-sizing: border-box !important;
+}
+
+/* ==========================================================================
+   SEÇÃO DE RESULTADOS INFERIORES (CORRIGIDA - ESTILO HORIZONTAL CLEAN)
+   ========================================================================== */
+
+/* Container Geral dos Resultados */
+div.design-xgb .results-layout {
+  display: block !important;
+  max-width: 1140px !important;
+  margin: 30px auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Card Estilo Clean (idêntico ao seu print de referência) */
+div.design-xgb .result-block.main-prediction-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 16px !important;
+  padding: 30px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+/* Linha Superior do Card */
+div.design-xgb .card-header-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 25px !important;
+  width: 100% !important;
+}
+
+/* Badge Azul "Resultado da previsão" */
+div.design-xgb .prediction-badge {
+  background-color: #eff6ff !important;
+  color: #2563eb !important;
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+div.design-xgb .badge-icon {
+  width: 16px !important;
+  height: 16px !important;
+  object-fit: contain !important;
+}
+
+/* Texto da direita "Previsão para 1 dia" */
+div.design-xgb .prediction-scope {
+  color: #64748b !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+}
+
+/* Corpo Principal Distribuição Lado a Lado */
+div.design-xgb .card-body-content {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 40px !important;
+  width: 100% !important;
+}
+
+/* Grupo de Exibição do Valor Numérico */
+div.design-xgb .value-display-group {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+div.design-xgb .quantity-label {
+  color: #64748b !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+}
+
+/* TRATAMENTO VISUAL DO TEXTO GERADO PELO SEU JAVASCRIPT (#resultado)
+   Mantém o comportamento dinâmico e impede quebras verticais incômodas */
+div.design-xgb #resultado {
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  letter-spacing: -0.5px !important;
+  margin: 12px 0 !important;
+  line-height: 1.3 !important;
+  display: block !important;
+  white-space: normal !important;
+}
+
+/* Descrição de apoio inferior */
+div.design-xgb .fallback-description {
+  color: #64748b !important;
+  font-size: 0.9rem !important;
+  margin-top: 4px !important;
+}
+
+/* Grid de mini cards laterais (Tendência e Confiança) */
+div.design-xgb .metrics-subgrid {
+  display: flex !important;
+  gap: 16px !important;
+}
+div.design-xgb .sub-card {
+  border-radius: 12px !important;
+  padding: 20px !important;
+  min-width: 145px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  box-sizing: border-box !important;
+}
+div.design-xgb .sub-card.info-blue { background-color: #f8fafc !important; border: 1px solid #e2e8f0 !important; }
+div.design-xgb .sub-card.info-gray { background-color: #f8fafc !important; border: 1px solid #e2e8f0 !important; }
+
+div.design-xgb .sub-card-label {
+  color: #64748b !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+}
+div.design-xgb .sub-card-value {
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+}
+div.design-xgb .text-blue { color: #2563eb !important; }
+div.design-xgb .text-dark { color: #0f172a !important; }
+
+/* Responsividade Geral */
+@media (max-width: 1024px) {
+  div.design-xgb .db-row.cols-4,
+  div.design-xgb .db-row.cols-3,
+  div.design-xgb .climate-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  div.design-xgb .lags-container { grid-template-columns: repeat(4, 1fr) !important; }
+}
+
+@media (max-width: 950px) {
+  div.design-xgb .card-body-content { flex-direction: column !important; align-items: flex-start !important; gap: 20px !important; }
+  div.design-xgb .metrics-subgrid { width: 100% !important; justify-content: flex-start !important; }
+}
+
+div.design-xgb .disease-add-controls select {
+  padding-left: 35px !important; /* Abre espaço na esquerda para o ícone não cobrir o texto */
+  background-image: url('../img/Overlay.svg') !important; /* Insere o seu SVG */
+  background-repeat: no-repeat !important;
+  background-position: 10px center !important; /* Define a posição (10px da esquerda, centralizado verticalmente) */
+  background-size: 16px 16px !important; /* Ajusta o tamanho do seu ícone */
+}
+
+
+
+
+/* ==========================================================================
+   EXPLICAÇÕES DE VARIAVEIS
+========================================================================== */
+/* Container da interrogação */
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    background: #e0e0e0;
+    color: #333;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 18px;
+    margin-left: 5px;
   }
-  
-  === Área de filtros e formulários === 
-  .plot {
-    background: #fff;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    margin-bottom: 2rem;
-  }
-  
-  .plot p {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-  }
-  
-  .filter {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-   === Formulários === 
-  form {
-    display: grid;
-    gap: 1rem;
-  }
-  
-  #filter-form {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    align-items: end;
-    gap: 1rem;
-  }
-  
-  #prediction-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-   === Grupos de entrada === 
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group label {
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: 0.4rem;
-  }
-  
-  .form-group input,
-  .form-group select {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 0.5rem;
-    font-size: 0.9rem;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .form-group input:focus,
-  .form-group select:focus {
-    border-color: #3a86ff;
-    box-shadow: 0 0 0 2px rgba(58, 134, 255, 0.2);
-    outline: none;
-  }
-  
-   === Fieldsets === 
-  fieldset {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 1rem;
-    background: #fafafa;
-  }
-  
-  legend {
-    font-weight: 600;
-    color: #3a86ff;
-    padding: 0 0.5rem;
-  }
-  
-   === Botões === 
-  button {
-    background: #3a86ff;
+
+  /* Caixa com o texto explicativo (escondida por padrão) */
+  .tooltip-container .tooltip-texto {
+    visibility: hidden;
+    width: 240px;
+    background-color: #333;
     color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 0.75rem 1.2rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.1s ease;
-  }
-  
-  button:hover {
-    background: #2f6be0;
-  }
-  
-  button:active {
-    transform: scale(0.98);
-  }
-  
-   Botão de adicionar doença 
-  #add-disease-btn {
-    padding: 0.5rem 0.8rem;
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-left: 0.5rem;
-  }
-  
-   === Seletor de doenças === 
-  .disease-selector {
-    margin-bottom: 10px; 
-}
-
-.disease-add-controls {
-    display: flex;
-    gap: 8px;
-}
-
-.disease-add-controls select {
-    flex-grow: 1;
-    min-width: 0; 
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-#add-disease-btn {
-    flex-shrink: 0;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    font-size: 24px;
-    line-height: 40px;
-}
-
-.selected-diseases-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 8px;
-    margin-top: 5px;
-    min-height: 40px;
-}
-
-.disease-tag {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #007bff; 
-    color: white;
-    padding: 5px 10px;
-    border-radius: 16px;
-    font-size: 14px;
-}
-
-.remove-disease-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    line-height: 1;
-    padding: 0 2px;
-    transition: color 0.2s ease;
-}
-
-.remove-disease-btn:hover {
-    color: #c8e6c9;
-}
-  
-  === Blocos de resultado === 
-  .blocos-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-  
-  .bloco {
-    background: #fff;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  }
-  
-  .bloco h2 {
-    margin-top: 0;
-    color: #3a86ff;
-    font-size: 1.2rem;
-  }
-  
-  #resultado {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-top: 1rem;
-  }
-  
-  
-   === Responsividade === 
-  @media (max-width: 768px) {
-    header {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-  
-    .plot {
-      padding: 1.5rem;
-    }
-  
-    form {
-      grid-template-columns: 1fr;
-    }
-  
-    button {
-      width: 100%;
-    }
-  }
-   ================= PREDIÇÃO BETA ================= 
-
-#conteudo-beta {
-  width: 100%;
-  height: 100%;
-}
-
-.beta-container {
-  width: 100%;
-  height: calc(100vh - 120px);  ajusta conforme altura do header 
-  background: #ffffff;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-top: 10px;
-}
-
-.beta-container iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}*/
-
-/* === Conteúdo principal === */
-main {
-    flex: 1;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%; /* Garante que ocupe a largura total disponível */
-}
-
-/* === Área de filtros e formulários === */
-.plot {
-    background: #fff;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    margin-bottom: 2rem;
-}
-
-.filter {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-/* === Formulários === */
-form {
-    display: grid;
-    gap: 1rem;
-}
-
-#filter-form {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    align-items: end;
-    gap: 1rem;
-}
-
-#prediction-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: 0.4rem;
-    color: #1e293b;
-}
-
-.form-group input,
-.form-group select {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 0.6rem;
-    font-size: 0.9rem;
-}
-
-/* === Botões Gerais === */
-button {
-    background: #3a86ff;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 0.75rem 1.2rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-button:hover { background: #2f6be0; }
-button:active { transform: scale(0.98); }
-
-/* === Correção do Seletor de Doenças === */
-.disease-add-controls {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-
-#add-disease-btn {
-    flex-shrink: 0;
-    width: 42px;
-    height: 42px;
-    padding: 0;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0; /* Reset de margens anteriores */
-}
-
-.selected-diseases-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    background-color: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    text-align: left;
+    border-radius: 6px;
     padding: 10px;
-    margin-top: 8px;
-    min-height: 45px;
-}
-
-.disease-tag {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background-color: #3a86ff;
-    color: white;
-    padding: 4px 12px;
-    border-radius: 99px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Aparece acima do ícone */
+    left: 50%;
+    margin-left: -120px;
+    opacity: 0;
+    transition: opacity 0.3s;
     font-size: 13px;
-}
+    font-weight: normal;
+    line-height: 1.4;
+  }
 
-/* Reset específico para o botão de remover tag */
-button.remove-disease-btn {
-    background: transparent !important;
-    padding: 0 !important;
-    width: auto !important;
-    height: auto !important;
-    font-size: 16px !important;
-    line-height: 1 !important;
-    transform: none !important;
-    margin-left: 4px;
-}
-
-button.remove-disease-btn:hover {
-    color: #ff4d4d !important;
-}
-
-/* === Predição Beta Iframe === */
-.beta-container {
-    width: 100%;
-    height: 80vh; /* Melhor usar vh fixo para evitar quebras */
-    background: #ffffff;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-top: 10px;
-    border: 1px solid #e2e8f0;
-}
-
-.beta-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-/* === Responsividade Corrigida === */
-@media (max-width: 768px) {
-    #add-disease-btn {
-        width: 42px !important; /* Impede que o botão + fique 100% de largura */
-    }
-    
-    .blocos-container {
-        grid-template-columns: 1fr;
-    }
-}
+  /* Mostra o texto quando passa o mouse */
+  .tooltip-container:hover .tooltip-texto {
+    visibility: visible;
+    opacity: 1;
+  }
