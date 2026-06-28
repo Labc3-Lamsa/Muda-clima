@@ -9,6 +9,14 @@ const path = require('path');
 const createMunicipiosRouter = require('./routes/predicao.js');
 const redirect_home = require('./routes/home.js');
 
+// Rota para tutoriais
+const redirect_tutoriais = require('../frontend/menu-tutoriais/rota-tutoriais.js');
+// Rota para materiais educativos
+const redirect_materiais_educativos = require('../frontend/menu-materiais-educativos/rota-materiais-educativos.js');    
+// Rota para publicações
+const redirect_publicacoes = require('../frontend/menu-publicacoes/rota-publicacoes.js');
+
+
 //Dependências para o chatbot ===
 const fs = require('fs');
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
@@ -28,9 +36,20 @@ app.use(express.json());
 
 const municipiosRouter = createMunicipiosRouter(pool);
 const homeRouter = redirect_home();
+// Rota para tutoriais
+const tutoriaisRouter = redirect_tutoriais();
+// Rota para materiais educativos
+const materiais_educativosRouter = redirect_materiais_educativos();
+// Rota para publicações
+const publicacoesRouter = redirect_publicacoes();
+
 
 app.use(municipiosRouter);
 app.use(homeRouter);
+//Rotas para as funcionalidades de tutoriais, materiais educativos e publicações
+app.use(tutoriaisRouter);
+app.use(materiais_educativosRouter);
+app.use(publicacoesRouter);
 
 
 // Rota para obter todas as UFs
@@ -144,6 +163,7 @@ app.use('/modelos_XGboost_onnx_todas_cidades_pneumonia', express.static(path.joi
 
 app.use(express.static(path.join(__dirname, '../frontend')));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../frontend/html/home.html')));
+
 
 // =======================================================
 // =======================================================

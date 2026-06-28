@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt"> 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tutoriais</title>
+        
+        <!-- Estilos -->
+        <link rel="stylesheet" href="../css/home.css">
+        <link rel="stylesheet" href="../css/header.css">
+        <link rel="stylesheet" href="../css/footer.css">
+    </head>
+
+    <body>
+        <main>
+            <section class="tools-section">
+                <div class="container">
+                    <h1>Tutoriais</h1>
+                    
+                    <div class="tools-grid">
+                        <div class="tool-card teal">
+                            <h2>Ferramenta de Análise Gráfica</h2>
+                            <p>Aprenda a explorar os gráficos interativos para obter insights sobre clima, poluição e saúde respiratória.</p>
+                            <button onclick="window.open('/tutorial-graficos.pdf')">Abrir tutorial</button>
+                        </div>
+                        <div class="tool-card teal">
+                            <h2>Ferramenta de Previsão Mensal</h2>
+                            <p>Descubra como usar a ferramenta de previsão mensal para antecipar tendências e tomar decisões informadas.</p>
+                            <button onclick="window.open('/tutorial-previsao-mensal.pdf')">Abrir tutorial</button>
+                        </div>
+                        <div class="tool-card teal">
+                            <h2>Ferramenta de Previsão Múltipla</h2>
+                            <p>Descubra como usar a ferramenta de previsão múltipla para antecipar tendências e tomar decisões informadas.</p>
+                            <button onclick="window.open('/tutorial-previsao-multipla.pdf')">Abrir tutorial</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div class="chart-header">
+
+        <!-- ========================================================= -->
+        <!-- ===================== CHATBOT POPUP ===================== -->
+        <!-- ========================================================= -->
+
+        <link rel="stylesheet" href="/css/popup.css">
+
+        <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btn = document.createElement("div");
+            btn.id = "chat-float-btn";
+            btn.innerHTML = `<img src="../img/chatbot.svg" alt="Chatbot" class="chat-btn-icon">`;
+            document.body.appendChild(btn);
+
+            const popup = document.createElement("iframe");
+            popup.id = "chat-popup";
+            popup.src = "/chat.html"; 
+            document.body.appendChild(popup);
+
+            btn.addEventListener("click", () => {
+                if (popup.classList.contains("open")) {
+                popup.classList.remove("open");
+                setTimeout(() => popup.style.display = "none", 200);
+                } else {
+                popup.style.display = "block";
+                setTimeout(() => popup.classList.add("open"), 10);
+                }
+            });
+
+            });
+        </script>
+        
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const btnPredicao = document.getElementById("btn-predicao");
+                const btnPredicaoBeta = document.getElementById("btn-predicao-beta");
+
+                if (btnPredicao) {
+                btnPredicao.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    window.location.href = "../dashboard.html?view=shiny";
+                });
+                }
+
+                if (btnPredicaoBeta) {
+                btnPredicaoBeta.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    window.location.href = "../dashboard.html?view=xgb";
+                });
+                }
+            });
+        </script>
+
+    <script src="../header-loader.js" defer></script>
+    <script src="../footer-loader.js" defer></script>
+    <script src="../js/chat-widget.js" defer></script>
+    
+</body>
+</html>

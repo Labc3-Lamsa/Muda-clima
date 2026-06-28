@@ -378,4 +378,58 @@ div.design-xgb .disease-add-controls select {
   background-repeat: no-repeat !important;
   background-position: 10px center !important; /* Define a posição (10px da esquerda, centralizado verticalmente) */
   background-size: 16px 16px !important; /* Ajusta o tamanho do seu ícone */
+<<<<<<< HEAD
 }
+=======
+}
+
+
+
+
+/* ==========================================================================
+   EXPLICAÇÕES DE VARIAVEIS
+========================================================================== */
+/* Container da interrogação */
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    background: #e0e0e0;
+    color: #333;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 18px;
+    margin-left: 5px;
+  }
+
+  /* Caixa com o texto explicativo (escondida por padrão) */
+  .tooltip-container .tooltip-texto {
+    visibility: hidden;
+    width: 240px;
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Aparece acima do ícone */
+    left: 50%;
+    margin-left: -120px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 1.4;
+  }
+
+  /* Mostra o texto quando passa o mouse */
+  .tooltip-container:hover .tooltip-texto {
+    visibility: visible;
+    opacity: 1;
+  }
+>>>>>>> cb233dca1c14ac7305ac35d49e24a25f9ecc760e
