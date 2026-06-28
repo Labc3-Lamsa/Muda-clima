@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Previsões Epidemiológicas - Mensal</title>
+
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <link rel="stylesheet" href="./css/predshiny.css"> 
+  
+  <script src="header-loader.js" defer></script> 
+</head>
+<body>
+
+  <main id="conteudo-shiny-isolado">
+    
+<div class="shiny-iframe-container">
+  <iframe 
+    src="https://pneumoniabrasil.shinyapps.io/FURGS/"
+    title="Predição Beta - Modelo R"
+    loading="lazy" 
+    onload="this.style.opacity='1'"
+    style="opacity: 0; transition: opacity 0.5s ease; border: none; width: 100%; height: 100%;">
+  </iframe>
+</div>
+
+  </main>
+
+  <script src="footer-loader.js" defer></script>
+</body>
+</html>
