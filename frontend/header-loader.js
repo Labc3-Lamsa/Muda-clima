@@ -107,6 +107,9 @@ if (btn && nav && overlay) {
     const btn = document.getElementById('btn-predicao');
     if (btn) btn.classList.add('active');
 }
+<<<<<<< HEAD
+    
+=======
     // adiciona lógica para tutoriais
     else if (currentPath.includes('tutoriais.html')) {
             document.getElementById('nav-tutoriais').classList.add('active');
@@ -121,6 +124,7 @@ if (btn && nav && overlay) {
     else if (currentPath.includes('publicacoes.html')) {
         document.getElementById('nav-publicacoes').classList.add('active');
     }
+>>>>>>> cb233dca1c14ac7305ac35d49e24a25f9ecc760e
 
     header.querySelectorAll('nav a').forEach(link => {
         link.addEventListener('click', () => {

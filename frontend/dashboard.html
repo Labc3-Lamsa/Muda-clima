@@ -120,166 +120,31 @@
               <input type="number" id="pop_2021" name="pop_2021" step="any" readonly="">
             </div>
           </div>
-        </fieldset>
 
-        <fieldset class="db-section">
-          <legend>
-           <img src="../img/varclimaticas.svg" alt="Ícone" class="badge-icon"> Variáveis Climáticas
-          </legend>
-
-          <div class="climate-grid">
-            <div class="climate-card">
-              <label for="Direcao_vento">Direção do vento (°)
-                <span class="tooltip-container">?
-                  <span class="tooltip-texto">
-                    Indica a direção de onde o vento está vindo, expressa em graus angulares. O valor é medido em relação ao norte verdadeiro, onde 0 ou 360 representa o vento vindo do norte, 90 do leste, 180 do sul e 270 do oeste.
-                    </span>
-                </span>
-              </label>
-              <input type="number" min="0" max="360" id="Direcao_vento" name="Direcao_vento" step="1" required="" value="338">
-            </div>
-            <div class="climate-card">
-              <label for="Insolação">Insolação (Duração do Brilho do Sol)
-                <span class="tooltip-container">?
-                  <span class="tooltip-texto">
-                    Refere-se ao tempo total (em horas) em que o sol brilhou intensamente, sem ser bloqueado por nuvens. Não é o tempo de luz do dia, mas sim o tempo de céu limpo.
-                  </span>
-                </span>
-              </label>
-              <input type="number" min="0.0" max="12.0" id="Insolação" name="Insolação" step="0.1" required="" value="6.8">
-            </div>
-            <div class="climate-card">
-              <label for="num_dias_chuva">Ocorrência de chuva (1= sim, 0 = não)
-                <span class="tooltip-container">?
-                  <span class="tooltip-texto">
-                    1, se houve qualquer tipo de precipitação ou 0, se não houve precipitação, durante o período de observação. Indica se houve ou não ocorrência de chuva, independentemente da quantidade.
-                  </span>
-                </span>
-              </label>
-              <input type="number" min="0" max="1" id="num_dias_chuva" name="num_dias_chuva" step="1" required="" value="1">
-            </div>
-            <div class="climate-card">
-              <label for="Precipitacao">Precipitação (mm)
-                <span class="tooltip-container">?
-                  <span class="tooltip-texto">
-                    Refere-se à quantidade total de água que caiu em forma de chuva, e outros fenômenos meteorológicos (neve, garoa, granizo), durante um período específico.
-                  </span>
-                </span>
-              </label>
-              <input type="number" min="0.0" max="100.0"id="Precipitacao" name="Precipitacao" step="0.1" required="" value="0.1">
-            </div>
-            <div class="climate-card">
-              <label for="Pressao_atmosferica">Pressão atmosférica (mB)
-                <span class="tooltip-container">?
-                  <span class="tooltip-texto">
-                    Refere-se à força exercida pelo peso da coluna de ar acima de um ponto específico na superfície da Terra. É medida em milibares (mB). A pressão atmosférica influencia as condições climáticas, como a formação de ventos, tempestades e outros fenômenos meteorológicos.
-                  </span>
-                </span>
-              </label>
-              <input type="number" min="0.0" max="10000.0" id="Pressao_atmosferica" name="Pressao_atmosferica" step="any" required="" value="1004.6">
-            </div>
-            <div class="climate-card">
-              <label for="Radiacao_solar">Radiação solar (KJ/m²)
-                <span class="tooltip-container">?
-                  <span class="tooltip-texto">
-                    Refere-se à quantidade de energia solar que atinge uma área específica da superfície da Terra, medida em quilojoules por metro quadrado (KJ/m²).
-              </label>
-              <input type="number" min="0" max="10000" id="Radiacao_solar" name="Radiacao_solar" step="1" required="" value="3150">
-            </div>
-            <div class="climate-card">
-              <label for="Temperatura_ar">Temperatura do ar (°C)
-                <span class="tooltip-container">?
-                  <span class="tooltip-texto">
-                    Refere-se à quantidade de calor presente no ar, medida em graus Celsius (°C).
-                  </span>
-                </span>
-              </label>
-              <input type="number" min="-80.0" max="80.0" id="Temperatura_ar" name="Temperatura_ar" step="0.1" required="" value="27.7">
-            </div>
-            <div class="climate-card">
-              <label for="Temperatura_ponto_orvalho">Temperatura do Ponto de orvalho (°C)
-                <span class="tooltip-container">?
-                  <span class="tooltip-texto">
-                    Refere-se à temperatura de saturação do ar para que a umidade presente no ar comece a condensar em forma de gotas de água. 
-                  </span>
-                </span>
-              </label>
-              <input type="number" min="-80.0" max="80.0"id="Temperatura_ponto_orvalho" name="Temperatura_ponto_orvalho" step="0.1" required="" value="18.9">
-            </div>
-            <div class="climate-card">
-              <label for="Temperatura_maxima">Temperatura máxima (°C)
-                <span class="tooltip-container">?
-                  <span class="tooltip-texto">
-                    Refere-se à temperatura mais alta registrada em um determinado período, medida em graus Celsius (°C).
-                  </span>
-                </span>
-              </label>
-              <input type="number" min="-80.0" max="80.0"id="Temperatura_maxima" name="Temperatura_maxima" step="0.1" required="" value="28.5">
-            </div>
-            <div class="climate-card">
-              <label for="Temperatura_minima">Temperatura mínima (°C)
-                <span class="tooltip-container">?
-                  <span class="tooltip-texto">
-                    Refere-se à temperatura mais baixa registrada em um determinado período, medida em graus Celsius (°C).
-                  </span>
-                </span>
-              </label>
-              <input type="number" min="-80.0" max="80.0"id="Temperatura_minima" name="Temperatura_minima" step="0.1" required="" value="26.5">
-            </div>
-            <div class="climate-card">
-              <label for="Umidade_relativa">Umidade (%)
-                <span class="tooltip-container">?
-                  <span class="tooltip-texto">
-                    Refere-se à quantidade de vapor de água presente no ar em relação à quantidade máxima que o ar pode conter a uma determinada temperatura, expressa em porcentagem (%). Uma umidade relativa de 100% indica que o ar está completamente saturado de vapor de água, enquanto uma umidade relativa de 0% indica que o ar está completamente seco.
-                  </span>
-                </span>
-              </label>
-              <input type="number" min="0" max="100"id="Umidade_relativa" name="Umidade_relativa" step="1" required="" value="62">
-            </div>
-            <div class="climate-card">
-              <label for="Velocidade_vento"> Velocidade do vento (m/s)
-                <span class="tooltip-container">?
-                  <span class="tooltip-texto">
-                    Refere-se à velocidade do vento, medida em metros por segundo (m/s). Indica a rapidez com que o ar está se movendo em um determinado local.
-                  </span>
-                </span>
-              </label>
-              <input type="number" min="0.0" max="100.0" id="Velocidade_vento" name="Velocidade_vento" step="0.1" required="" value="3.6">
-            </div>
-            <div class="climate-card">
-              <label for="Velocidade_rajada"> Velocidade rajada (m/s)
-                <span class="tooltip-container">?
-                  <span class="tooltip-texto">
-                    Refere-se à velocidade máxima do vento em um determinado período, medida em metros por segundo (m/s).
-                  </span>
-                </span>
-              </label>
-              <input type="number" min="0.0" max="100.0" id="Velocidade_rajada" name="Velocidade_rajada" step="0.1" required="" value="1.2">
-            </div>
+          <div class="form-group">
+            <label for="pop_2021">População em 2021</label>
+            <input type="number" id="pop_2021" name="pop_2021" step="any" readonly>
           </div>
         </fieldset>
 
-        <fieldset class="db-section">
-          <legend>
-          <img src="../img/historico.svg" alt="Ícone" class="badge-icon"> Histórico de Internações
-          </legend>
-          <div class="lags-container">
-            <div class="lag-card"><label for="y_lag_1">Dia 1</label><input type="number" min="0" id="y_lag_1" name="y_lag_1" step="1" required="" value="0"></div>
-            <div class="lag-card"><label for="y_lag_2">Dia 2</label><input type="number" min="0" id="y_lag_2" name="y_lag_2" step="1" required="" value="0"></div>
-            <div class="lag-card"><label for="y_lag_3">Dia 3</label><input type="number" min="0" id="y_lag_3" name="y_lag_3" step="1" required="" value="0"></div>
-            <div class="lag-card"><label for="y_lag_4">Dia 4</label><input type="number" min="0" id="y_lag_4" name="y_lag_4" step="1" required="" value="0"></div>
-            <div class="lag-card"><label for="y_lag_5">Dia 5</label><input type="number" min="0" id="y_lag_5" name="y_lag_5" step="1" required="" value="0"></div>
-            <div class="lag-card"><label for="y_lag_6">Dia 6</label><input type="number" min="0" id="y_lag_6" name="y_lag_6" step="1" required="" value="0"></div>
-            <div class="lag-card"><label for="y_lag_7">Dia 7</label><input type="number" min="0" id="y_lag_7" name="y_lag_7" step="1" required="" value="0"></div>
-            <div class="lag-card"><label for="y_lag_8">Dia 8</label><input type="number" min="0" id="y_lag_8" name="y_lag_8" step="1" required="" value="0"></div>
-            <div class="lag-card"><label for="y_lag_9">Dia 9</label><input type="number" min="0" id="y_lag_9" name="y_lag_9" step="1" required="" value="0"></div>
-            <div class="lag-card"><label for="y_lag_10">Dia 10</label><input type="number" min="0"  id="y_lag_10" name="y_lag_10" step="1" required="" value="0"></div>
-            <div class="lag-card"><label for="y_lag_11">Dia 11</label><input type="number" min="0" id="y_lag_11" name="y_lag_11" step="1" required="" value="0"></div>
-            <div class="lag-card"><label for="y_lag_12">Dia 12</label><input type="number" min="0" id="y_lag_12" name="y_lag_12" step="1" required="" value="0"></div>
-            <div class="lag-card"><label for="y_lag_13">Dia 13</label><input type="number" min="0" id="y_lag_13" name="y_lag_13" step="1" required="" value="0"></div>
-            <div class="lag-card"><label for="y_lag_14">Dia 14</label><input type="number" min="0" id="y_lag_14" name="y_lag_14" step="1" required="" value="0"></div>
-          </div>
-        </fieldset>
+          <fieldset>
+            <legend>Histórico de internações</legend>
+                        <!-- Campos y_lag 
+            <div class="form-group"><label for="y_lag_1">Número de internações do dia anterior</label><input type="number" id="y_lag_1" name="y_lag_1" step="any" required></div>
+            <div class="form-group"><label for="y_lag_2">Número de internações de 2 dias anteriores</label><input type="number" id="y_lag_2" name="y_lag_2" step="any" required></div>
+            <div class="form-group"><label for="y_lag_3">Número de internações de 3 dias anteriores</label><input type="number" id="y_lag_3" name="y_lag_3" step="any" required></div>
+            <div class="form-group"><label for="y_lag_4">Número de internações de 4 dias anteriores</label><input type="number" id="y_lag_4" name="y_lag_4" step="any" required></div>
+            <div class="form-group"><label for="y_lag_5">Número de internações de 5 dias anteriores</label><input type="number" id="y_lag_5" name="y_lag_5" step="any" required></div>
+            <div class="form-group"><label for="y_lag_6">Número de internações de 6 dias anteriores</label><input type="number" id="y_lag_6" name="y_lag_6" step="any" required></div>
+            <div class="form-group"><label for="y_lag_7">Número de internações de 7 dias anteriores</label><input type="number" id="y_lag_7" name="y_lag_7" step="any" required></div>
+            <div class="form-group"><label for="y_lag_8">Número de internações de 8 dias anteriores</label><input type="number" id="y_lag_8" name="y_lag_8" step="any" required></div>
+            <div class="form-group"><label for="y_lag_9">Número de internações de 9 dias anteriores</label><input type="number" id="y_lag_9" name="y_lag_9" step="any" required></div>
+            <div class="form-group"><label for="y_lag_10">Número de internações de 10 dias anteriores</label><input type="number" id="y_lag_10" name="y_lag_10" step="any" required></div>
+            <div class="form-group"><label for="y_lag_11">Número de internações de 11 dias anteriores</label><input type="number" id="y_lag_11" name="y_lag_11" step="any" required></div>
+            <div class="form-group"><label for="y_lag_12">Número de internações de 12 dias anteriores</label><input type="number" id="y_lag_12" name="y_lag_12" step="any" required></div>
+            <div class="form-group"><label for="y_lag_13">Número de internações de 13 dias anteriores</label><input type="number" id="y_lag_13" name="y_lag_13" step="any" required></div>
+            <div class="form-group"><label for="y_lag_14">Número de internações de 14 dias anteriores</label><input type="number" id="y_lag_14" name="y_lag_14" step="any" required></div>
+          </fieldset>
 
         <div class="submit-container">
           <button type="submit" id="btn-prever-submit">

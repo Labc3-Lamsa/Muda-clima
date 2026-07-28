@@ -378,6 +378,9 @@ div.design-xgb .disease-add-controls select {
   background-repeat: no-repeat !important;
   background-position: 10px center !important; /* Define a posição (10px da esquerda, centralizado verticalmente) */
   background-size: 16px 16px !important; /* Ajusta o tamanho do seu ícone */
+<<<<<<< HEAD
+}
+=======
 }
 
 
@@ -429,3 +432,4 @@ div.design-xgb .disease-add-controls select {
     visibility: visible;
     opacity: 1;
   }
+>>>>>>> cb233dca1c14ac7305ac35d49e24a25f9ecc760e
