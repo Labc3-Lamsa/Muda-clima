@@ -102,29 +102,16 @@ if (btn && nav && overlay) {
         } else {
             document.getElementById('btn-predicao-beta').classList.add('active');
         }
-        
-        } else if (currentPath.includes('predshiny.html')) {
-    const btn = document.getElementById('btn-predicao');
-    if (btn) btn.classList.add('active');
-}
-<<<<<<< HEAD
-    
-=======
-    // adiciona lógica para tutoriais
-    else if (currentPath.includes('tutoriais.html')) {
-            document.getElementById('nav-tutoriais').classList.add('active');
-    }
-
-    // adiciona lógica para materiais educativos
-    else if (currentPath.includes('materiais-educativos.html')) {
+    } else if (currentPath.includes('predshiny.html')) {
+        const btnPredicao = document.getElementById('btn-predicao');
+        if (btnPredicao) btnPredicao.classList.add('active');
+    } else if (currentPath.includes('tutoriais.html')) {
+        document.getElementById('nav-tutoriais').classList.add('active');
+    } else if (currentPath.includes('materiais-educativos.html')) {
         document.getElementById('nav-materiais-educativos').classList.add('active');
-    }
-
-    // adiciona lógica para publicações
-    else if (currentPath.includes('publicacoes.html')) {
+    } else if (currentPath.includes('publicacoes.html')) {
         document.getElementById('nav-publicacoes').classList.add('active');
     }
->>>>>>> cb233dca1c14ac7305ac35d49e24a25f9ecc760e
 
     header.querySelectorAll('nav a').forEach(link => {
         link.addEventListener('click', () => {
