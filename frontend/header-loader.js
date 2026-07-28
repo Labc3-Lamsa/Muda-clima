@@ -6,17 +6,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const view = params.get("view");
     const isHtmlFolder = currentPath.includes('/html/');
 
-    const homeLink = isHtmlFolder ? 'home.html' : 'html/home.html';
-    const chartLink = isHtmlFolder ? '../front-page.html' : 'front-page.html';
-    const predshinyLink = isHtmlFolder ? '../predshiny.html' : 'predshiny.html';
-    const dashboardLink = isHtmlFolder ? '../dashboard.html' : 'dashboard.html';
+    const homeLink = '/html/home.html';
+    const chartLink = '/front-page.html';
+    const predshinyLink = '/predshiny.html';
+    const dashboardLink = '/dashboard.html';
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     // ADD PÁGINA DE TUTORIAIS
-    const tutoriaisLink = isHtmlFolder ? 'tutoriais.html' : 'html/tutoriais.html';
+    const tutoriaisLink = '/html/tutoriais.html';
     //ADD PÁGINA DE MATERIAIS EDUCATIVOS
-    const materiaisEducativosLink = isHtmlFolder ? 'materiais-educativos.html' : 'html/materiais-educativos.html';
+    const materiaisEducativosLink = '/html/materiais-educativos.html';
     // ADD PÁGINA DE PUBLICAÇÕES
-    const publicacoesLink = isHtmlFolder ? 'publicacoes.html' : 'html/publicacoes.html';
+    const publicacoesLink = '/html/publicacoes.html';
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //--- 
 
     const header = document.createElement('header');

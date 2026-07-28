@@ -34,6 +34,11 @@ const pool = new Pool({
 app.use(cors());
 app.use(express.json());
 
+app.use((req, res, next) => {
+    console.log(`[LOG ROTA]: ${req.method} ${req.url}`);
+    next();
+});
+
 const municipiosRouter = createMunicipiosRouter(pool);
 const homeRouter = redirect_home();
 // Rota para tutoriais
@@ -48,8 +53,13 @@ app.use(municipiosRouter);
 app.use(homeRouter);
 //Rotas para as funcionalidades de tutoriais, materiais educativos e publicações
 app.use(tutoriaisRouter);
-app.use(materiais_educativosRouter);
+
+
+//app.use(materiais_educativosRouter);
+app.use('/menu-materiais-educativos', materiais_educativosRouter);
+
 app.use(publicacoesRouter);
+app.use('/atividades', express.static(path.join(__dirname, '../frontend/materiais-educativos/atividades')));
 
 
 // Rota para obter todas as UFs
@@ -145,11 +155,6 @@ app.post('/datasus', async (req, res) => {
     }
 });
 
-app.use(express.static(path.join(__dirname, '../frontend')));
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/html/home.html'));
-});
-
 app.get('/frontpage', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/front-page.html'));
 });
@@ -162,7 +167,13 @@ app.get('/dashboard', (req, res) => {
 app.use('/modelos_XGboost_onnx_todas_cidades_pneumonia', express.static(path.join(__dirname, '../modelos_XGboost_onnx_todas_cidades_pneumonia')));
 
 app.use(express.static(path.join(__dirname, '../frontend')));
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../frontend/html/home.html')));
+app.get('/', (req, res) => {res.sendFile(path.join(__dirname, '../frontend/html/home.html'));
+});
+
+
+
+app.use('/materiais-arquivos', express.static(path.join(process.cwd(), 'materiais-educativos')));
+
 
 
 // =======================================================
