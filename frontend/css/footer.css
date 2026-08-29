@@ -1,0 +1,80 @@
+/* === FOOTER GERAL (Igual ao seu original) === */
+footer {
+    background-color: #f8fafc !important;
+    padding: 60px 0 20px 0;
+    border-top: 1px solid #e2e8f0;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* Mantém as colunas afastadas no Desktop */
+    padding: 0 50px;
+}
+
+.footer-column h4, .footer-partners h4 {
+    color: #00306e;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.footer-column a {
+    display: block;
+    color: #64748b;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.partner-logos {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.partner-logos img {
+    height: 40px;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 50px;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 20px;
+}
+
+/* === SÓ MUDA NO MOBILE (Aqui é onde a mágica acontece) === */
+@media (max-width: 850px) {
+    .footer-container {
+        flex-direction: column; /* Empilha as colunas verticalmente */
+        align-items: center;    /* Centraliza os textos */
+        text-align: center;     /* Centraliza o conteúdo das colunas */
+        padding: 0 20px;        /* Dá respiro nas bordas do celular */
+    }
+
+    .footer-column, .footer-partners {
+        width: 100%;
+        margin-bottom: 35px;    /* Espaço entre as seções empilhadas */
+    }
+
+    .partner-logos {
+        justify-content: center; /* Centraliza as logos no mobile */
+        flex-wrap: wrap;        /* Se as logos forem muitas, elas quebram linha */
+        gap: 20px;
+    }
+
+    .partner-logos img {
+        height: 35px;           /* Diminui levemente para caber melhor */
+    }
+    
+    .copyright {
+        margin-top: 30px;
+        padding: 20px 10px;
+    }
+}
