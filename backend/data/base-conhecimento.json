@@ -1,0 +1,330 @@
+{
+    "intencoes": [
+        {
+            "id": "sobre_projeto",
+            "gatilhos": [
+                "o que é o climars",
+                "o que é esse projeto",
+                "fale sobre o projeto",
+                "quem fez",
+                "quem criou",
+                "quem desenvolveu",
+                "objetivo do projeto",
+                "missão",
+                "furg",
+                "icb",
+                "c3",
+                "parceiros",
+                "é oficial",
+                "ministério da saúde",
+                "projeto experimental"
+            ],
+            "resposta": "",
+            "sugestoes": [
+                "Quais são as fontes dos dados?",
+                "Como usar os gráficos?",
+                "Quantas cidades estão disponíveis?"
+            ]
+        },
+        {
+            "id": "fontes_dados",
+            "gatilhos": [
+                "fontes dos dados",
+                "de onde vêm os dados",
+                "datasus",
+                "sih",
+                "inmet",
+                "iema",
+                "estações meteorológicas",
+                "dados públicos",
+                "período dos dados",
+                "quantos dados foram usados",
+                "registros"
+            ],
+            "resposta": "",
+            "sugestoes": [
+                "O que são os dados de clima?",
+                "Quais doenças estão disponíveis?",
+                "Como usar os gráficos?"
+            ]
+        },
+        {
+            "id": "navegar_graficos",
+            "gatilhos": [
+                "como usar os gráficos",
+                "página de gráficos",
+                "filtros",
+                "como filtrar",
+                "visualizar dados",
+                "navegar",
+                "explorar gráficos",
+                "como funciona a página de gráficos"
+            ],
+            "resposta": "",
+            "sugestoes": [
+                "Como exportar os dados?",
+                "Quais doenças posso visualizar?",
+                "Como fazer uma previsão?"
+            ]
+        },
+        {
+            "id": "exportar",
+            "gatilhos": [
+                "exportar",
+                "baixar dados",
+                "download",
+                "csv",
+                "xlsx",
+                "excel",
+                "pdf",
+                "png",
+                "formatos disponíveis",
+                "salvar resultado"
+            ],
+            "resposta": "",
+            "sugestoes": [
+                "Como navegar pelos gráficos?",
+                "Como fazer uma previsão?"
+            ]
+        },
+        {
+            "id": "previsao_mensal",
+            "gatilhos": [
+                "previsão mensal",
+                "modelo shiny",
+                "shiny",
+                "previsão em r",
+                "previsão por mês",
+                "como funciona a previsão mensal"
+            ],
+            "resposta": "",
+            "sugestoes": [
+                "Como funciona a previsão diária?",
+                "O que é o XGBoost?",
+                "Quais cidades estão disponíveis?"
+            ]
+        },
+        {
+            "id": "previsao_multipla",
+            "gatilhos": [
+                "previsão diária",
+                "como fazer previsão",
+                "gerar previsão",
+                "preencher formulário",
+                "xgboost previsão",
+                "644 cidades",
+                "campos do formulário",
+                "como é gerada a previsão",
+                "dados para previsão",
+                "quais dados preciso",
+                "campo em branco",
+                "número errado",
+                "internações dos últimos 14 dias",
+                "terminou o cálculo",
+                "offline",
+                "resultado da previsão",
+                "interpretar resultado"
+            ],
+            "resposta": "",
+            "sugestoes": [
+                "O que é o XGBoost?",
+                "Quais variáveis climáticas são usadas?",
+                "Qual é o erro médio do modelo?"
+            ]
+        },
+        {
+            "id": "doencas",
+            "gatilhos": [
+                "doenças disponíveis",
+                "cid-10",
+                "grupos de doenças",
+                "pneumonia",
+                "quais doenças",
+                "14 grupos",
+                "categorias de doenças",
+                "o que é cada doença"
+            ],
+            "resposta": "",
+            "sugestoes": [
+                "Como navegar pelos gráficos?",
+                "Quais são as fontes dos dados?",
+                "Como fazer uma previsão?"
+            ]
+        },
+        {
+            "id": "cidades",
+            "gatilhos": [
+                "quantas cidades",
+                "minha cidade não aparece",
+                "cidade não encontrada",
+                "cidades disponíveis",
+                "cidades incluídas",
+                "cidades não incluídas",
+                "quando minha cidade será adicionada",
+                "por que não tem minha cidade",
+                "melhor resultado por cidade",
+                "cidade com mais precisão",
+                "comparar cidades"
+            ],
+            "resposta": "",
+            "sugestoes": [
+                "Qual é o erro médio do modelo?",
+                "O que é o XGBoost?",
+                "Como fazer uma previsão?"
+            ]
+        },
+        {
+            "id": "modelo_ia",
+            "gatilhos": [
+                "xgboost",
+                "modelo de ia",
+                "inteligência artificial",
+                "aprendizado de máquina",
+                "machine learning",
+                "usa ia",
+                "rede neural",
+                "árvore de decisão",
+                "boosting",
+                "regressor",
+                "como funciona o modelo",
+                "aprende sozinho",
+                "atualiza automaticamente",
+                "período de treinamento",
+                "dados de treinamento",
+                "dados faltantes",
+                "valores nulos"
+            ],
+            "resposta": "",
+            "sugestoes": [
+                "Qual é a precisão do modelo?",
+                "Quais variáveis climáticas são usadas?",
+                "O modelo pode errar?"
+            ]
+        },
+        {
+            "id": "precisao",
+            "gatilhos": [
+                "erro médio",
+                "precisão do modelo",
+                "pode errar",
+                "modelo erra",
+                "é seguro",
+                "confiável",
+                "caruaru",
+                "trindade",
+                "porto seguro",
+                "melhores resultados",
+                "previsão aumenta",
+                "prevê surtos",
+                "casos ou porcentagem",
+                "variabilidade",
+                "cidades grandes",
+                "substitui médicos"
+            ],
+            "resposta": "",
+            "sugestoes": [
+                "Como fazer uma previsão?",
+                "Quais cidades têm melhor resultado?",
+                "O modelo substitui médicos?"
+            ]
+        },
+        {
+            "id": "tutoriais",
+            "gatilhos": [
+                "tutoriais",
+                "onde encontrar tutoriais",
+                "como aprender a usar",
+                "guia de uso",
+                "passo a passo",
+                "vídeo tutorial",
+                "documentação",
+                "como usar"
+            ],
+            "resposta": "",
+            "sugestoes": [
+                "Onde estão os materiais educativos?",
+                "Como usar os gráficos?",
+                "Como fazer uma previsão?"
+            ]
+        },
+        {
+            "id": "materiais_educativos",
+            "gatilhos": [
+                "materiais educativos",
+                "conteúdo educacional",
+                "aprender sobre clima",
+                "aprender sobre saúde",
+                "clima e saúde",
+                "educação em saúde",
+                "infográfico",
+                "material de apoio"
+            ],
+            "resposta": "",
+            "sugestoes": [
+                "Onde estão os tutoriais?",
+                "O que são os dados de poluição?",
+                "Quais publicações estão disponíveis?"
+            ]
+        },
+        {
+            "id": "publicacoes",
+            "gatilhos": [
+                "publicações",
+                "artigos científicos",
+                "pesquisa",
+                "literatura",
+                "papers",
+                "referências científicas",
+                "quais publicações estão disponíveis?",
+                "estudos"
+            ],
+            "resposta": "",
+            "sugestoes": [
+                "Quem desenvolveu o projeto?",
+                "Quais são as fontes dos dados?",
+                "Onde estão os materiais educativos?"
+            ]
+        },
+        {
+            "id": "poluicao",
+            "gatilhos": [
+                "poluição",
+                "dados de poluição",
+                "iema poluição",
+                "qualidade do ar",
+                "poluentes",
+                "poluição na previsão",
+                "fumaça",
+                "ainda não integrado"
+            ],
+            "resposta": "",
+            "sugestoes": [
+                "Quais variáveis climáticas são usadas?",
+                "Quais são as fontes dos dados?",
+                "O que é o XGBoost?"
+            ]
+        },
+        {
+            "id": "clima",
+            "gatilhos": [
+                "variáveis climáticas",
+                "temperatura",
+                "umidade",
+                "chuva",
+                "vento",
+                "pressão atmosférica",
+                "radiação solar",
+                "dados de clima",
+                "clima da minha cidade",
+                "dados meteorológicos",
+                "quais variáveis são usadas"
+            ],
+            "resposta": "",
+            "sugestoes": [
+                "Quais são as fontes dos dados?",
+                "O que é o INMET?",
+                "Como funciona o modelo de IA?"
+            ]
+        }
+    ]
+}

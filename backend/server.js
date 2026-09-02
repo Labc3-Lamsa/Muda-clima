@@ -1,10 +1,21 @@
 process.env.PATH += ":/usr/bin:/usr/local/bin";
+require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
 const app = express();
 const { Pool } = require('pg');
 const path = require('path');
+const session = require('express-session');
+
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60 * 60 * 1000, httpOnly: true } // 60 min
+}));
+
 
 const createMunicipiosRouter = require('./routes/predicao.js');
 const redirect_home = require('./routes/home.js');
@@ -12,7 +23,7 @@ const redirect_home = require('./routes/home.js');
 // Rota para tutoriais
 const redirect_tutoriais = require('../frontend/menu-tutoriais/rota-tutoriais.js');
 // Rota para materiais educativos
-const redirect_materiais_educativos = require('../frontend/menu-materiais-educativos/rota-materiais-educativos.js');    
+const redirect_materiais_educativos = require('../frontend/menu-materiais-educativos/rota-materiais-educativos.js');
 // Rota para publicações
 const redirect_publicacoes = require('../frontend/menu-publicacoes/rota-publicacoes.js');
 
@@ -76,7 +87,7 @@ app.get('/ufs', async (req, res) => {
 // Rota para obter cidades por UF digitada
 app.get('/cidades/:uf', async (req, res) => {
     const { uf } = req.params;
-    
+
     try {
         const resultado = await pool.query('SELECT nome_munic FROM municipios WHERE uf = $1 ORDER BY nome_munic;', [uf]);
         res.json(resultado.rows.map(row => row.nome_munic));
@@ -104,7 +115,7 @@ app.get('/estacoes/:cidade', async (req, res) => {
 app.post('/datasus', async (req, res) => {
     console.log(req.body); // DEBUG
     const { uf, city, station, group, startDate, endDate, inmet, pop } = req.body;
-    
+
     try {
         const queryText = `
             SELECT 
@@ -167,7 +178,8 @@ app.get('/dashboard', (req, res) => {
 app.use('/modelos_XGboost_onnx_todas_cidades_pneumonia', express.static(path.join(__dirname, '../modelos_XGboost_onnx_todas_cidades_pneumonia')));
 
 app.use(express.static(path.join(__dirname, '../frontend')));
-app.get('/', (req, res) => {res.sendFile(path.join(__dirname, '../frontend/html/home.html'));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/html/home.html'));
 });
 
 
