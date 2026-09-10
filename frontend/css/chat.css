@@ -115,3 +115,68 @@ body {
 .chat-input button:hover {
   background: #3a86ff;
 }
+
+/* sugestoes */
+.container-sugestoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0 10px 0;
+}
+
+.chip-sugestao {
+  background: #ffffff;
+  color: #0d47a1;
+  border: 1.5px solid #0d47a1;
+  border-radius: 16px;
+  padding: 5px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.chip-sugestao:hover {
+  background: #0d47a1;
+  color: #ffffff;
+}
+
+/* animacao 3 pontinhos */
+.indicador-digitando p {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  min-height: 20px;
+}
+
+.ponto {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #0d47a1;
+  border-radius: 50%;
+  animation: bounce 1.2s infinite ease-in-out;
+}
+
+.ponto:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.ponto:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+
+  40% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}

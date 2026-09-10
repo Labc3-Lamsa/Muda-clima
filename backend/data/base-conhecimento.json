@@ -4,6 +4,8 @@
             "id": "sobre_projeto",
             "gatilhos": [
                 "o que é o climars",
+                "o que",
+                "climars",
                 "o que é esse projeto",
                 "fale sobre o projeto",
                 "quem fez",
@@ -19,7 +21,7 @@
                 "ministério da saúde",
                 "projeto experimental"
             ],
-            "resposta": "",
+            "resposta": "teste",
             "sugestoes": [
                 "Quais são as fontes dos dados?",
                 "Como usar os gráficos?",
