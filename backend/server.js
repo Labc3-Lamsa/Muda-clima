@@ -194,29 +194,29 @@ app.use('/materiais-arquivos', express.static(path.join(process.cwd(), 'materiai
 
 let saudacaoEnviada = false;
 
-function similarity(a, b) {
-    a = a.toLowerCase();
-    b = b.toLowerCase();
+// function similarity(a, b) {
+//     a = a.toLowerCase();
+//     b = b.toLowerCase();
 
-    if (a.length < 2 || b.length < 2) return 0;
+//     if (a.length < 2 || b.length < 2) return 0;
 
-    const bigrams = new Map();
-    for (let i = 0; i < a.length - 1; i++) {
-        const gram = a.substring(i, i + 2);
-        bigrams.set(gram, (bigrams.get(gram) || 0) + 1);
-    }
+//     const bigrams = new Map();
+//     for (let i = 0; i < a.length - 1; i++) {
+//         const gram = a.substring(i, i + 2);
+//         bigrams.set(gram, (bigrams.get(gram) || 0) + 1);
+//     }
 
-    let intersection = 0;
-    for (let i = 0; i < b.length - 1; i++) {
-        const gram = b.substring(i, i + 2);
-        if (bigrams.get(gram)) {
-            intersection++;
-            bigrams.set(gram, bigrams.get(gram) - 1);
-        }
-    }
+//     let intersection = 0;
+//     for (let i = 0; i < b.length - 1; i++) {
+//         const gram = b.substring(i, i + 2);
+//         if (bigrams.get(gram)) {
+//             intersection++;
+//             bigrams.set(gram, bigrams.get(gram) - 1);
+//         }
+//     }
 
-    return (2.0 * intersection) / (a.length + b.length - 2);
-}
+//     return (2.0 * intersection) / (a.length + b.length - 2);
+// }
 
 const chatRouter = require('./routes/chat.js');
 app.use(chatRouter);
