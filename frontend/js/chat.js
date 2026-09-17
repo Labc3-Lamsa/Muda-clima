@@ -89,15 +89,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     mostrarDigitando();
 
+    const delayMinimo = new Promise(resolve => setTimeout(resolve, 700));
+
     try {
-      const resposta = await fetch("/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message: mensagem,
-          paginaAtual: detectarContexto(),
+      const [resposta] = await Promise.all([
+        fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: mensagem,
+            paginaAtual: detectarContexto(),
+          }),
         }),
-      });
+        delayMinimo,
+      ]);
 
       const dados = await resposta.json();
       removerDigitando();

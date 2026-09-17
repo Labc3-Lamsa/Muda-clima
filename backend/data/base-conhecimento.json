@@ -4,7 +4,6 @@
             "id": "sobre_projeto",
             "gatilhos": [
                 "o que é o climars",
-                "o que",
                 "climars",
                 "o que é esse projeto",
                 "fale sobre o projeto",
@@ -21,7 +20,7 @@
                 "ministério da saúde",
                 "projeto experimental"
             ],
-            "resposta": "teste",
+            "resposta": "O ClimArS é um projeto da FURG (Universidade Federal do Rio Grande) que analisa a relação entre clima, poluição e saúde respiratória no Brasil. 🌡️🫁\n\nFoi desenvolvido em parceria com o ICB e o C3, e tem três objetivos principais:\n• Entender como fatores ambientais influenciam internações por doenças respiratórias (CID-10)\n• Apoiar profissionais de saúde e gestores do SUS na tomada de decisão\n• Fornecer visualizações, previsões e insights para pesquisadores e cidadãos\n\nImportante: é um projeto de pesquisa experimental, sem caráter oficial do Ministério da Saúde.",
             "sugestoes": [
                 "Quais são as fontes dos dados?",
                 "Como usar os gráficos?",
@@ -43,7 +42,7 @@
                 "quantos dados foram usados",
                 "registros"
             ],
-            "resposta": "",
+            "resposta": "O ClimArS usa três fontes de dados públicos: 🏥📡\n\n• **SIH/DATASUS** — internações hospitalares por doenças respiratórias (CID-10), período 2000–2023\n• **INMET** — variáveis meteorológicas coletadas de 273 estações em todo o Brasil (temperatura, umidade, chuva, vento, pressão, radiação solar)\n• **IEMA** — dados de poluição do ar (ainda não integrados ao modelo preditivo)\n\nNo total, foram usados mais de 5,2 milhões de registros de internações para treinar os modelos.",
             "sugestoes": [
                 "O que são os dados de clima?",
                 "Quais doenças estão disponíveis?",
@@ -62,7 +61,7 @@
                 "explorar gráficos",
                 "como funciona a página de gráficos"
             ],
-            "resposta": "",
+            "resposta": "Na página **Gráficos**, siga estes passos: 📊\n\n1. Selecione o **Estado (UF)**\n2. Escolha a **Cidade**\n3. Selecione a **Estação climática** associada\n4. Escolha o **Grupo de doenças** (CID-10)\n5. Defina o **período** (data inicial e final)\n6. Clique em **Filtrar** para gerar o gráfico\n\nVocê pode visualizar a relação entre os dados climáticos e as internações. Para exportar os resultados, use os botões de download disponíveis na página.",
             "sugestoes": [
                 "Como exportar os dados?",
                 "Quais doenças posso visualizar?",

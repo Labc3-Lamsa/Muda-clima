@@ -17,12 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const btn = document.createElement("div");
   btn.id = "chat-float-btn";
-  btn.innerHTML = `<img src="../img/chatbot.svg" alt="Chatbot" class="chat-btn-icon">`;
+  btn.innerHTML = `<img src="${basePath}img/chatbot.svg" alt="Chatbot" class="chat-btn-icon">`;
   document.body.appendChild(btn);
 
   const popup = document.createElement("iframe");
   popup.id = "chat-popup";
-  popup.src = `${basePath}chat.html`;
+  popup.src = `${basePath}chat.html?v=${Date.now()}`;
   popup.style.display = "none";
   document.body.appendChild(popup);
 
