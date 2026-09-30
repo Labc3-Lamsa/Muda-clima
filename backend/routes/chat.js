@@ -56,17 +56,33 @@ function similarity(a, b) {
 
 //funcao que procura gatilho, similarity calcula parecido e haskeyword verifica se tem palavra exata
 function detectIntent(message, base) {
-    const normalized = normalizeTexto(message);
+    const normalized = normalizeTexto(message).trim();
+    const words = normalized.split(/\s+/);
     let best = null, bestScore = 0;
+
     for (const intent of base.intencoes) {
         for (const gatilho of intent.gatilhos) {
-            const score = similarity(normalized, normalizeTexto(gatilho));
-            // palavra-chave exata
-            const hasKeyword = intent.gatilhos.some(g =>
-                normalized.includes(normalizeTexto(g))
-            );
-            //se sim ele aumenta o score
-            const finalScore = hasKeyword ? Math.max(score, 0.7) : score;
+            const gatilhoNorm = normalizeTexto(gatilho);
+
+            // match exato da mensagem inteira (ex: "oi", "olá", "vlw")
+            const exactFullMatch = normalized === gatilhoNorm;
+
+            // palavra exata contida na mensagem (ex: "oi" em "oi tudo bem")
+            const hasKeyword = intent.gatilhos.some(g => {
+                const gn = normalizeTexto(g);
+                // para palavras curtas (≤ 4 chars), compara palavra a palavra
+                if (gn.length <= 4) {
+                    return words.includes(gn);
+                }
+                return normalized.includes(gn);
+            });
+
+            const score = similarity(normalized, gatilhoNorm);
+            let finalScore = score;
+
+            if (exactFullMatch) finalScore = 1.0;
+            else if (hasKeyword) finalScore = Math.max(score, 0.75);
+
             if (finalScore > bestScore) { bestScore = finalScore; best = intent; }
         }
     }
@@ -94,6 +110,18 @@ router.post("/chat", async (req, res) => {
         logConversation(req.sessionID, message, intent.resposta, intent.id);
         return res.json({ reply: intent.resposta, sugestoes: intent.sugestoes || [] });
     }
+
+    // fallback quando nenhuma intenção for encontrada
+    const fallback = "Hmm, não entendi muito bem. 🤔 Pode reformular a pergunta? Estou aqui para ajudar com dúvidas sobre o ClimArS!";
+    logConversation(req.sessionID, message, fallback, "fallback");
+    return res.json({
+        reply: fallback,
+        sugestoes: [
+            "O que é o ClimArS?",
+            "Como usar os gráficos?",
+            "Como funciona a previsão?"
+        ]
+    });
 });
 
 

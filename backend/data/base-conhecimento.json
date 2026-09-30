@@ -1,6 +1,57 @@
 {
     "intencoes": [
         {
+            "id": "saudacao",
+            "gatilhos": [
+                "oi",
+                "ola",
+                "olá",
+                "bom dia",
+                "boa tarde",
+                "boa noite",
+                "eae",
+                "eai",
+                "hey",
+                "oi tudo bem",
+                "tudo bem",
+                "oi boa tarde",
+                "oi bom dia",
+                "oi boa noite",
+                "oi como vai",
+                "como vai",
+                "hello"
+            ],
+            "resposta": "Olá! 👋 Bem-vindo ao ClimArS! Sou o assistente virtual do projeto. Como posso te ajudar hoje?",
+            "sugestoes": [
+                "O que é o ClimArS?",
+                "Como usar os gráficos?",
+                "Como funciona a previsão?"
+            ]
+        },
+        {
+            "id": "agradecimento",
+            "gatilhos": [
+                "obrigado",
+                "obrigada",
+                "valeu",
+                "agradeço",
+                "brigado",
+                "brigada",
+                "obg",
+                "vlw",
+                "muito obrigado",
+                "muito obrigada",
+                "grato",
+                "grata"
+            ],
+            "resposta": "De nada! 😊 Fico feliz em ajudar. Se tiver mais dúvidas, é só perguntar!",
+            "sugestoes": [
+                "Como usar os gráficos?",
+                "O que é o ClimArS?",
+                "Como funciona a previsão?"
+            ]
+        },
+        {
             "id": "sobre_projeto",
             "gatilhos": [
                 "o que é o climars",
