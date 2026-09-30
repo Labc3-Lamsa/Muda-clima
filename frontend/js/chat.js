@@ -26,7 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
   //adiciona mensagem ao chatBox
   function adicionarMensagem(remetente, texto) {
     const divMensagem = document.createElement("div");
-    divMensagem.classList.add(remetente === "usuario" ? "user-message" : "bot-message");
+    if (remetente === "usuario") {
+      divMensagem.classList.add("user-message", "msg-slide-right");
+    } else {
+      divMensagem.classList.add("bot-message", "msg-slide-left");
+    }
     divMensagem.innerHTML = `<p>${renderizarMarkdown(texto)}</p>`;
     chatBox.appendChild(divMensagem);
     chatBox.scrollTop = chatBox.scrollHeight;
@@ -57,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!sugestoes || sugestoes.length === 0) return;
 
     const containerSugestoes = document.createElement("div");
-    containerSugestoes.classList.add("container-sugestoes");
+    containerSugestoes.classList.add("container-sugestoes", "msg-slide-up");
 
     sugestoes.forEach(textoChip => {
       const chip = document.createElement("button");

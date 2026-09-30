@@ -29,12 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
   btn.addEventListener("click", () => {
     if (popup.classList.contains("open")) {
       popup.classList.remove("open");
+      btn.classList.remove("chat-open");
       setTimeout(() => {
         popup.style.display = "none";
-      }, 200);
+      }, 300);
     } else {
       popup.style.display = "block";
-      setTimeout(() => popup.classList.add("open"), 10);
+      setTimeout(() => {
+        popup.classList.add("open");
+        btn.classList.add("chat-open");
+      }, 10);
     }
   });
 });

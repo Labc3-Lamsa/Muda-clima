@@ -16,7 +16,6 @@ body {
 
 #chatbot_logo {
   width: 8%;
-
 }
 
 .chat-container {
@@ -31,6 +30,7 @@ body {
   overflow: hidden;
 }
 
+/* header */
 .chat-header {
   background: #0d47a1;
   color: white;
@@ -41,9 +41,18 @@ body {
   /* border-radius: 16px 16px 0 0; */
 }
 
+.chat-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
 .chat-header h2 {
   margin: 0;
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .chat-header button {
@@ -54,6 +63,46 @@ body {
   cursor: pointer;
 }
 
+/* status online */
+.chat-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 2px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #4caf50;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.6);
+  animation: pulse-green 2s infinite ease-out;
+}
+
+.status-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.6);
+  }
+
+  60% {
+    box-shadow: 0 0 0 6px rgba(76, 175, 80, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+/* chat box */
 .chat-box {
   flex-grow: 1;
   padding: 12px 16px;
@@ -63,6 +112,7 @@ body {
   flex-direction: column;
 }
 
+/* mensagens */
 .bot-message,
 .user-message {
   position: relative;
@@ -113,46 +163,113 @@ body {
   border-color: #0d47a1 transparent transparent transparent;
 }
 
+/* animações de entrada das mensagens */
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.msg-slide-left {
+  animation: slide-in-left 0.28s ease-out both;
+}
+
+.msg-slide-right {
+  animation: slide-in-right 0.28s ease-out both;
+}
+
+.msg-slide-up {
+  animation: slide-up-fade 0.3s ease-out both;
+}
+
+/* entrada de texto */
 .chat-input {
   display: flex;
   padding: 10px;
   border-top: 1px solid #ddd;
   background: #fafafa;
   flex-shrink: 0;
+  gap: 8px;
+  align-items: center;
 }
 
 .chat-input input {
   flex-grow: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 10px 14px;
+  border: 1.5px solid #ccc;
   background: #ffffff;
   color: #000;
   border-radius: 20px;
   outline: none;
   font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.chat-input input:focus {
+  border-color: #0d47a1;
 }
 
 .chat-input button {
   background: #0d47a1;
   color: white;
   border: none;
-  border-radius: 20px;
-  padding: 10px 16px;
-  margin-left: 8px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  font-weight: bold;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .chat-input button:hover {
-  background: #3a86ff;
+  background: #1565c0;
+  transform: scale(1.08);
 }
 
-/* sugestoes */
+.chat-input button:active {
+  transform: scale(0.95);
+}
+
+/* chips de sugestão */
 .container-sugestoes {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
   margin: 6px 0 10px 0;
+  animation: slide-up-fade 0.3s ease-out both;
 }
 
 .chip-sugestao {
@@ -163,19 +280,25 @@ body {
   padding: 5px 12px;
   font-size: 13px;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .chip-sugestao:hover {
+  background: #e3f2fd;
+  color: #0d47a1;
+  box-shadow: 0 0 0 2px rgba(13, 71, 161, 0.15);
+}
+
+.chip-sugestao:active {
   background: #0d47a1;
   color: #ffffff;
 }
 
-/* animacao 3 pontinhos */
+/* typing indicator (3 pontos) */
 .indicador-digitando p {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   margin: 0;
   min-height: 20px;
 }
@@ -203,11 +326,11 @@ body {
   80%,
   100% {
     transform: translateY(0);
-    opacity: 0.4;
+    opacity: 0.35;
   }
 
   40% {
-    transform: translateY(-6px);
+    transform: translateY(-7px);
     opacity: 1;
   }
 }
