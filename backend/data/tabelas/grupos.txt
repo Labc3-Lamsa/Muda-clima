@@ -1,0 +1,28 @@
+TABELA: grupos
+RESUMO: os 14 grupos de doenças respiratórias monitorados (classificação CID-10, capítulo J).
+
+O que é: tabela de referência que traduz o código do grupo de doença (1 a 14) para o nome da doença e para os códigos CID-10 correspondentes.
+Para que serve: preenche a lista "Doenças monitoradas" nas páginas Gráficos e Previsão Múltipla, e explica o que significa cada cod_grupo da tabela de internações (datasus).
+
+Quantos registros: 14 grupos.
+
+Colunas:
+- codigo: número do grupo (1 a 14).
+- descricao: nome da doença ou grupo de doenças.
+- cid10: códigos CID-10 incluídos.
+
+Os 14 grupos:
+1. Faringite aguda e amigdalite aguda (J02-J03)
+2. Laringite e traqueíte agudas (J04)
+3. Outras infecções agudas das vias aéreas superiores (J00-J01, J05-J06)
+4. Influenza (J09-J11)
+5. Pneumonia (J12-J18)
+6. Bronquite aguda e bronquiolite aguda (J20-J21)
+7. Sinusite crônica (J32)
+8. Outras doenças do nariz e dos seios paranasais (J30-J31, J33-J34)
+9. Doenças crônicas das amígdalas e das adenóides (J35)
+10. Outras doenças do trato respiratório superior (J22, J66-J99)
+11. Bronquite, enfisema e outras doenças pulmonares obstrutivas crônicas (J40-J44)
+12. Asma (J45-J46)
+13. Pneumoconiose (J60-J65)
+14. Outras doenças do aparelho respiratório (J36-J39)

@@ -1,44 +1,60 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const currentPath = window.location.pathname;
-  const isHtmlFolder = currentPath.includes("/html/");
-  const basePath = isHtmlFolder ? "../" : "";
+  const CHAVE_ABERTO = "climars_chat_aberto";
 
-  const head = document.head;
-  if (!head.querySelector('link[href$="popup.css"]')) {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = `${basePath}css/popup.css`;
-    head.appendChild(link);
+  // caminhos absolutos: o mesmo widget funciona em qualquer pasta do site
+  if (!document.head.querySelector('link[href$="popup.css"]')) {
+    const folhaDeEstilo = document.createElement("link");
+    folhaDeEstilo.rel = "stylesheet";
+    folhaDeEstilo.href = "/css/popup.css";
+    document.head.appendChild(folhaDeEstilo);
   }
 
   if (document.getElementById("chat-float-btn") || document.getElementById("chat-popup")) {
     return;
   }
 
-  const btn = document.createElement("div");
-  btn.id = "chat-float-btn";
-  btn.innerHTML = `<img src="${basePath}img/chatbot.svg" alt="Chatbot" class="chat-btn-icon">`;
-  document.body.appendChild(btn);
+  // lembra se o chat estava aberto ao trocar de página
+  const lerAberto = () => {
+    try { return sessionStorage.getItem(CHAVE_ABERTO) === "1"; } catch { return false; }
+  };
+  const salvarAberto = (aberto) => {
+    try { sessionStorage.setItem(CHAVE_ABERTO, aberto ? "1" : "0"); } catch { /* sem storage, segue sem lembrar */ }
+  };
 
-  const popup = document.createElement("iframe");
-  popup.id = "chat-popup";
-  popup.src = `${basePath}chat.html?v=${Date.now()}`;
-  popup.style.display = "none";
-  document.body.appendChild(popup);
+  const botao = document.createElement("div");
+  botao.id = "chat-float-btn";
+  botao.innerHTML = `<img src="/img/chatbot.svg" alt="Chatbot" class="chat-btn-icon">`;
+  document.body.appendChild(botao);
 
-  btn.addEventListener("click", () => {
-    if (popup.classList.contains("open")) {
-      popup.classList.remove("open");
-      btn.classList.remove("chat-open");
+  const janelaChat = document.createElement("iframe");
+  janelaChat.id = "chat-popup";
+  janelaChat.src = "/chat.html";
+  janelaChat.style.display = "none";
+  document.body.appendChild(janelaChat);
+
+  const marcarAberto = () => {
+    janelaChat.classList.add("open");
+    botao.classList.add("chat-open");
+  };
+
+  if (lerAberto()) {
+    janelaChat.style.display = "block";
+    marcarAberto();
+  }
+
+  botao.addEventListener("click", () => {
+    const estavaAberto = janelaChat.classList.contains("open");
+    salvarAberto(!estavaAberto);
+
+    if (estavaAberto) {
+      janelaChat.classList.remove("open");
+      botao.classList.remove("chat-open");
       setTimeout(() => {
-        popup.style.display = "none";
+        janelaChat.style.display = "none";
       }, 300);
     } else {
-      popup.style.display = "block";
-      setTimeout(() => {
-        popup.classList.add("open");
-        btn.classList.add("chat-open");
-      }, 10);
+      janelaChat.style.display = "block";
+      setTimeout(marcarAberto, 10);
     }
   });
 });

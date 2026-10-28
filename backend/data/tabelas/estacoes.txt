@@ -1,0 +1,21 @@
+TABELA: estacoes
+RESUMO: estações meteorológicas do INMET associadas aos municípios.
+
+O que é: cadastro das estações climáticas do INMET (Instituto Nacional de Meteorologia). Cada estação fica em um município e tem localização e altitude.
+Para que serve: liga o clima ao município. Na página Gráficos, depois de escolher a cidade, o usuário escolhe a estação climática daquela cidade. Os dados da tabela inmet (temperatura, umidade etc.) pertencem a uma estação.
+
+Quantos registros: 994 estações cadastradas, distribuídas em 716 municípios diferentes. Um município pode ter mais de uma estação.
+Cada linha é uma estação.
+
+Colunas:
+- cod_estacao: código da estação (identificador único, por exemplo 82024).
+- nome_estacao: nome da estação (por exemplo Boa Vista, Amapá, Caracaraí).
+- cod_ibge: código IBGE do município onde a estação está.
+- alti: altitude em metros. Varia de 0 m até cerca de 2.450 m. Todas têm altitude informada.
+- lati e long: latitude e longitude da estação.
+
+Estações por UF: MG 135, BA 78, RS 72, SP 64, MS 56, MT 54, RJ 52, PA 51, PR 41, AM 41, GO 40, PI 38, SC 34, CE 31, MA 30, TO 27, PE 26, ES 24, RN 18, PB 17, AL 16, AC 10, SE 10, RO 8, DF 7, RR 6, AP 6.
+
+Exemplos: estação 82024 (Boa Vista, RR, altitude 84 m); estação 82029 (Amapá, AP, altitude 0 m); estação 82042 (Caracaraí, RR, altitude 52 m).
+
+Observação: a página inicial do site fala em 273 estações do INMET. A tabela estacoes cadastra 994; nem todas têm o mesmo volume de dados utilizáveis.

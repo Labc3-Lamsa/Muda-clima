@@ -130,3 +130,4 @@ dist
 .pnp.*
 
 chat_logs.jsonl
+chat_erros.jsonl
