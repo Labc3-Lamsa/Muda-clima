@@ -6,10 +6,6 @@ Para que serve: preenche a lista "Doenças monitoradas" nas páginas Gráficos e
 
 Quantos registros: 14 grupos.
 
-Colunas:
-- codigo: número do grupo (1 a 14).
-- descricao: nome da doença ou grupo de doenças.
-- cid10: códigos CID-10 incluídos.
 
 Os 14 grupos:
 1. Faringite aguda e amigdalite aguda (J02-J03)

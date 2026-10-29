@@ -7,24 +7,6 @@ Para que serve: é o lado "clima" do ClimArS. Na página Gráficos, o usuário c
 Quantos registros: cerca de 8,7 milhões de linhas. É uma linha por estação por dia: 994 estações x 8.766 dias.
 Período: de 01/01/2000 a 31/12/2023.
 
-Colunas:
-- id: identificador da linha.
-- cod_estacao: código da estação (liga à tabela estacoes).
-- data: dia da medição.
-- dir_vento: direção do vento.
-- insolacao: insolação (horas de sol).
-- dias_chuva: indicador de chuva no dia (número de dias de chuva).
-- pressao: pressão atmosférica.
-- radiacao: radiação solar.
-- temp_ar: temperatura do ar.
-- temp_orvalho: temperatura do ponto de orvalho.
-- temp_max: temperatura máxima.
-- temp_min: temperatura mínima.
-- umidade: umidade relativa do ar.
-- vel_vento: velocidade do vento.
-- vento_rajada: velocidade das rajadas de vento.
-São 12 variáveis climáticas por dia.
-
 Valores ausentes: algumas variáveis podem estar vazias (nulas) em certos dias ou estações, por falha ou falta de sensor. Por exemplo, pressão e radiação aparecem nulas em partes do início da série. Os modelos tratam valores nulos automaticamente.
 
 Exemplo: em 01/01/2000, a estação 82024 (Boa Vista) registrou temperatura do ar de 28,0 °C, máxima de 32,4 °C, mínima de 24,0 °C, umidade de 73,5% e vento de 3,3.

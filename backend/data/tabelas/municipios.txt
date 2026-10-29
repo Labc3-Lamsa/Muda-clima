@@ -7,12 +7,6 @@ Para que serve: nos filtros de UF e cidade da página Gráficos e da Previsão M
 Quantos registros: 3.825 municípios, de todas as 27 unidades da federação (26 estados e o Distrito Federal).
 Cada linha é um município.
 
-Colunas:
-- cod_ibge: código IBGE do município (identificador único).
-- nome_munic: nome do município.
-- uf: sigla do estado.
-- lati e long: latitude e longitude (todos os 3.825 têm coordenadas).
-- pop_2000, pop_2010, pop_2021: população do município nesses anos.
 
 Números gerais:
 - População somada em 2000: cerca de 159,7 milhões; em 2010: cerca de 179,3 milhões; em 2021: cerca de 200,7 milhões de habitantes.

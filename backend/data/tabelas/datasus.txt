@@ -8,12 +8,6 @@ Tamanho: é a maior tabela do banco, com cerca de 465 milhões de linhas. Por is
 Organização: é uma tabela particionada por grupo de doença. Há 14 partições, de grupo_1 a grupo_14, cada uma com cerca de 33,2 milhões de linhas. Cada partição guarda um grupo de doença da tabela grupos.
 Período: de 01/01/2000 a 31/12/2023 (8.766 dias). Cada partição tem uma linha por município por dia: 3.825 municípios x 8.766 dias.
 
-Colunas:
-- id: identificador da linha.
-- cod_ibge: código IBGE do município (liga à tabela municipios).
-- cod_grupo: grupo de doença de 1 a 14 (liga à tabela grupos).
-- data: dia das internações.
-- valor: número de internações naquele município, dia e grupo. Muitos dias têm valor 0.
 
 Como se relaciona com as outras tabelas: datasus.cod_ibge liga a municipios; municipios liga a estacoes; estacoes.cod_estacao liga a inmet. Assim, as internações de uma cidade podem ser comparadas com o clima da estação da cidade, dia a dia.
 
