@@ -1,0 +1,19 @@
+TABELA: municipios
+RESUMO: cadastro dos municípios brasileiros usados no ClimArS.
+
+O que é: lista de municípios com identificação, localização geográfica e população. É a tabela de referência que liga todas as outras (internações e estações climáticas) a uma cidade.
+Para que serve: nos filtros de UF e cidade da página Gráficos e da Previsão Múltipla, para preencher automaticamente código IBGE, latitude, longitude e população da cidade, e para calcular taxas por habitante.
+
+Quantos registros: 3.825 municípios, de todas as 27 unidades da federação (26 estados e o Distrito Federal).
+Cada linha é um município.
+
+
+Números gerais:
+- População somada em 2000: cerca de 159,7 milhões; em 2010: cerca de 179,3 milhões; em 2021: cerca de 200,7 milhões de habitantes.
+- Menor município (2021): 932 habitantes. Maior município (2021): cerca de 12,4 milhões de habitantes.
+
+Municípios por UF: MG 443, SP 388, BA 339, PR 317, RS 297, MA 202, GO 195, SC 181, PE 175, CE 172, RN 129, PA 126, PI 125, PB 111, MT 105, RJ 86, MS 70, TO 69, AM 62, ES 59, RO 51, AL 47, SE 32, AC 19, AP 13, RR 11, DF 1.
+
+Exemplo de linha: Ariquemes (RO), código IBGE 1100023, latitude -9,90571, longitude -63,0325, população de 74.503 (2000), 90.353 (2010) e 111.148 (2021).
+
+Observação: esta tabela traz os municípios que têm dados no banco. O modelo de previsão por cidade (XGBoost) cobre um conjunto menor, de 644 cidades com dados completos de clima e saúde.

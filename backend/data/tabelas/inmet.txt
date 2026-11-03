@@ -1,0 +1,12 @@
+TABELA: inmet
+RESUMO: dados meteorológicos diários das estações do INMET.
+
+O que é: série histórica diária de variáveis de clima, medida pelas estações do INMET (Instituto Nacional de Meteorologia), de 2000 a 2023.
+Para que serve: é o lado "clima" do ClimArS. Na página Gráficos, o usuário compara uma dessas variáveis com as internações respiratórias. Também alimenta os modelos de previsão.
+
+Quantos registros: cerca de 8,7 milhões de linhas. É uma linha por estação por dia: 994 estações x 8.766 dias.
+Período: de 01/01/2000 a 31/12/2023.
+
+Valores ausentes: algumas variáveis podem estar vazias (nulas) em certos dias ou estações, por falha ou falta de sensor. Por exemplo, pressão e radiação aparecem nulas em partes do início da série. Os modelos tratam valores nulos automaticamente.
+
+Exemplo: em 01/01/2000, a estação 82024 (Boa Vista) registrou temperatura do ar de 28,0 °C, máxima de 32,4 °C, mínima de 24,0 °C, umidade de 73,5% e vento de 3,3.

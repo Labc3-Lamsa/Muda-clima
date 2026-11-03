@@ -1,0 +1,527 @@
+{
+    "intencoes": [
+        {
+            "id": "saudacao",
+            "gatilhos": [
+                "oi",
+                "ola",
+                "olá",
+                "bom dia",
+                "boa tarde",
+                "boa noite",
+                "eae",
+                "eai",
+                "hey",
+                "oi tudo bem",
+                "tudo bem",
+                "oi boa tarde",
+                "oi bom dia",
+                "oi boa noite",
+                "oi como vai",
+                "como vai",
+                "hello"
+            ],
+            "resposta": "Olá! 👋 Bem-vindo ao ClimArS! Sou o assistente virtual do projeto. Como posso te ajudar hoje?",
+            "sugestoes": [
+                "O que é o ClimArS?",
+                "Como usar os gráficos?",
+                "Como funciona a previsão?"
+            ]
+        },
+        {
+            "id": "agradecimento",
+            "gatilhos": [
+                "obrigado",
+                "obrigada",
+                "valeu",
+                "agradeço",
+                "brigado",
+                "brigada",
+                "obg",
+                "vlw",
+                "muito obrigado",
+                "muito obrigada",
+                "grato",
+                "grata"
+            ],
+            "resposta": "De nada! 😊 Fico feliz em ajudar. Se tiver mais dúvidas, é só perguntar!",
+            "sugestoes": [
+                "Como usar os gráficos?",
+                "O que é o ClimArS?",
+                "Como funciona a previsão?"
+            ]
+        },
+        {
+            "id": "sobre_projeto",
+            "gatilhos": [
+                "o que é o climars",
+                "climars",
+                "o que é esse projeto",
+                "fale sobre o projeto",
+                "quem fez",
+                "quem criou",
+                "quem desenvolveu",
+                "objetivo do projeto",
+                "missão",
+                "furg",
+                "icb",
+                "c3",
+                "parceiros",
+                "é oficial",
+                "ministério da saúde",
+                "projeto experimental"
+            ],
+            "resposta": "O ClimArS é um projeto da FURG (Universidade Federal do Rio Grande) que analisa a relação entre clima, poluição e saúde respiratória no Brasil.\n\nFoi desenvolvido em parceria com o ICB e o C3, e tem três objetivos principais:\n• Entender como fatores ambientais influenciam internações por doenças respiratórias (CID-10)\n• Apoiar profissionais de saúde e gestores do SUS na tomada de decisão\n• Fornecer visualizações, previsões e insights para pesquisadores e cidadãos\n\nImportante: é um projeto de pesquisa experimental, sem caráter oficial do Ministério da Saúde.",
+            "sugestoes": [
+                "Quais são as fontes dos dados?",
+                "Como usar os gráficos?",
+                "Quantas cidades estão disponíveis?"
+            ]
+        },
+        {
+            "id": "fontes_dados",
+            "gatilhos": [
+                "fontes dos dados",
+                "de onde vêm os dados",
+                "datasus",
+                "sih",
+                "inmet",
+                "iema",
+                "estações meteorológicas",
+                "dados públicos",
+                "período dos dados",
+                "quantos dados foram usados",
+                "registros"
+            ],
+            "resposta": "O ClimArS usa três fontes de dados públicos:\n\n• **SIH/DATASUS** — internações hospitalares por doenças respiratórias (CID-10), período 2000–2023\n• **INMET** — variáveis meteorológicas coletadas de 273 estações em todo o Brasil (temperatura, umidade, chuva, vento, pressão, radiação solar)\n• **IEMA** — dados de poluição do ar (ainda não integrados ao modelo preditivo)\n\nNo total, foram usados mais de 5,2 milhões de registros de internações para treinar os modelos.",
+            "sugestoes": [
+                "O que são os dados de clima?",
+                "Quais doenças estão disponíveis?",
+                "Como usar os gráficos?"
+            ]
+        },
+        {
+            "id": "navegar_graficos",
+            "gatilhos": [
+                "como usar os gráficos",
+                "página de gráficos",
+                "filtros",
+                "como filtrar",
+                "visualizar dados",
+                "navegar",
+                "explorar gráficos",
+                "como funciona a página de gráficos"
+            ],
+            "resposta": "Na página **Gráficos**, siga estes passos:\n\n1. Selecione o **Estado (UF)**\n2. Escolha a **Cidade**\n3. Selecione a **Estação climática** associada\n4. Escolha o **Grupo de doenças** (CID-10)\n5. Defina o **período** (data inicial e final)\n6. Clique em **Filtrar** para gerar o gráfico\n\nVocê pode visualizar a relação entre os dados climáticos e as internações. Para exportar os resultados, use os botões de download disponíveis na página.",
+            "sugestoes": [
+                "Como exportar os dados?",
+                "Quais doenças posso visualizar?",
+                "Como fazer uma previsão?"
+            ]
+        },
+        {
+            "id": "exportar",
+            "gatilhos": [
+                "exportar",
+                "baixar dados",
+                "download",
+                "csv",
+                "xlsx",
+                "excel",
+                "pdf",
+                "png",
+                "formatos disponíveis",
+                "salvar resultado"
+            ],
+            "resposta": "Na página **Gráficos** você pode exportar o que está vendo!\n\nFormatos disponíveis:\n• **CSV**\n• **XLSX** (Excel)\n• **PDF**\n• **PNG** (imagem do gráfico)\n\nBasta aplicar os filtros, escolher o formato na caixa de exportação e clicar em **Exportar dados**. Outros formatos além desses quatro não estão disponíveis.",
+            "sugestoes": [
+                "Como navegar pelos gráficos?",
+                "Como fazer uma previsão?"
+            ]
+        },
+        {
+            "id": "previsao_mensal",
+            "gatilhos": [
+                "previsão mensal",
+                "modelo shiny",
+                "shiny",
+                "previsão em r",
+                "previsão por mês",
+                "como funciona a previsão mensal"
+            ],
+            "resposta": "A **Previsão Mensal** usa um modelo desenvolvido em R, apresentado por meio de um aplicativo Shiny dentro do próprio site.\n\nEla antecipa tendências de internações respiratórias em escala mensal, ajudando no planejamento. Para aprender a usar, acesse a página **Tutoriais** e abra o tutorial da Ferramenta de Previsão Mensal (PDF).\n\nSe você precisa de uma estimativa para um dia específico, use a **Previsão Múltipla**.",
+            "sugestoes": [
+                "Como funciona a previsão diária?",
+                "O que é o XGBoost?",
+                "Quais cidades estão disponíveis?"
+            ]
+        },
+        {
+            "id": "previsao_multipla",
+            "gatilhos": [
+                "previsão diária",
+                "como funciona a previsão diária",
+                "como fazer previsão",
+                "gerar previsão",
+                "preencher formulário",
+                "xgboost previsão",
+                "644 cidades",
+                "campos do formulário",
+                "como é gerada a previsão",
+                "dados para previsão",
+                "quais dados preciso",
+                "campo em branco",
+                "número errado",
+                "internações dos últimos 14 dias",
+                "terminou o cálculo",
+                "offline",
+                "resultado da previsão",
+                "interpretar resultado"
+            ],
+            "resposta": "A **Previsão Múltipla** estima o número de internações **por dia** usando o modelo XGBoost, com um modelo para cada uma das 644 cidades.\n\nPara gerar uma previsão:\n1. Escolha a **UF**, a **cidade** e a(s) **doença(s)**\n2. Selecione a **data** desejada\n3. Confira os dados da cidade (código IBGE, latitude, longitude, população) — são preenchidos automaticamente\n4. Informe os dados de **clima** e as **internações dos 14 dias anteriores**\n5. Clique para gerar a previsão\n\nO resultado mostra a quantidade prevista de internações, a tendência e a confiança. O ideal é preencher todos os campos com dados reais — números irreais deixam a previsão imprecisa. O modelo precisa de conexão com o servidor, não funciona offline.",
+            "sugestoes": [
+                "O que é o XGBoost?",
+                "Quais variáveis climáticas são usadas?",
+                "Qual é o erro médio do modelo?"
+            ]
+        },
+        {
+            "id": "doencas",
+            "gatilhos": [
+                "doenças disponíveis",
+                "cid-10",
+                "grupos de doenças",
+                "pneumonia",
+                "quais doenças",
+                "quais doenças estão disponíveis",
+                "quais doenças posso visualizar",
+                "14 grupos",
+                "categorias de doenças",
+                "o que é cada doença"
+            ],
+            "resposta": "O ClimArS acompanha **14 grupos de doenças respiratórias** (CID-10, capítulo J):\n\n1. Faringite e amigdalite agudas (J02-J03)\n2. Laringite e traqueíte agudas (J04)\n3. Outras infecções agudas das vias aéreas superiores (J00-J01, J05-J06)\n4. Influenza (J09-J11)\n5. Pneumonia (J12-J18)\n6. Bronquite e bronquiolite agudas (J20-J21)\n7. Sinusite crônica (J32)\n8. Outras doenças do nariz e seios paranasais (J30-J31, J33-J34)\n9. Doenças crônicas das amígdalas e adenoides (J35)\n10. Outras doenças do trato respiratório superior (J22, J66-J99)\n11. Bronquite, enfisema e outras DPOC (J40-J44)\n12. Asma (J45-J46)\n13. Pneumoconiose (J60-J65)\n14. Outras doenças do aparelho respiratório (J36-J39)\n\nNos gráficos e nas previsões você pode selecionar um ou mais grupos.",
+            "sugestoes": [
+                "Como navegar pelos gráficos?",
+                "Quais são as fontes dos dados?",
+                "Como fazer uma previsão?"
+            ]
+        },
+        {
+            "id": "cidades",
+            "gatilhos": [
+                "quantas cidades",
+                "minha cidade não aparece",
+                "cidade não encontrada",
+                "cidades disponíveis",
+                "quais cidades estão disponíveis",
+                "cidades incluídas",
+                "cidades não incluídas",
+                "quando minha cidade será adicionada",
+                "por que não tem minha cidade",
+                "melhor resultado por cidade",
+                "cidade com mais precisão",
+                "comparar cidades"
+            ],
+            "resposta": "O modelo de previsão cobre **644 cidades** brasileiras que tinham dados completos de clima e saúde.\n\n• **13 cidades** ficaram de fora por dados incompletos\n• Se a sua cidade não aparece, provavelmente não há dados climáticos ou de saúde suficientes para ela\n• Ela poderá ser adicionada quando houver dados suficientes para treinar o modelo\n• Cada cidade tem seu próprio modelo, então é possível comparar os resultados entre cidades\n\nCaruaru (PE), Trindade (PE) e Porto Seguro (BA) tiveram os melhores resultados.",
+            "sugestoes": [
+                "Qual é o erro médio do modelo?",
+                "O que é o XGBoost?",
+                "Como fazer uma previsão?"
+            ]
+        },
+        {
+            "id": "modelo_ia",
+            "gatilhos": [
+                "xgboost",
+                "modelo de ia",
+                "inteligência artificial",
+                "aprendizado de máquina",
+                "machine learning",
+                "usa ia",
+                "rede neural",
+                "árvore de decisão",
+                "boosting",
+                "regressor",
+                "como funciona o modelo",
+                "aprende sozinho",
+                "atualiza automaticamente",
+                "período de treinamento",
+                "dados de treinamento",
+                "dados faltantes",
+                "valores nulos"
+            ],
+            "resposta": "A previsão usa **XGBoost**, um algoritmo de aprendizado de máquina baseado em árvores de decisão com boosting.\n\n• Ele é um **regressor**: prevê números contínuos, como casos por dia\n• **Não** usa redes neurais\n• Foi treinado com 5,2 milhões de registros: treino de 2000 a 2022 e teste em 2023\n• Valores faltantes são tratados automaticamente pelo XGBoost\n• Ele **não aprende sozinho** nem se atualiza automaticamente — é preciso reprocessar o modelo manualmente com novos dados\n\nÉ um sistema de apoio ao planejamento em saúde pública, desenvolvido em ambiente de pesquisa com dados públicos.",
+            "sugestoes": [
+                "Qual é a precisão do modelo?",
+                "Quais variáveis climáticas são usadas?",
+                "O modelo pode errar?"
+            ]
+        },
+        {
+            "id": "precisao",
+            "gatilhos": [
+                "erro médio",
+                "precisão do modelo",
+                "pode errar",
+                "modelo erra",
+                "é seguro",
+                "confiável",
+                "caruaru",
+                "trindade",
+                "porto seguro",
+                "melhores resultados",
+                "previsão aumenta",
+                "prevê surtos",
+                "casos ou porcentagem",
+                "variabilidade",
+                "cidades grandes",
+                "substitui médicos"
+            ],
+            "resposta": "O erro médio do modelo é de cerca de **0,8 caso por dia**.\n\n• Cidades grandes têm mais variabilidade, o que aumenta o erro\n• Melhores resultados: **Caruaru (PE)**, **Trindade (PE)** e **Porto Seguro (BA)**\n• A previsão é em **número de casos** (internações), não porcentagem\n• Como toda previsão, pode errar por fatores imprevisíveis\n• Um aumento na previsão pode indicar maior risco e tendência de surtos, mas não prevê surtos de forma definitiva\n\nÉ confiável como tendência geral, mas **não substitui decisões médicas** — é apenas apoio à decisão.",
+            "sugestoes": [
+                "Como fazer uma previsão?",
+                "Quais cidades têm melhor resultado?",
+                "O modelo substitui médicos?"
+            ]
+        },
+        {
+            "id": "tutoriais",
+            "gatilhos": [
+                "tutoriais",
+                "onde encontrar tutoriais",
+                "como aprender a usar",
+                "guia de uso",
+                "passo a passo",
+                "vídeo tutorial",
+                "documentação",
+                "como usar"
+            ],
+            "resposta": "Na página **Tutoriais** você encontra guias em PDF para cada ferramenta:\n\n• **Ferramenta de Análise Gráfica** — como explorar os gráficos interativos\n• **Ferramenta de Previsão Mensal** — como antecipar tendências mensais\n• **Ferramenta de Previsão Múltipla** — como gerar previsões diárias por cidade\n\nÉ só clicar em **Abrir tutorial** no card da ferramenta desejada.",
+            "sugestoes": [
+                "Onde estão os materiais educativos?",
+                "Como usar os gráficos?",
+                "Como fazer uma previsão?"
+            ]
+        },
+        {
+            "id": "materiais_educativos",
+            "gatilhos": [
+                "materiais educativos",
+                "conteúdo educacional",
+                "aprender sobre clima",
+                "aprender sobre saúde",
+                "clima e saúde",
+                "educação em saúde",
+                "infográfico",
+                "material de apoio"
+            ],
+            "resposta": "Na página **Materiais Educativos e Ações de Extensão** você aprende sobre mudanças climáticas e poluição do ar:\n\n• **Ações de extensão** realizadas pelo grupo de pesquisadores\n• **Cartilha** sobre poluição do ar e mudanças climáticas\n• **Livro** de Mudanças Climáticas\n• **Atividades**: ligar os pontos, colorir, completar e gabarito\n• **Jogos**: 7 erros, caça-palavras, cruzadinha, desafio, jogo da memória e Patrulheiros do Ar\n\nTudo disponível para visualizar e baixar em PDF.",
+            "sugestoes": [
+                "Onde estão os tutoriais?",
+                "O que são os dados de poluição?",
+                "Quais publicações estão disponíveis?"
+            ]
+        },
+        {
+            "id": "publicacoes",
+            "gatilhos": [
+                "publicações",
+                "artigos científicos",
+                "pesquisa",
+                "literatura",
+                "papers",
+                "referências científicas",
+                "quais publicações estão disponíveis?",
+                "estudos"
+            ],
+            "resposta": "Na página **Publicações** estão os trabalhos científicos do grupo de pesquisa:\n\n• **18 artigos** em periódicos\n• **1 capítulo** de livro\n• **4** teses, dissertações e TCCs\n\nOs temas incluem poluição do ar (PM2.5, PM10, ozônio), impacto das mudanças climáticas na saúde, modelos de machine learning e internações respiratórias. Dá para filtrar por tipo e ordenar por ano, e cada item tem link para DOI ou repositório.",
+            "sugestoes": [
+                "Quem desenvolveu o projeto?",
+                "Quais são as fontes dos dados?",
+                "Onde estão os materiais educativos?"
+            ]
+        },
+        {
+            "id": "poluicao",
+            "gatilhos": [
+                "poluição",
+                "dados de poluição",
+                "iema poluição",
+                "qualidade do ar",
+                "poluentes",
+                "poluição na previsão",
+                "fumaça",
+                "ainda não integrado"
+            ],
+            "resposta": "Os dados de poluição do ar vêm do **IEMA**.\n\nNo momento, eles **ainda não estão integrados** ao modelo de previsão, que usa apenas clima e população. Não há dados de poluição como entrada nas previsões.\n\nA poluição do ar é, porém, tema central das pesquisas do grupo — veja a página **Publicações** e os **Materiais Educativos**.",
+            "sugestoes": [
+                "Quais variáveis climáticas são usadas?",
+                "Quais são as fontes dos dados?",
+                "O que é o XGBoost?"
+            ]
+        },
+        {
+            "id": "clima",
+            "gatilhos": [
+                "variáveis climáticas",
+                "temperatura",
+                "umidade",
+                "chuva",
+                "vento",
+                "pressão atmosférica",
+                "radiação solar",
+                "dados de clima",
+                "clima da minha cidade",
+                "dados meteorológicos",
+                "quais variáveis são usadas"
+            ],
+            "resposta": "Os dados climáticos vêm de **273 estações do INMET** (dados históricos).\n\nVariáveis disponíveis:\n• Temperatura do ar, máxima, mínima e do ponto de orvalho\n• Umidade relativa\n• Precipitação e número de dias de chuva\n• Velocidade, direção e rajada do vento\n• Pressão atmosférica\n• Radiação solar e insolação\n\nNa página Gráficos você escolhe a variável para comparar com as internações. Na previsão, esses dados são preenchidos automaticamente ou podem ser informados manualmente, junto com a população da cidade.",
+            "sugestoes": [
+                "Quais são as fontes dos dados?",
+                "O que é o INMET?",
+                "Como funciona o modelo de IA?"
+            ]
+        },
+        {
+            "id": "tutorial_paginas",
+            "gatilhos": [
+                "tutorial de cada página",
+                "como usar cada página",
+                "como usar o site",
+                "como usar o climars",
+                "tutorial do site",
+                "páginas do site",
+                "menu do site",
+                "o que tem no site",
+                "guia do site",
+                "tutorial de uso"
+            ],
+            "resposta": "O site tem 7 páginas no menu superior:\n\n• **Início** — apresentação do projeto\n• **Gráficos** — internações vs. clima\n• **Previsões Mensais** — modelo em R (Shiny)\n• **Previsões Múltiplas** — previsão diária por cidade (XGBoost)\n• **Tutoriais** — guias em PDF\n• **Materiais Educativos** — cartilhas, atividades e jogos\n• **Publicações** — artigos científicos\n\nQuer o passo a passo de qual delas?",
+            "sugestoes": [
+                "Como usar a página de Gráficos?",
+                "Como usar a Previsão Múltipla?",
+                "Como usar a Previsão Mensal?"
+            ]
+        },
+        {
+            "id": "tutorial_inicio",
+            "gatilhos": [
+                "como usar a página inicial",
+                "tutorial da página inicial",
+                "página inicial",
+                "página início",
+                "home do site",
+                "tela inicial"
+            ],
+            "resposta": "**Página Início** — passo a passo:\n\n1. Leia o **Nosso Objetivo** para entender a proposta do ClimArS\n2. Veja **Nossas Fontes de Dados**: saúde (SIH/DATASUS), meteorologia (INMET) e poluição (IEMA)\n3. Em **Explore Nossas Ferramentas**, clique em **Acessar Gráficos** ou **Acessar Predições**\n4. Use o menu no topo para ir a qualquer outra página",
+            "sugestoes": [
+                "Como usar a página de Gráficos?",
+                "Como usar a Previsão Múltipla?"
+            ]
+        },
+        {
+            "id": "tutorial_graficos",
+            "gatilhos": [
+                "tutorial gráficos",
+                "tutorial dos gráficos",
+                "passo a passo gráficos",
+                "como usar a página de gráficos",
+                "como gerar um gráfico",
+                "como filtrar os gráficos",
+                "como comparar clima e internações",
+                "botão filtrar",
+                "atalhos de período",
+                "30 dias 90 dias 12 meses"
+            ],
+            "resposta": "**Página Gráficos** — passo a passo:\n\n1. Em **Filtros**, escolha a **UF** e depois a **Cidade**\n2. Selecione a **Estação climática** (liberada após escolher a cidade)\n3. Em **Selecionar coluna**, escolha a variável climática (temperatura, umidade, chuva etc.)\n4. Escolha o **grupo de doenças** (CID-10) e clique em **+** para adicioná-lo — dá para adicionar vários\n5. Defina a **Data inicial** e a **Data final** (dia/mês/ano) ou use os atalhos **30 dias**, **90 dias** ou **12 meses**\n6. Clique em **Filtrar**\n7. O gráfico **Internações vs fatores climáticos** aparece abaixo\n8. Para salvar, escolha o formato (CSV, XLSX, PDF ou PNG) e clique em **Exportar dados**\n\nExiste também um tutorial em PDF na página Tutoriais.",
+            "sugestoes": [
+                "Como exportar os dados?",
+                "Quais doenças posso visualizar?",
+                "Onde estão os tutoriais?"
+            ]
+        },
+        {
+            "id": "tutorial_previsao_multipla",
+            "gatilhos": [
+                "tutorial previsão múltipla",
+                "passo a passo previsão múltipla",
+                "como usar a previsão múltipla",
+                "como usar a página de previsões múltiplas",
+                "previsões múltiplas",
+                "como preencher a previsão",
+                "adicionar doença na previsão"
+            ],
+            "resposta": "**Página Previsões Múltiplas** — passo a passo:\n\n1. Escolha a **UF** e a **Cidade**\n2. Selecione a(s) **doença(s)** e clique em **+** para adicionar cada uma\n3. Escolha a **data** da previsão\n4. Confira os dados da cidade (código IBGE, altitude, latitude, longitude e populações) — vêm preenchidos e não são editáveis\n5. Preencha os dados de **clima** do dia\n6. Informe o **número de internações dos 14 dias anteriores** (do dia anterior até 14 dias antes)\n7. Clique no botão de prever\n8. Veja o **resultado** (internações previstas), a **tendência** e a **confiança**\n\nDica: use dados reais — valores irreais deixam a previsão imprecisa.",
+            "sugestoes": [
+                "Qual é o erro médio do modelo?",
+                "Quais variáveis climáticas são usadas?",
+                "O que é o XGBoost?"
+            ]
+        },
+        {
+            "id": "tutorial_previsao_mensal",
+            "gatilhos": [
+                "tutorial previsão mensal",
+                "passo a passo previsão mensal",
+                "como usar a previsão mensal",
+                "como usar a página de previsões mensais",
+                "previsões mensais",
+                "como usar o shiny",
+                "aplicativo shiny"
+            ],
+            "resposta": "**Página Previsões Mensais** — passo a passo:\n\n1. Clique em **Previsões Mensais** no menu — o aplicativo Shiny (modelo em R) abre dentro do próprio site\n2. Selecione a localidade e os parâmetros oferecidos pelo aplicativo\n3. Aguarde o cálculo e veja a tendência mensal de internações respiratórias\n\nO detalhamento de cada campo está no PDF **Ferramenta de Previsão Mensal** na página Tutoriais. Para estimar um dia específico, use as Previsões Múltiplas.",
+            "sugestoes": [
+                "Onde estão os tutoriais?",
+                "Como usar a Previsão Múltipla?"
+            ]
+        },
+        {
+            "id": "tutorial_tutoriais",
+            "gatilhos": [
+                "como usar a página de tutoriais",
+                "tutorial da página de tutoriais",
+                "abrir tutorial",
+                "baixar tutorial pdf",
+                "tutorial em pdf"
+            ],
+            "resposta": "**Página Tutoriais** — passo a passo:\n\n1. Escolha o card da ferramenta: **Análise Gráfica**, **Previsão Mensal** ou **Previsão Múltipla**\n2. Clique em **Abrir tutorial**\n3. O PDF abre em uma nova aba — leia ou salve pelo navegador",
+            "sugestoes": [
+                "Como usar a página de Gráficos?",
+                "Onde estão os materiais educativos?"
+            ]
+        },
+        {
+            "id": "tutorial_materiais",
+            "gatilhos": [
+                "como usar a página de materiais educativos",
+                "tutorial materiais educativos",
+                "baixar cartilha",
+                "baixar livro",
+                "atividades educativas",
+                "jogos educativos",
+                "ações de extensão"
+            ],
+            "resposta": "**Página Materiais Educativos** — passo a passo:\n\n1. Em **Nossos Materiais**, escolha uma categoria: **Ações de extensão**, **Cartilhas**, **Atividades** ou **Jogos**\n2. Ações de extensão, Cartilha e Livro ficam na própria página: role até a seção e clique em **Baixar** para salvar o PDF\n3. **Atividades** (ligar os pontos, colorir, completar e gabarito) e **Jogos** abrem em páginas próprias, com o PDF para visualizar ou baixar",
+            "sugestoes": [
+                "Quais publicações estão disponíveis?",
+                "Onde estão os tutoriais?"
+            ]
+        },
+        {
+            "id": "tutorial_publicacoes",
+            "gatilhos": [
+                "como usar a página de publicações",
+                "tutorial publicações",
+                "filtrar publicações",
+                "buscar artigo",
+                "encontrar artigo",
+                "link doi"
+            ],
+            "resposta": "**Página Publicações** — passo a passo:\n\n1. Use os botões de filtro no topo: **Todos**, **Artigos**, **Capítulos**, **Teses** ou **Relatórios**\n2. Role a lista — cada item mostra título, autores, ano e resumo\n3. Clique no botão **DOI** (ou no título) para abrir o artigo no site da revista ou repositório",
+            "sugestoes": [
+                "Quem desenvolveu o projeto?",
+                "Onde estão os materiais educativos?"
+            ]
+        }
+    ]
+}

@@ -334,31 +334,7 @@
 
 <link rel="stylesheet" href="/css/popup.css">
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  const btn = document.createElement("div");
-  btn.id = "chat-float-btn";
-  btn.innerHTML = `<img src="../img/chatbot.svg" alt="Chatbot" class="chat-btn-icon">`;
-  document.body.appendChild(btn);
-
-  const popup = document.createElement("iframe");
-  popup.id = "chat-popup";
-  popup.src = "/chat.html"; 
-  document.body.appendChild(popup);
-
-  btn.addEventListener("click", () => {
-    if (popup.classList.contains("open")) {
-      popup.classList.remove("open");
-      setTimeout(() => popup.style.display = "none", 200);
-    } else {
-      popup.style.display = "block";
-      setTimeout(() => popup.classList.add("open"), 10);
-    }
-  });
-
-});
-</script>
+<!-- chatbot: ver js/chat-widget.js -->
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -410,6 +386,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
   <script src="header-loader.js" defer></script>
+  <script src="/js/chat-widget.js" defer></script>
   <script src="footer-loader.js" defer></script>
 </body>
 </html>

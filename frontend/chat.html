@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,25 +8,45 @@
 
   <link rel="stylesheet" href="./css/chat.css" />
 </head>
+
 <body>
   <div class="chat-container" role="application" aria-label="Chat ClimArS">
     <header class="chat-header">
-      <h2>🤖 Chatbot ClimArS</h2>
-     <!-- <button id="closeChat" aria-label="Fechar chat">✕</button> -->
+      <div class="chat-header-info">
+        <h2><img src="./img/chatbot_logo.png" alt="" id="chatbot_logo"> Chatbot ClimArS</h2>
+        <div class="chat-status">
+          <span class="status-dot"></span>
+          <span class="status-label">Online</span>
+        </div>
+      </div>
+      <button type="button" id="resetChat" aria-label="Nova conversa" title="Nova conversa">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="3 6 5 6 21 6"></polyline>
+          <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
+          <path d="M10 11v6M14 11v6"></path>
+          <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path>
+        </svg>
+      </button>
     </header>
 
     <div id="chatBox" class="chat-box" aria-live="polite">
-      <div class="bot-message">
+      <div class="bot-message msg-slide-left">
         <p>Olá! 👋 Sou o assistente do ClimArS. Em que posso ajudar hoje?</p>
       </div>
     </div>
 
     <form id="chatForm" class="chat-input" autocomplete="off">
-      <input type="text" id="userMessage" placeholder="Digite sua mensagem..." required autocomplete="off" />
-      <button type="submit" id="sendBtn">Enviar</button>
+      <input type="text" id="userMessage" placeholder="Digite sua mensagem..." maxlength="500" required autocomplete="off" />
+      <button type="submit" id="sendBtn" aria-label="Enviar mensagem">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
     </form>
   </div>
 
   <script src="./js/chat.js"></script>
 </body>
+
 </html>

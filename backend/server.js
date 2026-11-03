@@ -1,10 +1,21 @@
 process.env.PATH += ":/usr/bin:/usr/local/bin";
+require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
 const app = express();
 const { Pool } = require('pg');
 const path = require('path');
+const session = require('express-session');
+
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60 * 60 * 1000, httpOnly: true } // 60 min
+}));
+
 
 const createMunicipiosRouter = require('./routes/predicao.js');
 const redirect_home = require('./routes/home.js');
@@ -12,7 +23,7 @@ const redirect_home = require('./routes/home.js');
 // Rota para tutoriais
 const redirect_tutoriais = require('../frontend/menu-tutoriais/rota-tutoriais.js');
 // Rota para materiais educativos
-const redirect_materiais_educativos = require('../frontend/menu-materiais-educativos/rota-materiais-educativos.js');    
+const redirect_materiais_educativos = require('../frontend/menu-materiais-educativos/rota-materiais-educativos.js');
 // Rota para publicações
 const redirect_publicacoes = require('../frontend/menu-publicacoes/rota-publicacoes.js');
 
@@ -76,7 +87,7 @@ app.get('/ufs', async (req, res) => {
 // Rota para obter cidades por UF digitada
 app.get('/cidades/:uf', async (req, res) => {
     const { uf } = req.params;
-    
+
     try {
         const resultado = await pool.query('SELECT nome_munic FROM municipios WHERE uf = $1 ORDER BY nome_munic;', [uf]);
         res.json(resultado.rows.map(row => row.nome_munic));
@@ -104,7 +115,7 @@ app.get('/estacoes/:cidade', async (req, res) => {
 app.post('/datasus', async (req, res) => {
     console.log(req.body); // DEBUG
     const { uf, city, station, group, startDate, endDate, inmet, pop } = req.body;
-    
+
     try {
         const queryText = `
             SELECT 
@@ -167,7 +178,8 @@ app.get('/dashboard', (req, res) => {
 app.use('/modelos_XGboost_onnx_todas_cidades_pneumonia', express.static(path.join(__dirname, '../modelos_XGboost_onnx_todas_cidades_pneumonia')));
 
 app.use(express.static(path.join(__dirname, '../frontend')));
-app.get('/', (req, res) => {res.sendFile(path.join(__dirname, '../frontend/html/home.html'));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/html/home.html'));
 });
 
 
@@ -182,177 +194,180 @@ app.use('/materiais-arquivos', express.static(path.join(process.cwd(), 'materiai
 
 let saudacaoEnviada = false;
 
-function similarity(a, b) {
-    a = a.toLowerCase();
-    b = b.toLowerCase();
+// function similarity(a, b) {
+//     a = a.toLowerCase();
+//     b = b.toLowerCase();
 
-    if (a.length < 2 || b.length < 2) return 0;
+//     if (a.length < 2 || b.length < 2) return 0;
 
-    const bigrams = new Map();
-    for (let i = 0; i < a.length - 1; i++) {
-        const gram = a.substring(i, i + 2);
-        bigrams.set(gram, (bigrams.get(gram) || 0) + 1);
-    }
+//     const bigrams = new Map();
+//     for (let i = 0; i < a.length - 1; i++) {
+//         const gram = a.substring(i, i + 2);
+//         bigrams.set(gram, (bigrams.get(gram) || 0) + 1);
+//     }
 
-    let intersection = 0;
-    for (let i = 0; i < b.length - 1; i++) {
-        const gram = b.substring(i, i + 2);
-        if (bigrams.get(gram)) {
-            intersection++;
-            bigrams.set(gram, bigrams.get(gram) - 1);
-        }
-    }
+//     let intersection = 0;
+//     for (let i = 0; i < b.length - 1; i++) {
+//         const gram = b.substring(i, i + 2);
+//         if (bigrams.get(gram)) {
+//             intersection++;
+//             bigrams.set(gram, bigrams.get(gram) - 1);
+//         }
+//     }
 
-    return (2.0 * intersection) / (a.length + b.length - 2);
-}
+//     return (2.0 * intersection) / (a.length + b.length - 2);
+// }
 
-app.post("/chat", async (req, res) => {
-    try {
-        const { message } = req.body;
+const chatRouter = require('./routes/chat.js');
+app.use(chatRouter);
 
-        if (!message || typeof message !== "string") {
-            return res.status(400).json({ reply: "Envie o campo 'message' no corpo da requisição." });
-        }
+// app.post("/chat", async (req, res) => {
+//     try {
+//         const { message } = req.body;
 
-        const faqs = [
+//         if (!message || typeof message !== "string") {
+//             return res.status(400).json({ reply: "Envie o campo 'message' no corpo da requisição." });
+//         }
 
-            { k: ["modelo de previsão", "modelo"], a: "É um sistema de IA que estima internações por pneumonia usando clima, população e histórico." },
-            { k: ["para que serve"], a: "Ajuda a prever aumento de internações e apoiar o planejamento em saúde pública." },
-            { k: ["quem desenvolveu", "quem criou"], a: "Foi desenvolvido em ambiente de pesquisa usando dados públicos." },
-            { k: ["ministério da saúde"], a: "Não. É um projeto experimental, sem caráter oficial." },
-            { k: ["dados públicos"], a: "Sim! Os dados vêm do DataSUS e do INMET." },
-            { k: ["usa ia"], a: "Sim, ele utiliza aprendizado de máquina para prever internações." },
-            { k: ["aprende sozinho"], a: "Não aprende automaticamente. Precisa ser reprocessado com novos dados." },
-            { k: ["atualiza automaticamente"], a: "Não. As atualizações são feitas manualmente quando há novos dados." },
-            { k: ["pode errar"], a: "Sim. Como toda previsão, existe margem de erro." },
-            { k: ["é seguro"], a: "É confiável como tendência geral, mas não substitui decisões médicas." },
-            { k: ["como fazer previsão"], a: "Informe município, data, clima e internações dos últimos 14 dias e clique em 'Gerar Previsão'." },
-            { k: ["quais dados preciso"], a: "Município, data, clima e internações dos 14 dias anteriores." },
-            { k: ["dados de clima"], a: "Eles são preenchidos automaticamente ou podem ser informados manualmente." },
-            { k: ["campo em branco"], a: "O ideal é preencher tudo, mas campos podem ficar como 0." },
-            { k: ["número errado"], a: "A previsão pode ficar imprecisa se os dados forem irreais." },
-            { k: ["interpretar"], a: "O valor mostrado é a estimativa de internações para o dia escolhido." },
-            { k: ["diária"], a: "A previsão é diária, para o dia informado." },
-            { k: ["comparar cidades"], a: "Sim! Cada cidade tem seu próprio modelo, e os resultados podem ser comparados." },
-            { k: ["erro médio"], a: "O erro médio é de cerca de 0,8 caso por dia." },
-            { k: ["cidades grandes"], a: "Cidades grandes têm mais variabilidade, aumentando o erro." },
-            { k: ["melhor resultado"], a: "Caruaru (PE), Trindade (PE) e Porto Seguro (BA) tiveram os melhores resultados." },
-            { k: ["quantas cidades"], a: "644 cidades tinham dados completos e foram incluídas." },
-            { k: ["não aparece"], a: "Ela pode não ter dados climáticos ou de saúde suficientes." },
-            { k: ["cidades não incluídas"], a: "13 cidades ficaram de fora por dados incompletos." },
-            { k: ["quando será adicionada"], a: "Quando houver dados suficientes de clima e saúde para treinar o modelo." },
-            { k: ["quais variáveis"], a: "Temperatura, umidade, chuva, vento, pressão, radiação e população." },
-            { k: ["clima da minha cidade"], a: "Usa dados históricos do INMET." },
-            { k: ["xgboost"], a: "É um algoritmo de aprendizado de máquina baseado em árvores de decisão." },
-            { k: ["rede neural"], a: "Não usa redes neurais — usa árvores com boosting." },
-            { k: ["regressor"], a: "Significa que prevê números contínuos, como casos por dia." },
-            { k: ["quantos dados foram usados"], a: "Foram usados 5,2 milhões de registros de 2000 a 2023." },
-            { k: ["dados faltantes"], a: "O XGBoost lida automaticamente com valores nulos." },
-            { k: ["prevê surtos"], a: "Ele prevê internações diárias, o que pode indicar tendência." },
-            { k: ["previsão aumenta"], a: "Pode indicar aumento de risco." },
-            { k: ["casos ou porcentagem"], a: "A previsão é em número de casos (internações)." },
-            { k: ["substitui médicos"], a: "Não — é apenas apoio à decisão." },
-            { k: ["modelo erra"], a: "Pode errar devido a fatores imprevisíveis." },
-            { k: ["poluição"], a: "Ainda não. Só clima e população." },
-            { k: ["período usado", "treinamento"], a: "Treino: 2000–2022 | Teste: 2023." },
-            { k: ["campos do formulário"], a: "São dados da cidade, data, clima e internações anteriores." },
-            { k: ["como é gerada a previsão"], a: "O sistema envia os dados ao modelo e exibe a previsão." },
-            { k: ["terminou o cálculo"], a: "O resultado aparece assim que o processamento termina." },
-            { k: ["offline"], a: "Não. O modelo precisa de conexão com o servidor para realizar os cálculos." }
-        ];
+//         const faqs = [
 
-        const userMsg = message.toLowerCase();
+//             { k: ["modelo de previsão", "modelo"], a: "É um sistema de IA que estima internações por pneumonia usando clima, população e histórico." },
+//             { k: ["para que serve"], a: "Ajuda a prever aumento de internações e apoiar o planejamento em saúde pública." },
+//             { k: ["quem desenvolveu", "quem criou"], a: "Foi desenvolvido em ambiente de pesquisa usando dados públicos." },
+//             { k: ["ministério da saúde"], a: "Não. É um projeto experimental, sem caráter oficial." },
+//             { k: ["dados públicos"], a: "Sim! Os dados vêm do DataSUS e do INMET." },
+//             { k: ["usa ia"], a: "Sim, ele utiliza aprendizado de máquina para prever internações." },
+//             { k: ["aprende sozinho"], a: "Não aprende automaticamente. Precisa ser reprocessado com novos dados." },
+//             { k: ["atualiza automaticamente"], a: "Não. As atualizações são feitas manualmente quando há novos dados." },
+//             { k: ["pode errar"], a: "Sim. Como toda previsão, existe margem de erro." },
+//             { k: ["é seguro"], a: "É confiável como tendência geral, mas não substitui decisões médicas." },
+//             { k: ["como fazer previsão"], a: "Informe município, data, clima e internações dos últimos 14 dias e clique em 'Gerar Previsão'." },
+//             { k: ["quais dados preciso"], a: "Município, data, clima e internações dos 14 dias anteriores." },
+//             { k: ["dados de clima"], a: "Eles são preenchidos automaticamente ou podem ser informados manualmente." },
+//             { k: ["campo em branco"], a: "O ideal é preencher tudo, mas campos podem ficar como 0." },
+//             { k: ["número errado"], a: "A previsão pode ficar imprecisa se os dados forem irreais." },
+//             { k: ["interpretar"], a: "O valor mostrado é a estimativa de internações para o dia escolhido." },
+//             { k: ["diária"], a: "A previsão é diária, para o dia informado." },
+//             { k: ["comparar cidades"], a: "Sim! Cada cidade tem seu próprio modelo, e os resultados podem ser comparados." },
+//             { k: ["erro médio"], a: "O erro médio é de cerca de 0,8 caso por dia." },
+//             { k: ["cidades grandes"], a: "Cidades grandes têm mais variabilidade, aumentando o erro." },
+//             { k: ["melhor resultado"], a: "Caruaru (PE), Trindade (PE) e Porto Seguro (BA) tiveram os melhores resultados." },
+//             { k: ["quantas cidades"], a: "644 cidades tinham dados completos e foram incluídas." },
+//             { k: ["não aparece"], a: "Ela pode não ter dados climáticos ou de saúde suficientes." },
+//             { k: ["cidades não incluídas"], a: "13 cidades ficaram de fora por dados incompletos." },
+//             { k: ["quando será adicionada"], a: "Quando houver dados suficientes de clima e saúde para treinar o modelo." },
+//             { k: ["quais variáveis"], a: "Temperatura, umidade, chuva, vento, pressão, radiação e população." },
+//             { k: ["clima da minha cidade"], a: "Usa dados históricos do INMET." },
+//             { k: ["xgboost"], a: "É um algoritmo de aprendizado de máquina baseado em árvores de decisão." },
+//             { k: ["rede neural"], a: "Não usa redes neurais — usa árvores com boosting." },
+//             { k: ["regressor"], a: "Significa que prevê números contínuos, como casos por dia." },
+//             { k: ["quantos dados foram usados"], a: "Foram usados 5,2 milhões de registros de 2000 a 2023." },
+//             { k: ["dados faltantes"], a: "O XGBoost lida automaticamente com valores nulos." },
+//             { k: ["prevê surtos"], a: "Ele prevê internações diárias, o que pode indicar tendência." },
+//             { k: ["previsão aumenta"], a: "Pode indicar aumento de risco." },
+//             { k: ["casos ou porcentagem"], a: "A previsão é em número de casos (internações)." },
+//             { k: ["substitui médicos"], a: "Não — é apenas apoio à decisão." },
+//             { k: ["modelo erra"], a: "Pode errar devido a fatores imprevisíveis." },
+//             { k: ["poluição"], a: "Ainda não. Só clima e população." },
+//             { k: ["período usado", "treinamento"], a: "Treino: 2000–2022 | Teste: 2023." },
+//             { k: ["campos do formulário"], a: "São dados da cidade, data, clima e internações anteriores." },
+//             { k: ["como é gerada a previsão"], a: "O sistema envia os dados ao modelo e exibe a previsão." },
+//             { k: ["terminou o cálculo"], a: "O resultado aparece assim que o processamento termina." },
+//             { k: ["offline"], a: "Não. O modelo precisa de conexão com o servidor para realizar os cálculos." }
+//         ];
 
-        let bestMatch = null;
-        let bestScore = 0;
+//         const userMsg = message.toLowerCase();
 
-        for (const f of faqs) {
-            for (const kw of f.k) {
-                const score = similarity(userMsg, kw);
-                if (score > bestScore) {
-                    bestScore = score;
-                    bestMatch = f;
-                }
-            }
-        }
+//         let bestMatch = null;
+//         let bestScore = 0;
 
-        if (bestScore >= 0.45 && bestMatch) {
-            return res.json({ reply: bestMatch.a });
-        }
+//         for (const f of faqs) {
+//             for (const kw of f.k) {
+//                 const score = similarity(userMsg, kw);
+//                 if (score > bestScore) {
+//                     bestScore = score;
+//                     bestMatch = f;
+//                 }
+//             }
+//         }
 
-        const agradecimentos = ["obrigado", "obrigada", "valeu", "agradeço", "brigado", "brigada", "obg", "vlw"];
-        if (agradecimentos.some(p => userMsg.includes(p))) {
-            return res.json({ reply: "De nada! 😊 Fico feliz em ajudar." });
-        }
+//         if (bestScore >= 0.45 && bestMatch) {
+//             return res.json({ reply: bestMatch.a });
+//         }
 
-        const cumprimentos = ["oi", "olá", "ola", "bom dia", "boa tarde", "boa noite", "eae", "eai"];
-        if (!saudacaoEnviada && cumprimentos.some(p => userMsg.includes(p))) {
-            saudacaoEnviada = true;
-            return res.json({ reply: "Olá, bem-vindo ao ClimArS! Como posso ajudar? 😊" });
-        }
+//         const agradecimentos = ["obrigado", "obrigada", "valeu", "agradeço", "brigado", "brigada", "obg", "vlw"];
+//         if (agradecimentos.some(p => userMsg.includes(p))) {
+//             return res.json({ reply: "De nada! 😊 Fico feliz em ajudar." });
+//         }
 
-        const systemPrompt = `
-Você é o chatbot do projeto ClimaArs.
-Responda sempre em português, de forma curta, simpática e direta.
-Importante: NÃO diga "olá" nem "bem-vindo" se já tiver cumprimentado antes.
+//         const cumprimentos = ["oi", "olá", "ola", "bom dia", "boa tarde", "boa noite", "eae", "eai"];
+//         if (!saudacaoEnviada && cumprimentos.some(p => userMsg.includes(p))) {
+//             saudacaoEnviada = true;
+//             return res.json({ reply: "Olá, bem-vindo ao ClimArS! Como posso ajudar? 😊" });
+//         }
 
-Páginas do site:
-- Home: mostra o objetivo do projeto e as fontes de dados.
-- Gráfico: permite escolher UF, cidade, estação, doenças e datas.
-- Predição: usa modelos de machine learning para prever internações.
+//         const systemPrompt = `
+// Você é o chatbot do projeto ClimaArs.
+// Responda sempre em português, de forma curta, simpática e direta.
+// Importante: NÃO diga "olá" nem "bem-vindo" se já tiver cumprimentado antes.
 
-Quando o usuário perguntar como navegar:
-“O site tem Home, Gráficos e Predição — cada parte mostra dados e previsões.”
+// Páginas do site:
+// - Home: mostra o objetivo do projeto e as fontes de dados.
+// - Gráfico: permite escolher UF, cidade, estação, doenças e datas.
+// - Predição: usa modelos de machine learning para prever internações.
 
-Quando perguntar sobre gráficos:
-“Na aba Gráfico você escolhe cidade, estação e doença, depois clica em Filtrar. Pode exportar também.”
+// Quando o usuário perguntar como navegar:
+// “O site tem Home, Gráficos e Predição — cada parte mostra dados e previsões.”
 
-Importante:
-O usuário só pode exportar em CSV, XLSX, PDF e PNG. 
-Se perguntarem sobre outros formatos, explique que apenas esses quatro estão disponíveis.
-O site foi desenvolvido pela Universidade Federal do Rio Grande - FURG.
+// Quando perguntar sobre gráficos:
+// “Na aba Gráfico você escolhe cidade, estação e doença, depois clica em Filtrar. Pode exportar também.”
 
-Use respostas curtas. Alguns emojis são ok. 😊📊
+// Importante:
+// O usuário só pode exportar em CSV, XLSX, PDF e PNG. 
+// Se perguntarem sobre outros formatos, explique que apenas esses quatro estão disponíveis.
+// O site foi desenvolvido pela Universidade Federal do Rio Grande - FURG.
 
-Contexto da conversa:
-Usuário: ${message}
-`;
+// Use respostas curtas. Alguns emojis são ok. 😊📊
+
+// Contexto da conversa:
+// Usuário: ${message}
+// `;
 
 
-        const { spawn } = require("child_process");
+//         const { spawn } = require("child_process");
 
-        const ollama = spawn("ollama", ["run", "llama3"]);
+//         const ollama = spawn("ollama", ["run", "llama3"]);
 
-        let reply = "";
+//         let reply = "";
 
-        ollama.stdin.write(systemPrompt);
-        ollama.stdin.end();
+//         ollama.stdin.write(systemPrompt);
+//         ollama.stdin.end();
 
-        ollama.stdout.on("data", (data) => {
-            reply += data.toString();
-        });
+//         ollama.stdout.on("data", (data) => {
+//             reply += data.toString();
+//         });
 
-        ollama.stderr.on("data", (data) => {
-            console.error("Ollama stderr:", data.toString());
-        });
+//         ollama.stderr.on("data", (data) => {
+//             console.error("Ollama stderr:", data.toString());
+//         });
 
-        ollama.on("close", () => {
-            reply = reply.trim();
+//         ollama.on("close", () => {
+//             reply = reply.trim();
 
-            if (saudacaoEnviada) {
-                reply = reply
-                    .replace(/^olá[,! ]/i, "")
-                    .replace(/bem[- ]?vindo[^.!\n]/i, "")
-                    .trim();
-            }
+//             if (saudacaoEnviada) {
+//                 reply = reply
+//                     .replace(/^olá[,! ]/i, "")
+//                     .replace(/bem[- ]?vindo[^.!\n]/i, "")
+//                     .trim();
+//             }
 
-            res.json({ reply });
-        });
+//             res.json({ reply });
+//         });
 
-    } catch (err) {
-        console.error("Erro no chatbot:", err);
-        res.status(500).json({ reply: "Erro no servidor do chat." });
-    }
-});
+//     } catch (err) {
+//         console.error("Erro no chatbot:", err);
+//         res.status(500).json({ reply: "Erro no servidor do chat." });
+//     }
+// });
 
 app.listen(3000, '0.0.0.0', () => console.log('API rodando na porta 3000'));
